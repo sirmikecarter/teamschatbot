@@ -1,4 +1,4 @@
-/teamsAppManifest/
+teamsAppManifest/
 node_modules/
 *.js.map
 .env
