@@ -24,10 +24,11 @@ class TeamsConversationBot extends TeamsActivityHandler {
             case 'MessageAllMembers':
                 await this.messageAllMembersAsync(context);
                 break;
-            case 'Search':
-                await this.handleTeamsMessagingExtensionQuery(context, 'axios');
-                break;
             default:
+
+
+            await context.sendActivity(`This is what you said: ${ context.activity.text.trim() }`);
+
                 const value = { count: 0 };
                 const card = CardFactory.heroCard(
                     'Welcome Card',
@@ -130,42 +131,6 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
         await context.sendActivity(MessageFactory.text('All messages have been sent.'));
     }
-
-    async handleTeamsMessagingExtensionQuery(context, query) {
-        const searchQuery = query.parameters[0].value;
-        const response = await axios.get(`http://registry.npmjs.com/-/v1/search?${ querystring.stringify({ text: searchQuery, size: 8 }) }`);
-
-        const attachments = [];
-        response.data.objects.forEach(obj => {
-            const heroCard = CardFactory.heroCard(obj.package.name);
-            const preview = CardFactory.heroCard(obj.package.name);
-            preview.content.tap = { type: 'invoke', value: { description: obj.package.description } };
-            const attachment = { ...heroCard, preview };
-            attachments.push(attachment);
-        });
-
-        return {
-            composeExtension: {
-                type: 'result',
-                attachmentLayout: 'list',
-                attachments: attachments
-            }
-        };
-    }
-
-    async handleTeamsMessagingExtensionSelectItem(context, obj) {
-        return {
-            composeExtension: {
-                type: 'result',
-                attachmentLayout: 'list',
-                attachments: [CardFactory.thumbnailCard(obj.description)]
-            }
-        };
-    }
-
-
-
-
 
 }
 
