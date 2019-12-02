@@ -1,168 +1,81 @@
----
-page_type: sample
-products:
-- office-365
-languages:
-- javascript
-title: Microsoft Teams NodeJS Helloworld Sample
-description: Microsoft Teams hello world sample app in Node.js
-extensions:
-  contentType: samples
-  createdDate: 11/3/2017 12:53:17 PM
----
-# Official documentation
 
-More information for this sample - and for how to get started with Microsoft Teams development in general - is found in [Get started on the Microsoft Teams platform with Node.js and App Studio](https://docs.microsoft.com/en-us/microsoftteams/platform/get-started/get-started-nodejs-app-studio).
+# Teams Conversation Bot
 
-# Using this sample locally
+Bot Framework v4 Conversation Bot sample for Teams.
 
-This sample can be run locally using `ngrok` as described in the [official documentation](https://docs.microsoft.com/en-us/microsoftteams/platform/get-started/get-started-nodejs-app-studio), but you'll need to set up some environment variables. There are many ways to do this, but the easiest, if you are using Visual Studio Code, is to add a [launch configuration](https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations):
+This bot has been created using [Bot Framework](https://dev.botframework.com). This sample shows
+how to incorporate basic conversational flow into a Teams application. It also illustrates a few of the Teams specific calls you can make from your bot.
 
-```json
-[...]
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch - Teams Debug",
-            "program": "${workspaceRoot}/src/app.js",
-            "cwd": "${workspaceFolder}/src",
-            "env": {
-                "BASE_URI": "https://########.ngrok.io",
-                "MICROSOFT_APP_ID": "00000000-0000-0000-0000-000000000000",
-                "MICROSOFT_APP_PASSWORD": "yourBotAppPassword",
-                "NODE_DEBUG": "botbuilder",
-                "SUPPRESS_NO_CONFIG_WARNING": "y",
-                "NODE_CONFIG_DIR": "../config"
-            }
-[...]
-```
+## Prerequisites
 
-Where:
+- Microsoft Teams is installed and you have an account
+- [NodeJS](https://nodejs.org/en/)
+- [ngrok](https://ngrok.com/) or equivalent tunnelling solution
 
-* `########` matches your actual ngrok URL
-* `MICROSOFT_APP_ID` and `MICROSOFT_APP_PASSWORD` is the ID and password, respectively, for your bot
-* `NODE_DEBUG` will show you what's happening in your bot in the Visual Studio Code debug console
-* `NODE_CONFIG_DIR` points to the directory at the root of the repository (by default, when the app is run locally, it looks for it in the `src` folder)
+## To try this sample
 
-# Deploying to Azure App Service
+> Note these instructions are for running the sample on your local machine, the tunnelling solution is required because
+the Teams service needs to call into the bot.
 
-## Visual Studio Code extensions
+1) Clone the repository
 
-The easiest way to deploy to Azure is to use Visual Studio Code with Azure extensions. There are many extensions for Azure - you can get all of them at once by installing the [Node Pack for Azure](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack) or you can install just the [Azure App Service](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) extension.
+    ```bash
+    git clone https://github.com/Microsoft/botbuilder-samples.git
+    ```
 
-## Creating a new Node.js web app
+1) In a terminal, navigate to `samples/javascript_nodejs/57.teams-conversation-bot`
 
-Once you've installed the extensions, you'll see a new Azure icon on the left in Visual Studio Code. Click on the + icon to create a new web app. Once you've created your web app:
+1) Install modules
 
-1. Add the following Application Settings (environment variables):
+    ```bash
+    npm install
+    ```
 
-   ```
-   MICROSOFT_APP_ID=<YOUR BOT'S APP ID>
-   MICROSOFT_APP_PASSWORD=<YOUR BOT'S APP PASSWORD>
-   WEBSITE_NODE_DEFAULT_VERSION=8.9.4
-   ```
-   
-1. Configure the Deployment Source for your app (either your local copy of this repository or one you've forked on GitHub).
-1. Deploy your web app. Visual Studio Code will tell you when you are done.
+1) Run ngrok - point to port 3978
 
-## Deploying to Azure for Node.js on Windows
+    ```bash
+    ngrok http -host-header=rewrite 3978
+    ```
 
-Since this repo was optimized for Azure App Service, which runs on Linux, the `.deployment` file references `bash deploy.sh`. There's also a `deploy.cmd` if you want to deploy to Azure running Node.js on Windows. If you do, change `.deployment` to this instead:
+1) Create [Bot Framework registration resource](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-registration) in Azure
+    - Use the current `https` URL you were given by running ngrok. Append with the path `/api/messages` used by this sample
+    - Ensure that you've [enabled the Teams Channel](https://docs.microsoft.com/en-us/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0)
+    - __*If you don't have an Azure account*__ you can use this [Bot Framework registration](https://docs.microsoft.com/en-us/microsoftteams/platform/bots/how-to/create-a-bot-for-teams#register-your-web-service-with-the-bot-framework)
 
-```
-[config]
-command = deploy.cmd
-```
+1) Update the `.env` configuration for the bot to use the Microsoft App Id and App Password from the Bot Framework registration. (Note the App Password is referred to as the "client secret" in the azure portal and you can always create a new client secret anytime.)
 
-# Contributing
+1) __*This step is specific to Teams.*__
+    - **Edit** the `manifest.json` contained in the  `teamsAppManifest` folder to replace your Microsoft App Id (that was created when you registered your bot earlier) *everywhere* you see the place holder string `<<YOUR-MICROSOFT-APP-ID>>` (depending on the scenario the Microsoft App Id may occur multiple times in the `manifest.json`)
+    - **Zip** up the contents of the `teamsAppManifest` folder to create a `manifest.zip`
+    - **Upload** the `manifest.zip` to Teams (in the Apps view click "Upload a custom app")
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
+1) Run your bot at the command line:
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+    ```bash
+    npm start
+    ```
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-=======
-# Official documentation
+## Interacting with the bot
 
-More information for this sample - and for how to get started with Microsoft Teams development in general - is found in [Get started on the Microsoft Teams platform with Node.js and App Studio](https://docs.microsoft.com/en-us/microsoftteams/platform/get-started/get-started-nodejs-app-studio).
+You can interact with this bot by sending it a message, or selecting a command from the command list. The bot will respond to the following strings. 
 
-# Using this sample locally
+1. **Show Welcome**
+  - **Result:** The bot will send the welcome card for you to interact with
+  - **Valid Scopes:** personal, group chat, team chat
+2. **MentionMe**
+  - **Result:** The bot will respond to the message and mention the user
+  - **Valid Scopes:** personal, group chat, team chat
+3. **MessageAllMembers**
+  - **Result:** The bot will send a 1-on-1 message to each member in the current conversation (aka on the conversation's roster).
+  - **Valid Scopes:** personal, group chat, team chat
 
-This sample can be run locally using `ngrok` as described in the [official documentation](https://docs.microsoft.com/microsoftteams/platform/get-started/get-started-nodejs-app-studio), but you'll need to set up some environment variables. There are many ways to do this, but the easiest, if you are using Visual Studio Code, is to add a [launch configuration](https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations):
+You can select an option from the command list by typing ```@TeamsConversationBot``` into the compose message area and ```What can I do?``` text above the compose area.
 
-```json
-[...]
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch - Teams Debug",
-            "program": "${workspaceRoot}/src/app.js",
-            "cwd": "${workspaceFolder}/src",
-            "env": {
-                "BASE_URI": "https://########.ngrok.io",
-                "MICROSOFT_APP_ID": "00000000-0000-0000-0000-000000000000",
-                "MICROSOFT_APP_PASSWORD": "yourBotAppPassword",
-                "NODE_DEBUG": "botbuilder",
-                "SUPPRESS_NO_CONFIG_WARNING": "y",
-                "NODE_CONFIG_DIR": "../config"
-            }
-[...]
-```
+## Deploy the bot to Azure
 
-Where:
+To learn more about deploying a bot to Azure, see [Deploy your bot to Azure](https://aka.ms/azuredeployment) for a complete list of deployment instructions.
 
-* `########` matches your actual ngrok URL
-* `MICROSOFT_APP_ID` and `MICROSOFT_APP_PASSWORD` is the ID and password, respectively, for your bot
-* `NODE_DEBUG` will show you what's happening in your bot in the Visual Studio Code debug console
-* `NODE_CONFIG_DIR` points to the directory at the root of the repository (by default, when the app is run locally, it looks for it in the `src` folder)
+## Further reading
 
-# Deploying to Azure App Service
-
-## Visual Studio Code extensions
-
-The easiest way to deploy to Azure is to use Visual Studio Code with Azure extensions. There are many extensions for Azure - you can get all of them at once by installing the [Node Pack for Azure](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-node-azure-pack) or you can install just the [Azure App Service](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) extension.
-
-## Creating a new Node.js web app
-
-Once you've installed the extensions, you'll see a new Azure icon on the left in Visual Studio Code. Click on the + icon to create a new web app. Once you've created your web app:
-
-1. Add the following Application Settings (environment variables):
-
-   ```
-   MICROSOFT_APP_ID=<YOUR BOT'S APP ID>
-   MICROSOFT_APP_PASSWORD=<YOUR BOT'S APP PASSWORD>
-   WEBSITE_NODE_DEFAULT_VERSION=8.9.4
-   ```
-   
-1. Configure the Deployment Source for your app (either your local copy of this repository or one you've forked on GitHub).
-1. Deploy your web app. Visual Studio Code will tell you when you are done.
-
-## Deploying to Azure for Node.js on Windows
-
-Since this repo was optimized for Azure App Service, which runs on Linux, the `.deployment` file references `bash deploy.sh`. There's also a `deploy.cmd` if you want to deploy to Azure running Node.js on Windows. If you do, change `.deployment` to this instead:
-
-```
-[config]
-command = deploy.cmd
-```
-
-# Contributing
-
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
-
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+- [How Microsoft Teams bots work](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-basics-teams?view=azure-bot-service-4.0&tabs=javascript)
 
