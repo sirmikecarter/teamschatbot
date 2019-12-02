@@ -25,6 +25,15 @@ class TeamsConversationBot extends TeamsActivityHandler {
             case 'MessageAllMembers':
                 await this.messageAllMembersAsync(context);
                 break;
+            case 'Select a Term':
+                await context.sendActivity(`This is under Construction`);
+                break;
+            case 'See All Terms':
+                await context.sendActivity(`This is under Construction`);
+                break;
+            case 'Glossary Search':
+                await context.sendActivity(`This is under Construction`);
+                break;
             default:
 
 
@@ -32,7 +41,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                 const value = { count: 0 };
                 const card = CardFactory.heroCard(
-                    'Welcome Card',
+                    'What would you like to do?',
                     null,
                     [
                         {
