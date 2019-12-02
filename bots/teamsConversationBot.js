@@ -17,7 +17,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
         this.onMessage(async (context, next) => {
             TurnContext.removeRecipientMention(context.activity);
             switch (context.activity.text.trim()) {
-            case 'MentionMe':
+            case 'MentionTheMike':
                 await this.mentionActivityAsync(context);
                 break;
             case 'UpdateCardAction':
