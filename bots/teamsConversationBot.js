@@ -5,6 +5,7 @@ const {TurnContext, MessageFactory, TeamsInfo, TeamsActivityHandler, CardFactory
 const axios = require('axios');
 const querystring = require('querystring');
 const TextEncoder = require('util').TextEncoder;
+const CHOICE_PROMPT = 'choicePrompt';
 
 class TeamsConversationBot extends TeamsActivityHandler {
     constructor() {
@@ -36,15 +37,21 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     [
                         {
                             type: ActionTypes.MessageBack,
-                            title: 'Update Card',
+                            title: 'Select a Term',
                             value: value,
-                            text: 'UpdateCardAction'
+                            text: 'Select a Term'
                         },
                         {
                             type: ActionTypes.MessageBack,
-                            title: 'Message all members',
+                            title: 'See All Terms',
                             value: null,
-                            text: 'MessageAllMembers'
+                            text: 'See All Terms'
+                        },
+                        {
+                            type: ActionTypes.MessageBack,
+                            title: 'Glossary Search',
+                            value: null,
+                            text: 'Glossary Search'
                         }]);
                 await context.sendActivity({ attachments: [card] });
                 break;
