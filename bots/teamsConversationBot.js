@@ -422,25 +422,22 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                   //  console.log(self.state.termArray)
 
-                  await context.sendActivity({ attachments: [this.dialogHelper.createGlossaryCard("this.state.termArray[0].definedby", "this.state.termArray[0].glossaryterm", "this.state.termArray[0].description", "this.state.termArray[0].definedby", "this.state.termArray[0].output", "this.state.termArray[0].related")] });
-
                     if (this.state.termArray.length > 0){
 
                       await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...I Found ' + this.state.termArray.length + ' Glossary Terms ','Here are the Results')] });
 
-                      // var attachments = [];
-                      //
-                      // this.state.termArray.forEach(function(data){
-                      //
-                      // var card = this.dialogHelper.createGlossaryCard(data.definedby, data.glossaryterm, data.description, data.definedby, data.output, data.related)
-                      //
-                      // attachments.push(card);
-                      //
-                      // }, this)
+                      var attachments = [];
 
+                      this.state.termArray.forEach(function(data){
 
+                      var card = this.dialogHelper.createBotCard('...I Found ' + this.state.termArray.length + ' Glossary Terms ','Here are the Results')
 
-                    //  await context.sendActivity({ attachments: attachments});
+                      attachments.push(card);
+
+                      }, this)
+
+                      await context.sendActivity({ attachments: attachments,
+                      attachmentLayout: AttachmentLayoutTypes.Carousel });
 
 
 
