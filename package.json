@@ -16,9 +16,12 @@
         "url": "https://github.com/sirmikecarter/teamschatbot.git"
     },
     "dependencies": {
+        "array-sort": "^1.0.0",
         "axios": "^0.19.0",
         "botbuilder": "~4.6.0",
         "botbuilder-ai": "^4.6.2",
+        "botbuilder-core": "^4.6.2",
+        "botbuilder-dialogs": "^4.6.2",
         "dotenv": "^8.0.0",
         "querystring": "^0.2.0",
         "restify": "~8.3.3"
