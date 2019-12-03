@@ -391,6 +391,10 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                         var itemCount = response.data.value.length
 
+                        if (itemCount >= 10){
+                          itemCount = 9
+                        }
+
                         var itemArray = self.state.termArray.slice();
 
                         for (var i = 0; i < itemCount; i++)
