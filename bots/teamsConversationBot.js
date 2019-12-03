@@ -2,14 +2,37 @@
 // Licensed under the MIT License.
 
 const {TurnContext, MessageFactory, TeamsInfo, TeamsActivityHandler, CardFactory, ActionTypes} = require('botbuilder');
+const { LuisApplication, LuisPredictionOptions, LuisRecognizer, QnAMaker } = require('botbuilder-ai');
 const axios = require('axios');
 const querystring = require('querystring');
 const TextEncoder = require('util').TextEncoder;
-const CHOICE_PROMPT = 'choicePrompt';
 
 class TeamsConversationBot extends TeamsActivityHandler {
     constructor() {
         super();
+
+        const luisApplication = {
+            applicationId: process.env.LuisAppId,
+            azureRegion: process.env.LuisAPIHostName,
+            // CAUTION: Authoring key is used in this example as it is appropriate for prototyping.
+            // When implimenting for deployment/production, assign and use a subscription key instead of an authoring key.
+            endpointKey: process.env.LuisAPIKey
+        };
+
+        const luisPredictionOptions = {
+            spellCheck: true,
+            bingSpellCheckSubscriptionKey: process.env.BingSpellCheck
+
+        };
+
+        this.qnaRecognizer = new QnAMaker({
+            knowledgeBaseId: process.env.QnAKbId,
+            endpointKey: process.env.QnAEndpointKey,
+            host: process.env.QnAHostname
+        });
+
+        this.luisRecognizer = new LuisRecognizer(luisApplication, luisPredictionOptions);
+
         this.onMessage(async (context, next) => {
             TurnContext.removeRecipientMention(context.activity);
             switch (context.activity.text.trim()) {
@@ -36,8 +59,11 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 break;
             default:
 
+            const dispatchResults = await this.luisRecognizer.recognize(stepContext.context);
+            const dispatchTopIntent = LuisRecognizer.topIntent(dispatchResults);
 
-            await context.sendActivity(`This is what you said: ${ context.activity.text.trim() }`);
+
+            await context.sendActivity(dispatchTopIntent);
 
                 const value = { count: 0 };
                 const card = CardFactory.heroCard(
