@@ -436,8 +436,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                       }, this)
 
-                      await context.sendActivity({ attachments: attachments,
-                      attachmentLayout: AttachmentLayoutTypes.list });
+                      await context.sendActivity({ attachments: attachments});
 
 
 
