@@ -7,6 +7,11 @@ const axios = require('axios');
 const querystring = require('querystring');
 const TextEncoder = require('util').TextEncoder;
 
+const { DialogHelper } = require('./helpers/dialogHelper');
+
+const QNA_TOP_N = 1;
+const QNA_CONFIDENCE_THRESHOLD = 0.5;
+
 class TeamsConversationBot extends TeamsActivityHandler {
     constructor() {
         super();
@@ -32,6 +37,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
         });
 
         this.luisRecognizer = new LuisRecognizer(luisApplication, luisPredictionOptions);
+        this.dialogHelper = new DialogHelper();
 
         this.onMessage(async (context, next) => {
             TurnContext.removeRecipientMention(context.activity);
@@ -59,11 +65,28 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 break;
             default:
 
-            const dispatchResults = await this.luisRecognizer.recognize(stepContext.context);
+            const dispatchResults = await this.luisRecognizer.recognize(context);
             const dispatchTopIntent = LuisRecognizer.topIntent(dispatchResults);
 
+            switch (dispatchTopIntent) {
+              case 'General':
+                  const qnaResult = await this.qnaRecognizer.generateAnswer(dispatchResults.text, QNA_TOP_N, QNA_CONFIDENCE_THRESHOLD);
+                  if (!qnaResult || qnaResult.length === 0 || !qnaResult[0].answer){
+                    //await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard(String(qnaResult[0].answer),'')] });
+                  }else{
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard(String(qnaResult[0].answer),'')] });
+                  }
 
-            await context.sendActivity(dispatchTopIntent);
+                  break;
+              case 'Glossary':
+                  const glossaryTerm = dispatchResults.entities.Term[0];
+                  await context.sendActivity(glossaryTerm);
+                  break;
+
+            }
+
+            //await context.sendActivity(dispatchTopIntent);
+
 
                 const value = { count: 0 };
                 const card = CardFactory.heroCard(
