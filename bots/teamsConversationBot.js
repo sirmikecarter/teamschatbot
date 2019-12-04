@@ -55,6 +55,32 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
         this.onMessage(async (context, next) => {
             TurnContext.removeRecipientMention(context.activity);
+
+            if (context.activity.value){
+
+              console.log(context.activity.value.action)
+
+              switch (context.activity.value.action) {
+              case 'createRAW':
+                  console.log(context.activity.value)
+                  // console.log(context.activity.value.myName)
+                  // console.log(context.activity.value.myEmail)
+                  // console.log(context.activity.value.myTel)
+
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Your Name: ' + context.activity.value.myName,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Your Email: ' + context.activity.value.myEmail,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Your Telephone: ' + context.activity.value.myTel,'')] });
+
+
+                  break;
+
+              }
+
+
+
+
+            }else{
+
             switch (context.activity.text.trim()) {
             case 'MentionMe':
                 await this.mentionActivityAsync(context);
@@ -90,6 +116,15 @@ class TeamsConversationBot extends TeamsActivityHandler {
                   }else{
                     await context.sendActivity({ attachments: [this.dialogHelper.createBotCard(String(qnaResult[0].answer),'')] });
                   }
+                  break;
+
+              case 'Software_Create_RAW':
+
+              console.log(dispatchResults.text)
+              await context.sendActivity({ attachments: [this.dialogHelper.createForm()] });
+
+
+
                   break;
 
               case 'Software_Approved':
@@ -487,6 +522,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 break;
             }
             await next();
+          }
         });
 
         this.onMembersAddedActivity(async (context, next) => {

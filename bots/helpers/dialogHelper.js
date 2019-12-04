@@ -27,6 +27,99 @@ class DialogHelper {
        });
      }
 
+     createForm() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Request for Architecture Work (RAW)",
+                                  "weight": "Bolder",
+                                  "size": "Medium"
+                              },
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Submit a New Request",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "TextBlock",
+                                  "text": "{disclaimer}",
+                                  "isSubtle": true,
+                                  "wrap": true,
+                                  "size": "Small"
+                              },
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Enter Your Name",
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "myName",
+                                  "placeholder": "{myName}"
+                              },
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Enter Your Email",
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "myEmail",
+                                  "placeholder": "{myEmail}",
+                                  "style": "Email"
+                              },
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Enter Your Telephone"
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "myTel",
+                                  "placeholder": "{myTel}",
+                                  "style": "Tel"
+                              }
+                          ]
+                      },
+                      {
+                          "type": "Column",
+                          "width": 1,
+                          "items": [
+                              {
+                                  "type": "Image",
+                                  "url": "https://gateway.ipfs.io/ipfs/QmXKfQgKVckfbGSMmzHAGAZ3zr1h8yJNrmEuBaJdNsGECs",
+                                  "size": "auto"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createRAW"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
 
      createLink(text, link) {
        return CardFactory.adaptiveCard({
