@@ -330,7 +330,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                   await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Requirements: ' + this.state.createFormBusinessRequirements,'')] });
                   await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Benefits: ' + this.state.createFormBusinessBenefits,'')] });
                   await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Additional Information: ' + this.state.createFormAdditionalInfo,'')] });
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Do I submit this RAW on your behalf?','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Can I submit this RAW on your behalf?','')] });
                   await context.sendActivity({ attachments: [this.dialogHelper.createFormSubmitRAW()] });
 
                 }
