@@ -309,6 +309,48 @@ class DialogHelper {
       );
      }
 
+     createRAW6ArchNewSoftApprovalLicenseName() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Enter the Software Name",
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "softwareName",
+                                  "placeholder": "Name of Software"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createRAW6ArchNewSoftApprovalLicenseName"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
      createForm() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
