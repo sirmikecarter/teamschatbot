@@ -56,9 +56,6 @@ class DialogHelper {
                   "type": "Action.Submit",
                   "id": "Architecture",
                   "title": "Architecture",
-                  "value": {
-                      "option": "Architecture"
-                  },
                   "data":{
                         "action": "createRAW1Purpose",
                         "option": "Architecture"
@@ -403,6 +400,236 @@ class DialogHelper {
                 }
             ]
         }
+      );
+     }
+
+     createFormBusinessProblem() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "What is the Business Problem you are trying to solve?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "BusinessProblem",
+                                  "placeholder": "Business Problem"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createFormBusinessProblem"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createFormBusinessRequirements() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "What are the high-level requirements you are trying to solve?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "BusinessRequirements",
+                                  "placeholder": "Business Requirements"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createFormBusinessRequirements"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createFormBusinessBenefits() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "What are the major business benefits that this solution will provide?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "BusinessBenefits",
+                                  "placeholder": "Business Benefits"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createFormBusinessBenefits"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createFormAdditionalInfo() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Additional Information?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "AdditionalInfo",
+                                  "placeholder": "Additional Information"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createFormAdditionalInfo"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createFormDivisionChiefApproval() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Yes",
+                  "title": "Yes",
+                  "data":{
+                        "action": "createFormDivisionChiefApproval",
+                        "option": "Yes"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "No",
+                  "title": "No",
+                  "data":{
+                        "action": "createFormDivisionChiefApproval",
+                        "option": "No"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createFormSubmitRAW() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createFormSubmitRAW",
+                        "option": "Submit"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Cancel",
+                  "title": "Cancel",
+                  "data":{
+                        "action": "createFormSubmitRAW",
+                        "option": "Cancel"
+                  }
+              }
+          ]
+      }
       );
      }
 

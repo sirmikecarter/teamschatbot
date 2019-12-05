@@ -34,7 +34,14 @@ class TeamsConversationBot extends TeamsActivityHandler {
           createRAW4ArchNewSoftApproval: '',
           createRAW5ArchNewSoftApprovalLicense: '',
           createRAW6ArchNewSoftApprovalLicenseName: '',
-          createRAW7ArchNewSoftApprovalLicenseNameLOB: ''
+          createRAW7ArchNewSoftApprovalLicenseNameLOB: '',
+          createFormBusinessProblem: '',
+          createFormBusinessRequirements: '',
+          createFormBusinessBenefits: '',
+          createFormAdditionalInfo: '',
+          createFormDivisionChiefApproval: '',
+          createFormSubmitRAW: ''
+
         };
 
         const luisApplication = {
@@ -257,7 +264,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
               case 'createRAW7ArchNewSoftApprovalLicenseNameLOB':
 
               if (context.activity.value.Pension === 'true'){
-                console.log(context.activity)
+                //console.log(context.activity)
                 this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB = 'Pension'
               }
 
@@ -275,27 +282,88 @@ class TeamsConversationBot extends TeamsActivityHandler {
               }
 
               await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW5ArchNewSoftApprovalLicense + ' and the name of the software is ' + this.state.createRAW6ArchNewSoftApprovalLicenseName + ' and the software affects ' + this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB,'')] });
-
-
+              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about the business problem youre trying to solve','')] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessProblem()] });
 
               break;
 
-              case 'createRAW':
-                  console.log(context.activity.value)
-                  // console.log(context.activity.value.myName)
-                  // console.log(context.activity.value.myEmail)
-                  // console.log(context.activity.value.myTel)
-
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Your Name: ' + context.activity.value.myName,'')] });
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Your Email: ' + context.activity.value.myEmail,'')] });
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Your Telephone: ' + context.activity.value.myTel,'')] });
-
-
+              case 'createFormBusinessProblem':
+              this.state.createFormBusinessProblem = context.activity.value.BusinessProblem
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Business Problem: ' + this.state.createFormBusinessProblem,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about your requirements','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessRequirements()] });
                   break;
+
+              case 'createFormBusinessRequirements':
+
+              this.state.createFormBusinessRequirements = context.activity.value.BusinessRequirements
+
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Requirements: ' + this.state.createFormBusinessRequirements,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about the business benefits','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessBenefits()] });
+                  break;
+
+              case 'createFormBusinessBenefits':
+
+              this.state.createFormBusinessBenefits = context.activity.value.BusinessBenefits
+
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Benefits: ' + this.state.createFormBusinessBenefits,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Any additonal information?','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createFormAdditionalInfo()] });
+                  break;
+
+              case 'createFormAdditionalInfo':
+              this.state.createFormAdditionalInfo = context.activity.value.AdditionalInfo
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Additional Information: ' + this.state.createFormAdditionalInfo,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Do you have your division chief approval to submit this request?','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createFormDivisionChiefApproval()] });
+                  break;
+
+              case 'createFormDivisionChiefApproval':
+
+                if(context.activity.value.option === 'Yes')
+                {
+                  this.state.createFormDivisionChiefApproval = context.activity.value.option
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Heres your info','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW5ArchNewSoftApprovalLicense + ' and the name of the software is ' + this.state.createRAW6ArchNewSoftApprovalLicenseName + ' and the software affects ' + this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Business Problem: ' + this.state.createFormBusinessProblem,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Requirements: ' + this.state.createFormBusinessRequirements,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Benefits: ' + this.state.createFormBusinessBenefits,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Additional Information: ' + this.state.createFormAdditionalInfo,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Do I submit this RAW on your behalf?','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createFormSubmitRAW()] });
+
+                }
+
+                if(context.activity.value.option === 'No')
+                {
+                  this.state.createFormDivisionChiefApproval = context.activity.value.option
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('RAW requests need division chief approval, session cancelled','')] });
+
+                }
+
+              break;
+
+            case 'createFormSubmitRAW':
+
+              if(context.activity.value.option === 'Submit')
+              {
+                this.state.createFormSubmitRAW = context.activity.value.option
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('RAW submitted','')] });
 
               }
 
+              if(context.activity.value.option === 'Cancel')
+              {
+                this.state.createFormSubmitRAW = context.activity.value.option
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('session cancelled','')] });
 
+              }
+
+            break;
+
+
+          }
 
 
             }else{
