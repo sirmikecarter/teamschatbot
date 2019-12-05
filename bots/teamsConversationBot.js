@@ -97,7 +97,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     this.state.createRAW1Purpose = context.activity.value.option
                     await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW1Purpose + ' request','')] });
                     await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Type of Request Is This?','')] });
-                    await context.sendActivity({ attachments: [this.dialogHelper.createRAW2Type()] });
+                    //await context.sendActivity({ attachments: [this.dialogHelper.createRAW2Type()] });
 
                     break;
 
@@ -122,7 +122,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     this.state.createRAW2Type = context.activity.value.option
                     await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' to ' + this.state.createRAW1Purpose + ' request','')] });
                     await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Category Does this Request Fall Into?','')] });
-                    await context.sendActivity({ attachments: [this.dialogHelper.createRAW3ArchitectureNew()] });
+                    //await context.sendActivity({ attachments: [this.dialogHelper.createRAW3ArchitectureNew()] });
 
                     break;
 

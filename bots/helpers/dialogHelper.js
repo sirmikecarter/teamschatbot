@@ -425,6 +425,7 @@ class DialogHelper {
                               {
                                   "type": "Input.Text",
                                   "id": "BusinessProblem",
+                                  "isMultiline": true,
                                   "placeholder": "Business Problem"
                               }
                           ]
@@ -468,6 +469,7 @@ class DialogHelper {
                               {
                                   "type": "Input.Text",
                                   "id": "BusinessRequirements",
+                                  "isMultiline": true,
                                   "placeholder": "Business Requirements"
                               }
                           ]
@@ -511,6 +513,7 @@ class DialogHelper {
                               {
                                   "type": "Input.Text",
                                   "id": "BusinessBenefits",
+                                  "isMultiline": true,
                                   "placeholder": "Business Benefits"
                               }
                           ]
@@ -554,6 +557,7 @@ class DialogHelper {
                               {
                                   "type": "Input.Text",
                                   "id": "AdditionalInfo",
+                                  "isMultiline": true,
                                   "placeholder": "Additional Information"
                               }
                           ]
