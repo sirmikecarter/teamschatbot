@@ -33,7 +33,8 @@ class TeamsConversationBot extends TeamsActivityHandler {
           createRAW3ArchitectureNew: '',
           createRAW4ArchNewSoftApproval: '',
           createRAW5ArchNewSoftApprovalLicense: '',
-          createRAW6ArchNewSoftApprovalLicenseName: ''
+          createRAW6ArchNewSoftApprovalLicenseName: '',
+          createRAW7ArchNewSoftApprovalLicenseNameLOB: ''
         };
 
         const luisApplication = {
@@ -245,11 +246,39 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                       }else{
 
-                        await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Need to ask more questions','')] });
-
+                        await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Under Construction: Query Flexera API to get Software / Vendor data','')] });
+                        await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW5ArchNewSoftApprovalLicense + ' and the name of the software is ' + this.state.createRAW6ArchNewSoftApprovalLicenseName,'')] });
+                        await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this software affect?','')] });
+                        await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
                       }
 
                       break;
+
+              case 'createRAW7ArchNewSoftApprovalLicenseNameLOB':
+
+              if (context.activity.value.Pension === 'true'){
+                console.log(context.activity)
+                this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB = 'Pension'
+              }
+
+              if (context.activity.value.Health === 'true'){
+                this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB = this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB + ', ' + 'Health'
+              }
+
+              if (context.activity.value.Investment === 'true'){
+                this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB = this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB + ', ' + 'Investment'
+                console.log(context.activity)
+              }
+
+              if (context.activity.value.Administration === 'true'){
+                this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB = this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB + ', ' + 'Administration'
+              }
+
+              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW5ArchNewSoftApprovalLicense + ' and the name of the software is ' + this.state.createRAW6ArchNewSoftApprovalLicenseName + ' and the software affects ' + this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB,'')] });
+
+
+
+              break;
 
               case 'createRAW':
                   console.log(context.activity.value)

@@ -351,6 +351,61 @@ class DialogHelper {
       );
      }
 
+
+     createRAW7ArchNewSoftApprovalLicenseNameLOB() {
+       return CardFactory.adaptiveCard({
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "type": "AdaptiveCard",
+            "version": "1.0",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "size": "Medium",
+                    "weight": "Bolder",
+                    "text": "Line of Business"
+                },
+                {
+                    "type": "Input.Toggle",
+                    "title": "Pension",
+                    "id": "Pension",
+                    "wrap": false,
+                    "value": "false"
+                },
+                {
+                    "type": "Input.Toggle",
+                    "title": "Health",
+                    "id": "Health",
+                    "wrap": false,
+                    "value": "false"
+                },
+                {
+                    "type": "Input.Toggle",
+                    "title": "Investment",
+                    "id": "Investment",
+                    "wrap": false,
+                    "value": "false"
+                },
+                {
+                    "type": "Input.Toggle",
+                    "title": "Administration",
+                    "id": "Administration",
+                    "wrap": false,
+                    "value": "false"
+                }
+            ],
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Submit",
+                    "data": {
+                        "action": "createRAW7ArchNewSoftApprovalLicenseNameLOB"
+                    }
+                }
+            ]
+        }
+      );
+     }
+
      createForm() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
