@@ -27,6 +27,288 @@ class DialogHelper {
        });
      }
 
+     createRAW1Purpose() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Architecture",
+                  "title": "Architecture",
+                  "value": {
+                      "option": "Architecture"
+                  },
+                  "data":{
+                        "action": "createRAW1Purpose",
+                        "option": "Architecture"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Market Analysis",
+                  "title": "Market Analysis",
+                  "data":{
+                        "action": "createRAW1Purpose",
+                        "option": "Market Analysis"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createRAW2Type() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "New",
+                  "title": "New",
+                  "value": {
+                      "option": "New"
+                  },
+                  "data":{
+                        "action": "createRAW2Type",
+                        "option": "New"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Change",
+                  "title": "Change",
+                  "data":{
+                        "action": "createRAW2Type",
+                        "option": "Change"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createRAW3ArchitectureNew() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Software Approval",
+                  "title": "Software Approval",
+                  "value": {
+                      "option": "Software Approval"
+                  },
+                  "data":{
+                        "action": "createRAW3ArchitectureNew",
+                        "option": "Software Approval"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Custom Solution",
+                  "title": "Custom Solution",
+                  "data":{
+                        "action": "createRAW3ArchitectureNew",
+                        "option": "Custom Solution"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Architecture Work",
+                  "title": "Architecture Work",
+                  "data":{
+                        "action": "createRAW3ArchitectureNew",
+                        "option": "Architecture Work"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createRAW4ArchNewSoftApproval() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "On Premise Solution",
+                  "title": "On Premise Solution",
+                  "value": {
+                      "option": "On Premise Solution"
+                  },
+                  "data":{
+                        "action": "createRAW4ArchNewSoftApproval",
+                        "option": "On Premise Solution"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Cloud Solution",
+                  "title": "Cloud Solution",
+                  "data":{
+                        "action": "createRAW4ArchNewSoftApproval",
+                        "option": "Cloud Solution"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Both",
+                  "title": "Both, a On Premise Solution and Cloud Solution",
+                  "data":{
+                        "action": "createRAW4ArchNewSoftApproval",
+                        "option": "Both"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createRAW5ArchNewSoftApprovalLicense() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Free",
+                  "title": "Free",
+                  "value": {
+                      "option": "Free"
+                  },
+                  "data":{
+                        "action": "createRAW5ArchNewSoftApprovalLicense",
+                        "option": "Free"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Trial",
+                  "title": "Trial",
+                  "data":{
+                        "action": "createRAW5ArchNewSoftApprovalLicense",
+                        "option": "Trial"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Purchase",
+                  "title": "Purchase",
+                  "data":{
+                        "action": "createRAW5ArchNewSoftApprovalLicense",
+                        "option": "Purchase"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
      createForm() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

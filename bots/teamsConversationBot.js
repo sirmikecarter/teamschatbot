@@ -26,7 +26,12 @@ class TeamsConversationBot extends TeamsActivityHandler {
           appArray: [],
           appArrayFinal: [],
           appNotes: [],
-          appStatus: []
+          appStatus: [],
+          createRAW1Purpose:'',
+          createRAW2Type: '',
+          createRAW3ArchitectureNew: '',
+          createRAW4ArchNewSoftApproval: '',
+          createRAW5ArchNewSoftApprovalLicense: ''
         };
 
         const luisApplication = {
@@ -60,7 +65,139 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
               console.log(context.activity.value.action)
 
+
+
               switch (context.activity.value.action) {
+
+              case 'createRAW1Purpose':
+
+                  switch (context.activity.value.option) {
+
+
+
+                    case 'Architecture':
+                    this.state.createRAW1Purpose = context.activity.value.option
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, an ' + this.state.createRAW1Purpose + ' request','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Type of Request Is This?','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createRAW2Type()] });
+
+                    break;
+
+                    case 'Market Analysis':
+                    this.state.createRAW1Purpose = context.activity.value.option
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW1Purpose + ' request','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Type of Request Is This?','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createRAW2Type()] });
+
+                    break;
+
+                  }
+
+                  break;
+
+              case 'createRAW2Type':
+
+                    switch (context.activity.value.option) {
+
+                    case 'New':
+                    this.state.createRAW2Type = context.activity.value.option
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Category Does this Request Fall Into?','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createRAW3ArchitectureNew()] });
+
+
+                    break;
+
+                    case 'Change':
+                    this.state.createRAW2Type = context.activity.value.option
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' to ' + this.state.createRAW1Purpose + ' request','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Category Does this Request Fall Into?','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createRAW3ArchitectureNew()] });
+
+                    break;
+
+                    }
+
+                break;
+
+              case 'createRAW3ArchitectureNew':
+
+                      switch (context.activity.value.option) {
+
+                      case 'Software Approval':
+                      this.state.createRAW3ArchitectureNew = context.activity.value.option
+                      await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew,'')] });
+                      await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes this Software?','')] });
+                      await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ArchNewSoftApproval()] });
+
+                      break;
+
+                      case 'Custom Solution':
+                      this.state.createRAW3ArchitectureNew = context.activity.value.option
+                      await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew,'')] });
+
+                      break;
+
+                      case 'Architecture Work':
+                      this.state.createRAW3ArchitectureNew = context.activity.value.option
+                      await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is for ' + this.state.createRAW3ArchitectureNew,'')] });
+
+                      break;
+
+                      }
+
+                  break;
+
+                case 'createRAW4ArchNewSoftApproval':
+
+                      switch (context.activity.value.option) {
+
+                      case 'On Premise Solution':
+                          this.state.createRAW4ArchNewSoftApproval = context.activity.value.option
+                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval,'')] });
+                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
+                          await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApprovalLicense()] });
+                          break;
+
+                      case 'Cloud Solution':
+                          this.state.createRAW4ArchNewSoftApproval = context.activity.value.option
+                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval,'')] });
+                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
+                          await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApprovalLicense()] });
+                          break;
+
+                      case 'Both':
+                          this.state.createRAW4ArchNewSoftApproval = context.activity.value.option
+                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is for ' + this.state.createRAW3ArchitectureNew + ' and Both, a On Premise Solution and Cloud Solution','')] });
+                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
+                          await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApprovalLicense()] });
+                          break;
+
+                      }
+
+                  case 'createRAW5ArchNewSoftApprovalLicense':
+
+                        switch (context.activity.value.option) {
+
+                            case 'Free':
+                                this.state.createRAW5ArchNewSoftApprovalLicense = context.activity.value.option
+                                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval + ' and the license type is ' + this.state.createRAW5ArchNewSoftApprovalLicense,'')] });
+                                break;
+
+                            case 'Trial':
+                                this.state.createRAW5ArchNewSoftApprovalLicense = context.activity.value.option
+                                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW5ArchNewSoftApprovalLicense,'')] });
+                                break;
+
+                            case 'Purchase':
+                                this.state.createRAW5ArchNewSoftApprovalLicense = context.activity.value.option
+                                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and is a ' + this.state.createRAW4ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW5ArchNewSoftApprovalLicense,'')] });
+                                break;
+
+                        }
+
+                      break;
+
               case 'createRAW':
                   console.log(context.activity.value)
                   // console.log(context.activity.value.myName)
@@ -121,7 +258,8 @@ class TeamsConversationBot extends TeamsActivityHandler {
               case 'Software_Create_RAW':
 
               console.log(dispatchResults.text)
-              await context.sendActivity({ attachments: [this.dialogHelper.createForm()] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the purpose of this request?','')] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createRAW1Purpose()] });
 
 
 
