@@ -75,7 +75,7 @@ class DialogHelper {
       );
      }
 
-     createRAW2Type() {
+     createRAW2TypeArch() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "type": "AdaptiveCard",
@@ -108,7 +108,7 @@ class DialogHelper {
                       "option": "New"
                   },
                   "data":{
-                        "action": "createRAW2Type",
+                        "action": "createRAW2TypeArch",
                         "option": "New"
                   }
               },
@@ -117,7 +117,7 @@ class DialogHelper {
                   "id": "Change",
                   "title": "Change",
                   "data":{
-                        "action": "createRAW2Type",
+                        "action": "createRAW2TypeArch",
                         "option": "Change"
                   }
               }
@@ -174,11 +174,11 @@ class DialogHelper {
               },
               {
                   "type": "Action.Submit",
-                  "id": "Architecture Work",
-                  "title": "Architecture Work",
+                  "id": "Policy",
+                  "title": "Policy",
                   "data":{
                         "action": "createRAW3ArchitectureNew",
-                        "option": "Architecture Work"
+                        "option": "Policy"
                   }
               }
           ]
@@ -186,127 +186,7 @@ class DialogHelper {
       );
      }
 
-     createRAW4ArchNewSoftApproval() {
-       return CardFactory.adaptiveCard({
-          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-              {
-                  "type": "ColumnSet",
-                  "columns": [
-                      {
-                          "type": "Column",
-                          "width": 2,
-                          "items": [
-                              {
-                                  "type": "TextBlock",
-                                  "text": "Select an Option",
-                                  "isSubtle": true,
-                                  "wrap": true
-                              }
-                          ]
-                      }
-                  ]
-              }
-          ],
-          "actions": [
-              {
-                  "type": "Action.Submit",
-                  "id": "On Premise Solution",
-                  "title": "On Premise Solution",
-                  "value": {
-                      "option": "On Premise Solution"
-                  },
-                  "data":{
-                        "action": "createRAW4ArchNewSoftApproval",
-                        "option": "On Premise Solution"
-                  }
-              },
-              {
-                  "type": "Action.Submit",
-                  "id": "Cloud Solution",
-                  "title": "Cloud Solution",
-                  "data":{
-                        "action": "createRAW4ArchNewSoftApproval",
-                        "option": "Cloud Solution"
-                  }
-              },
-              {
-                  "type": "Action.Submit",
-                  "id": "Both",
-                  "title": "Both, a On Premise Solution and Cloud Solution",
-                  "data":{
-                        "action": "createRAW4ArchNewSoftApproval",
-                        "option": "Both"
-                  }
-              }
-          ]
-      }
-      );
-     }
-
-     createRAW5ArchNewSoftApprovalLicense() {
-       return CardFactory.adaptiveCard({
-          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-              {
-                  "type": "ColumnSet",
-                  "columns": [
-                      {
-                          "type": "Column",
-                          "width": 2,
-                          "items": [
-                              {
-                                  "type": "TextBlock",
-                                  "text": "Select an Option",
-                                  "isSubtle": true,
-                                  "wrap": true
-                              }
-                          ]
-                      }
-                  ]
-              }
-          ],
-          "actions": [
-              {
-                  "type": "Action.Submit",
-                  "id": "Free",
-                  "title": "Free",
-                  "value": {
-                      "option": "Free"
-                  },
-                  "data":{
-                        "action": "createRAW5ArchNewSoftApprovalLicense",
-                        "option": "Free"
-                  }
-              },
-              {
-                  "type": "Action.Submit",
-                  "id": "Trial",
-                  "title": "Trial",
-                  "data":{
-                        "action": "createRAW5ArchNewSoftApprovalLicense",
-                        "option": "Trial"
-                  }
-              },
-              {
-                  "type": "Action.Submit",
-                  "id": "Purchase",
-                  "title": "Purchase",
-                  "data":{
-                        "action": "createRAW5ArchNewSoftApprovalLicense",
-                        "option": "Purchase"
-                  }
-              }
-          ]
-      }
-      );
-     }
-
-     createRAW6ArchNewSoftApprovalLicenseName() {
+     createRAW4ArchNewSoftApprovalLicenseName() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "type": "AdaptiveCard",
@@ -340,13 +220,135 @@ class DialogHelper {
                   "id": "Submit",
                   "title": "Submit",
                   "data":{
-                        "action": "createRAW6ArchNewSoftApprovalLicenseName"
+                        "action": "createRAW4ArchNewSoftApprovalLicenseName"
                   }
               }
           ]
       }
       );
      }
+
+     createRAW5ArchNewSoftApproval() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "On Premise Solution",
+                  "title": "On Premise Solution",
+                  "value": {
+                      "option": "On Premise Solution"
+                  },
+                  "data":{
+                        "action": "createRAW5ArchNewSoftApproval",
+                        "option": "On Premise Solution"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Cloud Solution",
+                  "title": "Cloud Solution",
+                  "data":{
+                        "action": "createRAW5ArchNewSoftApproval",
+                        "option": "Cloud Solution"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Both",
+                  "title": "Both, a On Premise Solution and Cloud Solution",
+                  "data":{
+                        "action": "createRAW5ArchNewSoftApproval",
+                        "option": "Both"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createRAW6ArchNewSoftApprovalLicense() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Free",
+                  "title": "Free",
+                  "value": {
+                      "option": "Free"
+                  },
+                  "data":{
+                        "action": "createRAW6ArchNewSoftApprovalLicense",
+                        "option": "Free"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Trial",
+                  "title": "Trial",
+                  "data":{
+                        "action": "createRAW6ArchNewSoftApprovalLicense",
+                        "option": "Trial"
+                  }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Purchase",
+                  "title": "Purchase",
+                  "data":{
+                        "action": "createRAW6ArchNewSoftApprovalLicense",
+                        "option": "Purchase"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+
 
 
      createRAW7ArchNewSoftApprovalLicenseNameLOB() {
