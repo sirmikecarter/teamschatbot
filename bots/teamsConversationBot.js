@@ -7,6 +7,7 @@ const axios = require('axios');
 var arraySort = require('array-sort');
 const querystring = require('querystring');
 const TextEncoder = require('util').TextEncoder;
+var wtf = require('wtf_wikipedia');
 
 const { DialogHelper } = require('./helpers/dialogHelper');
 
@@ -40,7 +41,51 @@ class TeamsConversationBot extends TeamsActivityHandler {
           createFormBusinessBenefits: '',
           createFormAdditionalInfo: '',
           createFormDivisionChiefApproval: '',
-          createFormSubmitRAW: ''
+          createFormSubmitRAW: '',
+          softwareDescArray: [],
+          vendorAppName: 'N/A',
+          vendorAppWebsite: 'N/A',
+          vendorAppNumEmployees: 'N/A',
+          vendorAppType: 'N/A',
+          vendorAppTradedAs: 'N/A',
+          vendorAppISIN: 'N/A',
+          vendorAppIndustry: 'N/A',
+          vendorAppProducts: 'N/A',
+          vendorAppServices: 'N/A',
+          vendorAppFounded: 'N/A',
+          vendorAppFounder: 'N/A',
+          vendorAppHQLocation: 'N/A',
+          vendorAppHQLocationCity: 'N/A',
+          vendorAppHQLocationCountry: 'N/A',
+          vendorAppAreaServed: 'N/A',
+          vendorAppKeyPeople: 'N/A',
+          vendorAppAuthor: 'N/A',
+          vendorAppDeveloper: 'N/A',
+          vendorAppFamily: 'N/A',
+          vendorAppWorkingState: 'N/A',
+          vendorAppSourceModel: 'N/A',
+          vendorAppRTMDate: 'N/A',
+          vendorAppGADate: 'N/A',
+          vendorAppReleased: 'N/A',
+          vendorAppLatestVersion: 'N/A',
+          vendorAppLatestReleaseDate: 'N/A',
+          vendorAppProgrammingLanguage: 'N/A',
+          vendorAppOperatingSystem: 'N/A',
+          vendorAppPlatform: 'N/A',
+          vendorAppSize: 'N/A',
+          vendorAppLanguage: 'N/A',
+          vendorAppGenre: 'N/A',
+          vendorAppPreviewVersion: 'N/A',
+          vendorAppPreviewDate: 'N/A',
+          vendorAppMarketingTarget: 'N/A',
+          vendorAppUpdateModel: 'N/A',
+          vendorAppSupportedPlatforms: 'N/A',
+          vendorAppKernelType: 'N/A',
+          vendorAppUI: 'N/A',
+          vendorAppLicense: 'N/A',
+          vendorAppPrecededBy: 'N/A',
+          vendorAppSucceededBy: 'N/A',
+          vendorAppSupportStatus: 'N/A'
 
         };
 
@@ -83,8 +128,6 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                   switch (context.activity.value.option) {
 
-
-
                     case 'Architecture':
                     this.state.createRAW1Purpose = context.activity.value.option
                     await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, an ' + this.state.createRAW1Purpose + ' request','')] });
@@ -97,7 +140,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     this.state.createRAW1Purpose = context.activity.value.option
                     await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW1Purpose + ' request','')] });
                     await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Type of Request Is This?','')] });
-                    //await context.sendActivity({ attachments: [this.dialogHelper.createRAW2Type()] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createRAW2TypeMarket()] });
 
                     break;
 
@@ -129,6 +172,14 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     }
 
                 break;
+
+              case 'createRAW2TypeMarket':
+
+              console.log(context.activity.value.selectedValues)
+
+              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is about ' + context.activity.value.selectedValues,'')] });
+
+              break;
 
               case 'createRAW3ArchitectureNew':
 
@@ -192,11 +243,351 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                           }else{
 
-                            await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Under Construction: Query Flexera API to get Software / Vendor data','')] });
                             await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName,'')] });
-                            await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes this Software?','')] });
-                            await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApproval()] });
+
+                            // Wikipedia
+                            this.state.softwareDescArray = []
+                            var self = this;
+                            var softwareDescArray = self.state.softwareDescArray.slice();
+
+
+                            await axios.get('https://en.wikipedia.org/w/api.php?action=opensearch&search='+this.state.createRAW4ArchNewSoftApprovalLicenseName+'&namespace=0&format=json',
+                                    { params: {
+                                      'api-version': '2019-05-06'
+                                      },
+                                    headers: {
+                                      'ContentType': 'application/json'
+                              }
+
+                            }).then(response => {
+
+                              if (response){
+
+                                var itemCount = response.data[1].length;
+
+                                 // console.log(response.data)
+                                 // console.log(response.data.length)
+
+                                for (var i = 0; i < itemCount; i++)
+                                {
+
+                                      const softwareName = response.data[1][i]
+                                      const softwareDesc = response.data[2][i]
+                                      const softwareWiki = response.data[3][i]
+
+                                      softwareDescArray.push({'softwareName': softwareName, 'softwareDesc': softwareDesc, 'softwareWiki': softwareWiki})
+                                }
+
+                                self.state.softwareDescArray = softwareDescArray
+
+                                // console.log(self.state.softwareDescArray)
+                                // console.log(response.data[1][0])
+                                // console.log(response.data[2][0])
+                                // console.log(response.data[3][0])
+
+
+                             }
+
+                            }).catch((error)=>{
+                                   console.log(error);
+                            });
+
+                            await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Please select the description best describing this application','')] });
+
+
+                            var attachments = [];
+
+                            self.state.softwareDescArray.forEach(function(data){
+
+                            var card = this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseNameDesc(data.softwareName, data.softwareDesc, data.softwareWiki)
+
+                            attachments.push(card);
+
+                            }, this)
+
+                            await context.sendActivity({ attachments: attachments,
+                            attachmentLayout: AttachmentLayoutTypes.Carousel });
+
+
+
+                            //await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseNameDesc(this.state.softwareDescArray[0].softwareName, this.state.softwareDescArray[0].softwareWiki, this.state.softwareDescArray[1].softwareName, this.state.softwareDescArray[1].softwareWiki, this.state.softwareDescArray[2].softwareName, this.state.softwareDescArray[2].softwareWiki)] });
+
+
+
+                            //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Under Construction: Query Flexera API to get Software / Vendor data','')] });
+
+
                           }
+
+                break;
+
+                case 'createRAW4ArchNewSoftApprovalLicenseNameDesc':
+
+                //console.log(context.activity.value.option)
+                this.state.vendorAppName = 'N/A'
+                this.state.vendorAppWebsite = 'N/A'
+                this.state.vendorAppNumEmployees = 'N/A'
+                this.state.vendorAppType = 'N/A'
+                this.state.vendorAppTradedAs = 'N/A'
+                this.state.vendorAppISIN = 'N/A'
+                this.state.vendorAppIndustry = 'N/A'
+                this.state.vendorAppProducts = 'N/A'
+                this.state.vendorAppServices = 'N/A'
+                this.state.vendorAppFounded = 'N/A'
+                this.state.vendorAppFounder = 'N/A'
+                this.state.vendorAppHQLocation = 'N/A'
+                this.state.vendorAppHQLocationCity = 'N/A'
+                this.state.vendorAppHQLocationCountry = 'N/A'
+                this.state.vendorAppAreaServed = 'N/A'
+                this.state.vendorAppKeyPeople = 'N/A'
+                this.state.vendorAppAuthor = 'N/A'
+                this.state.vendorAppDeveloper = 'N/A'
+                this.state.vendorAppFamily = 'N/A'
+                this.state.vendorAppWorkingState = 'N/A'
+                this.state.vendorAppSourceModel = 'N/A'
+                this.state.vendorAppRTMDate = 'N/A'
+                this.state.vendorAppGADate = 'N/A'
+                this.state.vendorAppReleased = 'N/A'
+                this.state.vendorAppLatestVersion = 'N/A'
+                this.state.vendorAppLatestReleaseDate = 'N/A'
+                this.state.vendorAppProgrammingLanguage = 'N/A'
+                this.state.vendorAppOperatingSystem = 'N/A'
+                this.state.vendorAppPlatform = 'N/A'
+                this.state.vendorAppSize = 'N/A'
+                this.state.vendorAppLanguage = 'N/A'
+                this.state.vendorAppGenre = 'N/A'
+                this.state.vendorAppPreviewVersion = 'N/A'
+                this.state.vendorAppPreviewDate = 'N/A'
+                this.state.vendorAppMarketingTarget = 'N/A'
+                this.state.vendorAppUpdateModel = 'N/A'
+                this.state.vendorAppSupportedPlatforms = 'N/A'
+                this.state.vendorAppKernelType = 'N/A'
+                this.state.vendorAppUI = 'N/A'
+                this.state.vendorAppLicense = 'N/A'
+                this.state.vendorAppPrecededBy = 'N/A'
+                this.state.vendorAppSucceededBy = 'N/A'
+                this.state.vendorAppSupportStatus = 'N/A'
+
+
+                var wikiString = context.activity.value.option
+
+                var wikiString2 = wikiString.replace("https://en.wikipedia.org/wiki/", "");
+                this.state.vendorAppName = wikiString2
+
+                //console.log(wikiString2)
+
+
+                //https://en.wikipedia.org/api/rest_v1/page/summary/Windows_Server_2016
+                //https://en.wikipedia.org/w/api.php?action=parse&page=PeaZip
+                //https://en.wikipedia.org/w/api.php?action=parse&format=json&page=PeaZip
+                //https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=xmlfm&titles=PeaZip&rvsection=0
+                //https://en.wikipedia.org/wiki/PeaZip?action=raw
+                //https://www.npmjs.com/package/wtf_wikipedia
+
+                wtf.fetch(wikiString2).then(doc => {
+
+                  console.log(doc.infoboxes(0).json());
+
+                  console.log('--GENERAL INFORMATION--');
+
+                  if(doc.infoboxes(0).json().name){
+                    //console.log('Name: ' + doc.infoboxes(0).json().name.text);
+                    console.log('Name: ' + wikiString2);
+                    this.state.vendorAppName = wikiString2
+                  }
+                  if(doc.infoboxes(0).json().website){
+                    console.log('Website: ' + doc.infoboxes(0).json().website.text);
+                    this.state.vendorAppWebsite = doc.infoboxes(0).json().website.text
+                  }
+
+                  console.log('--VENDOR INFORMATION--');
+
+                  if(doc.infoboxes(0).json().num_employees){
+                    console.log('Number of Employees: ' + doc.infoboxes(0).json().num_employees.text);
+                    this.state.vendorAppNumEmployees = doc.infoboxes(0).json().num_employees.text
+                  }
+                  if(doc.infoboxes(0).json().type){
+                    console.log('Type: ' + doc.infoboxes(0).json().type.text);
+                    this.state.vendorAppType = doc.infoboxes(0).json().type.text
+                  }
+                  if(doc.infoboxes(0).json().traded_as){
+                    console.log('Traded As: ' + doc.infoboxes(0).json().traded_as.text);
+                    this.state.vendorAppTradedAs= doc.infoboxes(0).json().traded_as.text
+                  }
+                  if(doc.infoboxes(0).json().isin){
+                    console.log('ISIN: ' + doc.infoboxes(0).json().isin.text);
+                    this.state.vendorAppISIN = doc.infoboxes(0).json().isin.text
+                  }
+                  if(doc.infoboxes(0).json().industry){
+                    console.log('Industry: ' + doc.infoboxes(0).json().industry.text);
+                    this.state.vendorAppIndustry = doc.infoboxes(0).json().industry.text
+                  }
+                  if(doc.infoboxes(0).json().products){
+                    console.log('Products: ' + doc.infoboxes(0).json().products.text);
+                    this.state.vendorAppProducts = doc.infoboxes(0).json().products.text
+                  }
+                  if(doc.infoboxes(0).json().services){
+                    console.log('Services: ' + doc.infoboxes(0).json().services.text);
+                    this.state.vendorAppServices = doc.infoboxes(0).json().services.text
+                  }
+                  if(doc.infoboxes(0).json().founded){
+                    console.log('Founded: ' + doc.infoboxes(0).json().founded.text);
+                    this.state.vendorAppFounded = doc.infoboxes(0).json().founded.text
+                  }
+                  if(doc.infoboxes(0).json().founder){
+                    console.log('Founder: ' + doc.infoboxes(0).json().founder.text);
+                    this.state.vendorAppFounder = doc.infoboxes(0).json().founder.text
+                  }
+                  if(doc.infoboxes(0).json().hq_location){
+                    console.log('HQ Location: ' + doc.infoboxes(0).json().hq_location.text);
+                    this.state.vendorAppHQLocation = doc.infoboxes(0).json().hq_location.text
+                  }
+                  if(doc.infoboxes(0).json().hq_location_city){
+                    console.log('HQ Location City: ' + doc.infoboxes(0).json().hq_location_city.text);
+                    this.state.vendorAppHQLocationCity = doc.infoboxes(0).json().hq_location_city.text
+                  }
+                  if(doc.infoboxes(0).json().hq_location_country){
+                    console.log('HQ Location Country: ' + doc.infoboxes(0).json().hq_location_country.text);
+                    this.state.vendorAppHQLocationCountry = doc.infoboxes(0).json().hq_location_country.text
+                  }
+                  if(doc.infoboxes(0).json().area_served){
+                    console.log('Area Served: ' + doc.infoboxes(0).json().area_served.text);
+                    this.state.vendorAppAreaServed = doc.infoboxes(0).json().area_served.text
+                  }
+                  if(doc.infoboxes(0).json().key_people){
+                    console.log('Key People: ' + doc.infoboxes(0).json().key_people.text);
+                    this.state.vendorAppKeyPeople = doc.infoboxes(0).json().key_people.text
+                  }
+
+                  console.log('--PRODUCT INFORMATION--');
+
+                  // if(doc.infoboxes(0).json().logo){
+                  //   console.log('Logo: ' + doc.infoboxes(0).json().logo.text);
+                  // }
+                  // if(doc.infoboxes(0).json().screenshot){
+                  //   console.log('Screenshot: ' + doc.infoboxes(0).json().screenshot.text);
+                  // }
+                  if(doc.infoboxes(0).json().author){
+                    console.log('Author: ' + doc.infoboxes(0).json().author.text);
+                    this.state.vendorAppAuthor = doc.infoboxes(0).json().author.text
+                  }
+                  if(doc.infoboxes(0).json().developer){
+                    console.log('Developer: ' + doc.infoboxes(0).json().developer.text);
+                    this.state.vendorAppDeveloper = doc.infoboxes(0).json().developer.text
+                  }
+                  if(doc.infoboxes(0).json().family){
+                    console.log('Family: ' + doc.infoboxes(0).json().family.text);
+                    this.state.vendorAppFamily = doc.infoboxes(0).json().family.text
+                  }
+                  if(doc.infoboxes(0).json()['working state']){
+                    console.log('Working State: ' + doc.infoboxes(0).json()['working state'].text);
+                    this.state.vendorAppWorkingState = doc.infoboxes(0).json()['working state'].text
+                  }
+                  if(doc.infoboxes(0).json()['source model']){
+                    console.log('Source Model: ' + doc.infoboxes(0).json()['source model'].text);
+                    this.state.vendorAppSourceModel = doc.infoboxes(0).json()['source model'].text
+                  }
+                  if(doc.infoboxes(0).json()['rtm date']){
+                    console.log('RTM Date: ' + doc.infoboxes(0).json()['rtm date'].text);
+                    this.state.vendorAppRTMDate = doc.infoboxes(0).json()['rtm date'].text
+                  }
+                  if(doc.infoboxes(0).json()['ga date']){
+                    console.log('GA Date: ' + doc.infoboxes(0).json()['ga date'].text);
+                    this.state.vendorAppGADate = doc.infoboxes(0).json()['ga date'].text
+                  }
+                  if(doc.infoboxes(0).json().released){
+                    console.log('Released: ' + doc.infoboxes(0).json().released.text);
+                    this.state.vendorAppReleased = doc.infoboxes(0).json().released.text
+                  }
+                  if(doc.infoboxes(0).json()['latest release version']){
+                    console.log('Latest Version: ' + doc.infoboxes(0).json()['latest release version'].text);
+                    this.state.vendorAppLatestVersion = doc.infoboxes(0).json()['latest release version'].text
+                  }
+                  if(doc.infoboxes(0).json()['latest release date']){
+                    console.log('Latest Release Date: ' + doc.infoboxes(0).json()['latest release date'].text);
+                    this.state.vendorAppLatestReleaseDate = doc.infoboxes(0).json()['latest release date'].text
+                  }
+                  if(doc.infoboxes(0).json()['programming language']){
+                    console.log('Programming Language: ' + doc.infoboxes(0).json()['programming language'].text);
+                    this.state.vendorAppProgrammingLanguage = doc.infoboxes(0).json()['programming language'].text
+                  }
+                  if(doc.infoboxes(0).json()['operating system']){
+                    console.log('Operating System: ' + doc.infoboxes(0).json()['operating system'].text);
+                    this.state.vendorAppOperatingSystem = doc.infoboxes(0).json()['operating system'].text
+                  }
+                  if(doc.infoboxes(0).json().platform){
+                    console.log('Platform: ' + doc.infoboxes(0).json().platform.text);
+                    this.state.vendorAppPlatform = doc.infoboxes(0).json().platform.text
+                  }
+                  if(doc.infoboxes(0).json().size){
+                    console.log('Size: ' + doc.infoboxes(0).json().size.text);
+                    this.state.vendorAppSize = doc.infoboxes(0).json().size.text
+                  }
+                  if(doc.infoboxes(0).json().language){
+                    console.log('Language: ' + doc.infoboxes(0).json().language.text);
+                    this.state.vendorAppLanguage = doc.infoboxes(0).json().language.text
+                  }
+                  if(doc.infoboxes(0).json().genre){
+                    console.log('Genre: ' + doc.infoboxes(0).json().genre.text);
+                    this.state.vendorAppGenre = doc.infoboxes(0).json().genre.text
+                  }
+                  if(doc.infoboxes(0).json()['preview version']){
+                    console.log('Preview Version: ' + doc.infoboxes(0).json()['preview version'].text);
+                    this.state.vendorAppPreviewVersion = doc.infoboxes(0).json()['preview version'].text
+                  }
+                  if(doc.infoboxes(0).json()['preview date']){
+                    console.log('Preview Date: ' + doc.infoboxes(0).json()['preview date'].text);
+                    this.state.vendorAppPreviewDate = doc.infoboxes(0).json()['preview date'].text
+                  }
+                  if(doc.infoboxes(0).json()['marketing target']){
+                    console.log('Marketing Target: ' + doc.infoboxes(0).json()['marketing target'].text);
+                    this.state.vendorAppMarketingTarget = doc.infoboxes(0).json()['marketing target'].text
+                  }
+                  if(doc.infoboxes(0).json()['update model']){
+                    console.log('Update Model: ' + doc.infoboxes(0).json()['update model'].text);
+                    this.state.vendorAppUpdateModel = doc.infoboxes(0).json()['update model'].text
+                  }
+                  if(doc.infoboxes(0).json()['supported platforms']){
+                    console.log('Supported Platforms: ' + doc.infoboxes(0).json()['supported platforms'].text);
+                    this.state.vendorAppSupportedPlatforms = doc.infoboxes(0).json()['supported platforms'].text
+                  }
+                  if(doc.infoboxes(0).json()['kernel type']){
+                    console.log('Kernel Type: ' + doc.infoboxes(0).json()['kernel type'].text);
+                    this.state.vendorAppKernelType = doc.infoboxes(0).json()['kernel type'].text
+                  }
+                  if(doc.infoboxes(0).json().ui){
+                    console.log('UI: ' + doc.infoboxes(0).json().ui.text);
+                    this.state.vendorAppUI = doc.infoboxes(0).json().ui.text
+                  }
+                  if(doc.infoboxes(0).json().license){
+                    console.log('License: ' + doc.infoboxes(0).json().license.text);
+                    this.state.vendorAppLicense = doc.infoboxes(0).json().license.text
+                  }
+                  if(doc.infoboxes(0).json()['preceded by']){
+                    console.log('Preceded By: ' + doc.infoboxes(0).json()['preceded by'].text);
+                    this.state.vendorAppPrecededBy = doc.infoboxes(0).json()['preceded by'].text
+                  }
+                  if(doc.infoboxes(0).json()['succeeded by']){
+                    console.log('Succeeded By: ' + doc.infoboxes(0).json()['succeeded by'].text);
+                    this.state.vendorAppSucceededBy = doc.infoboxes(0).json()['succeeded by'].text
+                  }
+
+                  if(doc.infoboxes(0).json()['support status']){
+                    console.log('Support Status: ' + doc.infoboxes(0).json()['support status'].text);
+                    this.state.vendorAppSupportStatus = doc.infoboxes(0).json()['support status'].text
+                  }
+
+                });
+
+
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('I found all this information about the Vendor and Application','')] });
+
+                await context.sendActivity({ attachments: [this.dialogHelper.createVendorAppProfile(this.state.vendorAppName,this.state.vendorAppWebsite,this.state.vendorAppNumEmployees,this.state.vendorAppType,this.state.vendorAppTradedAs,this.state.vendorAppISIN,this.state.vendorAppIndustry,this.state.vendorAppProducts,this.state.vendorAppServices,this.state.vendorAppFounded,this.state.vendorAppFounder,this.state.vendorAppHQLocation,this.state.vendorAppHQLocationCity,this.state.vendorAppHQLocationCountry,this.state.vendorAppAreaServed,this.state.vendorAppKeyPeople,this.state.vendorAppAuthor,this.state.vendorAppDeveloper,this.state.vendorAppFamily,this.state.vendorAppWorkingState,this.state.vendorAppSourceModel,this.state.vendorAppRTMDate,this.state.vendorAppGADate,this.state.vendorAppReleased,this.state.vendorAppLatestVersion,this.state.vendorAppLatestReleaseDate,this.state.vendorAppProgrammingLanguage,this.state.vendorAppOperatingSystem,this.state.vendorAppPlatform,this.state.vendorAppSize,this.state.vendorAppLanguage,this.state.vendorAppGenre,this.state.vendorAppPreviewVersion,this.state.vendorAppPreviewDate,this.state.vendorAppMarketingTarget,this.state.vendorAppUpdateModel,this.state.vendorAppSupportedPlatforms,this.state.vendorAppKernelType,this.state.vendorAppUI,this.state.vendorAppLicense,this.state.vendorAppPrecededBy,this.state.vendorAppSucceededBy,this.state.vendorAppSupportStatus)] });
+
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Will this application be used On-Premise, In the Cloud or Both?','')] });
+                await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApproval()] });
+
+
 
                 break;
 

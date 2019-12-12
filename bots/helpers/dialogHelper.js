@@ -126,6 +126,57 @@ class DialogHelper {
       );
      }
 
+     createRAW2TypeMarket() {
+
+           return CardFactory.adaptiveCard({
+             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+             "type": "AdaptiveCard",
+             "version": "1.0",
+             "body": [
+               {
+                "type": "TextBlock",
+                "text": 'Select an Option',
+                "weight": "bolder",
+                "isSubtle": false
+               },
+               {
+                    "type": "Input.ChoiceSet",
+                    "id": "selectedValues",
+                    "isMultiSelect": true,
+                    "value": "1",
+                    "choices": [
+                        {
+                            "title": "Market Research (i.e. Web Research, White Papers)",
+                            "value": "Market Research"
+                        },
+                        {
+                            "title": "Vendor Analysis (i.e. Top Vendors, Magic Quadrant)",
+                            "value": "Vendor Analysis"
+                        },
+                        {
+                            "title": "Schedule Vendor Demos",
+                            "value": "Schedule Vendor Demos"
+                        },
+                        {
+                            "title": "Build Prototype (i.e. RnD environment)",
+                            "value": "Build Prototype"
+                        }
+                    ]
+                }
+             ],
+             "actions": [
+               {
+                   "type": "Action.Submit",
+                   "title": "Submit",
+                   "data": {
+                     "action": "createRAW2TypeMarket"
+                   }
+               }
+             ]
+           });
+
+      }
+
      createRAW3ArchitectureNew() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -224,6 +275,254 @@ class DialogHelper {
                   }
               }
           ]
+      }
+      );
+     }
+
+     createRAW4ArchNewSoftApprovalLicenseNameDesc(softwareName,softwareDesc,softwareWiki) {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+               "type": "TextBlock",
+               "text": softwareName,
+               "weight": "bolder",
+               "isSubtle": false
+              },
+              {
+                "type": "TextBlock",
+                "text": softwareDesc,
+                "weight": "bolder",
+                "size": "medium",
+                "wrap": true,
+                "separator": true
+              },
+              {
+                "type": "TextBlock",
+                "text": softwareWiki,
+                "wrap": true
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": 'This One',
+                  "title": 'This One',
+                  "data":{
+                        "action": "createRAW4ArchNewSoftApprovalLicenseNameDesc",
+                        "option": softwareWiki
+
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createVendorAppProfile(vendorAppName,vendorAppWebsite,vendorAppNumEmployees,vendorAppType,vendorAppTradedAs,vendorAppISIN,vendorAppIndustry,vendorAppProducts,vendorAppServices,vendorAppFounded,vendorAppFounder,vendorAppHQLocation,vendorAppHQLocationCity,vendorAppHQLocationCountry,vendorAppAreaServed,vendorAppKeyPeople,vendorAppAuthor,vendorAppDeveloper,vendorAppFamily,vendorAppWorkingState,vendorAppSourceModel,vendorAppRTMDate,vendorAppGADate,vendorAppReleased,vendorAppLatestVersion,vendorAppLatestReleaseDate,vendorAppProgrammingLanguage,vendorAppOperatingSystem,vendorAppPlatform,vendorAppSize,vendorAppLanguage,vendorAppGenre,vendorAppPreviewVersion,vendorAppPreviewDate,vendorAppMarketingTarget,vendorAppUpdateModel,vendorAppSupportedPlatforms,vendorAppKernelType,vendorAppUI,vendorAppLicense,vendorAppPrecededBy,vendorAppSucceededBy,vendorAppSupportStatus) {
+       return CardFactory.adaptiveCard({
+          "type": "AdaptiveCard",
+          "body": [
+              {
+                  "type": "TextBlock",
+                  "size": "Medium",
+                  "weight": "Bolder",
+                  "text": "Vendor / Application Profile"
+              },
+              {
+                "type": "FactSet",
+                "facts": [
+                  {
+                    "title": "GENERAL INFO:",
+                    "value": "--GENERAL INFO--"
+                  },
+                  {
+                    "title": "Application Name:",
+                    "value": vendorAppName
+                  },
+                  {
+                    "title": "Website:",
+                    "value": vendorAppWebsite
+                  },
+                  {
+                    "title": "VENDOR INFO:",
+                    "value": "--VENDOR INFO--"
+                  },
+                  {
+                    "title": "Number of Employees:",
+                    "value": vendorAppNumEmployees
+                  },
+                  {
+                    "title": "Type:",
+                    "value": vendorAppType
+                  },
+                  {
+                    "title": "Traded As:",
+                    "value": vendorAppTradedAs
+                  },
+                  {
+                    "title": "ISIN:",
+                    "value": vendorAppISIN
+                  },
+                  {
+                    "title": "Industry:",
+                    "value": vendorAppIndustry
+                  },
+                  {
+                    "title": "Products:",
+                    "value": vendorAppProducts
+                  },
+                  {
+                    "title": "Services:",
+                    "value": vendorAppServices
+                  },
+                  {
+                    "title": "Founded:",
+                    "value": vendorAppFounded
+                  },
+                  {
+                    "title": "Founder:",
+                    "value": vendorAppFounder
+                  },
+                  {
+                    "title": "HQ Location:",
+                    "value": vendorAppHQLocation
+                  },
+                  {
+                    "title": "HQ Location City:",
+                    "value": vendorAppHQLocationCity
+                  },
+                  {
+                    "title": "HQ Location Country:",
+                    "value": vendorAppHQLocationCountry
+                  },
+                  {
+                    "title": "Area Served:",
+                    "value": vendorAppAreaServed
+                  },
+                  {
+                    "title": "Key People:",
+                    "value": vendorAppKeyPeople
+                  },
+                  {
+                    "title": "APPLICATION INFO:",
+                    "value": "--APPLICATION INFO--"
+                  },
+                  {
+                    "title": "Author:",
+                    "value": vendorAppAuthor
+                  },
+                  {
+                    "title": "Developer:",
+                    "value": vendorAppDeveloper
+                  },
+                  {
+                    "title": "Application Family:",
+                    "value": vendorAppFamily
+                  },
+                  {
+                    "title": "Working State:",
+                    "value": vendorAppWorkingState
+                  },
+                  {
+                    "title": "Source Model:",
+                    "value": vendorAppSourceModel
+                  },
+                  {
+                    "title": "RTM Date:",
+                    "value": vendorAppRTMDate
+                  },
+                  {
+                    "title": "GA Date:",
+                    "value": vendorAppGADate
+                  },
+                  {
+                    "title": "Released:",
+                    "value": vendorAppReleased
+                  },
+                  {
+                    "title": "Latest Version:",
+                    "value": vendorAppLatestVersion
+                  },
+                  {
+                    "title": "Latest Release Date:",
+                    "value": vendorAppLatestReleaseDate
+                  },
+                  {
+                    "title": "Programming Language:",
+                    "value": vendorAppProgrammingLanguage
+                  },
+                  {
+                    "title": "Operating System:",
+                    "value": vendorAppOperatingSystem
+                  },
+                  {
+                    "title": "Platform:",
+                    "value": vendorAppPlatform
+                  },
+                  {
+                    "title": "Size:",
+                    "value": vendorAppSize
+                  },
+                  {
+                    "title": "Language:",
+                    "value": vendorAppLanguage
+                  },
+                  {
+                    "title": "Genre:",
+                    "value": vendorAppGenre
+                  },
+                  {
+                    "title": "Preview Version:",
+                    "value": vendorAppPreviewVersion
+                  },
+                  {
+                    "title": "Preview Date:",
+                    "value": vendorAppPreviewDate
+                  },
+                  {
+                    "title": "Marketing Target:",
+                    "value": vendorAppMarketingTarget
+                  },
+                  {
+                    "title": "Update Model:",
+                    "value": vendorAppUpdateModel
+                  },
+                  {
+                    "title": "Supported Platforms:",
+                    "value": vendorAppSupportedPlatforms
+                  },
+                  {
+                    "title": "Kernel Type:",
+                    "value": vendorAppKernelType
+                  },
+                  {
+                    "title": "UI:",
+                    "value": vendorAppUI
+                  },
+                  {
+                    "title": "License:",
+                    "value": vendorAppLicense
+                  },
+                  {
+                    "title": "Preceded By:",
+                    "value": vendorAppPrecededBy
+                  },
+                  {
+                    "title": "Succeeded By:",
+                    "value": vendorAppSucceededBy
+                  },
+                  {
+                    "title": "Support Status:",
+                    "value": vendorAppSupportStatus
+                  }
+                ]
+              }
+          ],
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "version": "1.0"
       }
       );
      }
