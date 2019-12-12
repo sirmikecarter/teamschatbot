@@ -312,7 +312,8 @@ class DialogHelper {
                   "title": 'This One',
                   "data":{
                         "action": "createRAW4ArchNewSoftApprovalLicenseNameDesc",
-                        "option": softwareWiki
+                        "wiki": softwareWiki,
+                        "desc": softwareDesc
 
                   }
               }
@@ -321,7 +322,7 @@ class DialogHelper {
       );
      }
 
-     createVendorAppProfile(vendorAppName,vendorAppWebsite,vendorAppNumEmployees,vendorAppType,vendorAppTradedAs,vendorAppISIN,vendorAppIndustry,vendorAppProducts,vendorAppServices,vendorAppFounded,vendorAppFounder,vendorAppHQLocation,vendorAppHQLocationCity,vendorAppHQLocationCountry,vendorAppAreaServed,vendorAppKeyPeople,vendorAppAuthor,vendorAppDeveloper,vendorAppFamily,vendorAppWorkingState,vendorAppSourceModel,vendorAppRTMDate,vendorAppGADate,vendorAppReleased,vendorAppLatestVersion,vendorAppLatestReleaseDate,vendorAppProgrammingLanguage,vendorAppOperatingSystem,vendorAppPlatform,vendorAppSize,vendorAppLanguage,vendorAppGenre,vendorAppPreviewVersion,vendorAppPreviewDate,vendorAppMarketingTarget,vendorAppUpdateModel,vendorAppSupportedPlatforms,vendorAppKernelType,vendorAppUI,vendorAppLicense,vendorAppPrecededBy,vendorAppSucceededBy,vendorAppSupportStatus) {
+     createVendorAppProfile(vendorAppName,vendorAppDesc,vendorAppWebsite,vendorAppNumEmployees,vendorAppType,vendorAppTradedAs,vendorAppISIN,vendorAppIndustry,vendorAppProducts,vendorAppServices,vendorAppFounded,vendorAppFounder,vendorAppHQLocation,vendorAppHQLocationCity,vendorAppHQLocationCountry,vendorAppAreaServed,vendorAppKeyPeople,vendorAppAuthor,vendorAppDeveloper,vendorAppFamily,vendorAppWorkingState,vendorAppSourceModel,vendorAppRTMDate,vendorAppGADate,vendorAppReleased,vendorAppLatestVersion,vendorAppLatestReleaseDate,vendorAppProgrammingLanguage,vendorAppOperatingSystem,vendorAppPlatform,vendorAppSize,vendorAppLanguage,vendorAppGenre,vendorAppPreviewVersion,vendorAppPreviewDate,vendorAppMarketingTarget,vendorAppUpdateModel,vendorAppSupportedPlatforms,vendorAppKernelType,vendorAppUI,vendorAppLicense,vendorAppPrecededBy,vendorAppSucceededBy,vendorAppSupportStatus) {
        return CardFactory.adaptiveCard({
           "type": "AdaptiveCard",
           "body": [
@@ -336,187 +337,251 @@ class DialogHelper {
                 "facts": [
                   {
                     "title": "GENERAL INFO:",
-                    "value": "--GENERAL INFO--"
+                    "value": "--GENERAL INFO--",
+                    "wrap": true,
+                    "separator": true
                   },
                   {
                     "title": "Application Name:",
-                    "value": vendorAppName
+                    "value": vendorAppName,
+                    "wrap": true
                   },
                   {
                     "title": "Website:",
-                    "value": vendorAppWebsite
+                    "value": vendorAppWebsite,
+                    "wrap": true,
                   },
                   {
+                    "title": "Description:",
+                    "value": "",
+                    "wrap": true,
+                  },
+                ]
+              },
+              {
+                "type": "TextBlock",
+                "text": vendorAppDesc,
+                "wrap": true
+              },
+              {
+                "type": "FactSet",
+                "facts": [
+                  {
                     "title": "VENDOR INFO:",
-                    "value": "--VENDOR INFO--"
+                    "value": "--VENDOR INFO--",
+                    "wrap": true,
+                    "separator": true
                   },
                   {
                     "title": "Number of Employees:",
-                    "value": vendorAppNumEmployees
+                    "value": vendorAppNumEmployees,
+                    "wrap": true,
                   },
                   {
                     "title": "Type:",
-                    "value": vendorAppType
+                    "value": vendorAppType,
+                    "wrap": true,
                   },
                   {
                     "title": "Traded As:",
-                    "value": vendorAppTradedAs
+                    "value": vendorAppTradedAs,
+                    "wrap": true,
                   },
                   {
                     "title": "ISIN:",
-                    "value": vendorAppISIN
+                    "value": vendorAppISIN,
+                    "wrap": true,
                   },
                   {
                     "title": "Industry:",
-                    "value": vendorAppIndustry
+                    "value": vendorAppIndustry,
+                    "wrap": true,
                   },
                   {
                     "title": "Products:",
-                    "value": vendorAppProducts
+                    "value": vendorAppProducts,
+                    "wrap": true,
                   },
                   {
                     "title": "Services:",
-                    "value": vendorAppServices
+                    "value": vendorAppServices,
+                    "wrap": true,
                   },
                   {
                     "title": "Founded:",
-                    "value": vendorAppFounded
+                    "value": vendorAppFounded,
+                    "wrap": true,
                   },
                   {
                     "title": "Founder:",
-                    "value": vendorAppFounder
+                    "value": vendorAppFounder,
+                    "wrap": true,
                   },
                   {
                     "title": "HQ Location:",
-                    "value": vendorAppHQLocation
+                    "value": vendorAppHQLocation,
+                    "wrap": true,
                   },
                   {
                     "title": "HQ Location City:",
-                    "value": vendorAppHQLocationCity
+                    "value": vendorAppHQLocationCity,
+                    "wrap": true,
                   },
                   {
                     "title": "HQ Location Country:",
-                    "value": vendorAppHQLocationCountry
+                    "value": vendorAppHQLocationCountry,
+                    "wrap": true,
                   },
                   {
                     "title": "Area Served:",
-                    "value": vendorAppAreaServed
+                    "value": vendorAppAreaServed,
+                    "wrap": true,
                   },
                   {
                     "title": "Key People:",
-                    "value": vendorAppKeyPeople
+                    "value": vendorAppKeyPeople,
+                    "wrap": true,
                   },
                   {
                     "title": "APPLICATION INFO:",
-                    "value": "--APPLICATION INFO--"
+                    "value": "--APPLICATION INFO--",
+                    "wrap": true,
+                    "separator": true
                   },
                   {
                     "title": "Author:",
-                    "value": vendorAppAuthor
+                    "value": vendorAppAuthor,
+                    "wrap": true,
                   },
                   {
                     "title": "Developer:",
-                    "value": vendorAppDeveloper
+                    "value": vendorAppDeveloper,
+                    "wrap": true,
                   },
                   {
                     "title": "Application Family:",
-                    "value": vendorAppFamily
+                    "value": vendorAppFamily,
+                    "wrap": true,
                   },
                   {
                     "title": "Working State:",
-                    "value": vendorAppWorkingState
+                    "value": vendorAppWorkingState,
+                    "wrap": true,
                   },
                   {
                     "title": "Source Model:",
-                    "value": vendorAppSourceModel
+                    "value": vendorAppSourceModel,
+                    "wrap": true,
                   },
                   {
                     "title": "RTM Date:",
-                    "value": vendorAppRTMDate
+                    "value": vendorAppRTMDate,
+                    "wrap": true,
                   },
                   {
                     "title": "GA Date:",
-                    "value": vendorAppGADate
+                    "value": vendorAppGADate,
+                    "wrap": true,
                   },
                   {
                     "title": "Released:",
-                    "value": vendorAppReleased
+                    "value": vendorAppReleased,
+                    "wrap": true,
                   },
                   {
                     "title": "Latest Version:",
-                    "value": vendorAppLatestVersion
+                    "value": vendorAppLatestVersion,
+                    "wrap": true,
                   },
                   {
                     "title": "Latest Release Date:",
-                    "value": vendorAppLatestReleaseDate
+                    "value": vendorAppLatestReleaseDate,
+                    "wrap": true,
                   },
                   {
                     "title": "Programming Language:",
-                    "value": vendorAppProgrammingLanguage
+                    "value": vendorAppProgrammingLanguage,
+                    "wrap": true,
                   },
                   {
                     "title": "Operating System:",
-                    "value": vendorAppOperatingSystem
+                    "value": vendorAppOperatingSystem,
+                    "wrap": true,
                   },
                   {
                     "title": "Platform:",
-                    "value": vendorAppPlatform
+                    "value": vendorAppPlatform,
+                    "wrap": true,
                   },
                   {
                     "title": "Size:",
-                    "value": vendorAppSize
+                    "value": vendorAppSize,
+                    "wrap": true,
                   },
                   {
                     "title": "Language:",
-                    "value": vendorAppLanguage
+                    "value": vendorAppLanguage,
+                    "wrap": true,
                   },
                   {
                     "title": "Genre:",
-                    "value": vendorAppGenre
+                    "value": vendorAppGenre,
+                    "wrap": true,
                   },
                   {
                     "title": "Preview Version:",
-                    "value": vendorAppPreviewVersion
+                    "value": vendorAppPreviewVersion,
+                    "wrap": true,
                   },
                   {
                     "title": "Preview Date:",
-                    "value": vendorAppPreviewDate
+                    "value": vendorAppPreviewDate,
+                    "wrap": true,
                   },
                   {
                     "title": "Marketing Target:",
-                    "value": vendorAppMarketingTarget
+                    "value": vendorAppMarketingTarget,
+                    "wrap": true,
                   },
                   {
                     "title": "Update Model:",
-                    "value": vendorAppUpdateModel
+                    "value": vendorAppUpdateModel,
+                    "wrap": true,
                   },
                   {
                     "title": "Supported Platforms:",
-                    "value": vendorAppSupportedPlatforms
+                    "value": vendorAppSupportedPlatforms,
+                    "wrap": true,
                   },
                   {
                     "title": "Kernel Type:",
-                    "value": vendorAppKernelType
+                    "value": vendorAppKernelType,
+                    "wrap": true,
                   },
                   {
                     "title": "UI:",
-                    "value": vendorAppUI
+                    "value": vendorAppUI,
+                    "wrap": true,
                   },
                   {
                     "title": "License:",
-                    "value": vendorAppLicense
+                    "value": vendorAppLicense,
+                    "wrap": true,
                   },
                   {
                     "title": "Preceded By:",
-                    "value": vendorAppPrecededBy
+                    "value": vendorAppPrecededBy,
+                    "wrap": true,
                   },
                   {
                     "title": "Succeeded By:",
-                    "value": vendorAppSucceededBy
+                    "value": vendorAppSucceededBy,
+                    "wrap": true,
                   },
                   {
                     "title": "Support Status:",
-                    "value": vendorAppSupportStatus
+                    "value": vendorAppSupportStatus,
+                    "wrap": true,
                   }
                 ]
               }

@@ -44,6 +44,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
           createFormSubmitRAW: '',
           softwareDescArray: [],
           vendorAppName: 'N/A',
+          vendorAppDesc: 'N/A',
           vendorAppWebsite: 'N/A',
           vendorAppNumEmployees: 'N/A',
           vendorAppType: 'N/A',
@@ -325,6 +326,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                 //console.log(context.activity.value.option)
                 this.state.vendorAppName = 'N/A'
+                this.state.vendorAppDesc = 'N/A'
                 this.state.vendorAppWebsite = 'N/A'
                 this.state.vendorAppNumEmployees = 'N/A'
                 this.state.vendorAppType = 'N/A'
@@ -369,7 +371,8 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 this.state.vendorAppSupportStatus = 'N/A'
 
 
-                var wikiString = context.activity.value.option
+                var wikiString = context.activity.value.wiki
+
 
                 var wikiString2 = wikiString.replace("https://en.wikipedia.org/wiki/", "");
                 this.state.vendorAppName = wikiString2
@@ -395,6 +398,12 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     console.log('Name: ' + wikiString2);
                     this.state.vendorAppName = wikiString2
                   }
+
+                  if(context.activity.value.desc){
+                    console.log('Description: ' + context.activity.value.desc);
+                    this.state.vendorAppDesc = context.activity.value.desc
+                  }
+
                   if(doc.infoboxes(0).json().website){
                     console.log('Website: ' + doc.infoboxes(0).json().website.text);
                     this.state.vendorAppWebsite = doc.infoboxes(0).json().website.text
@@ -582,7 +591,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                 await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('I found all this information about the Vendor and Application','')] });
 
-                await context.sendActivity({ attachments: [this.dialogHelper.createVendorAppProfile(this.state.vendorAppName,this.state.vendorAppWebsite,this.state.vendorAppNumEmployees,this.state.vendorAppType,this.state.vendorAppTradedAs,this.state.vendorAppISIN,this.state.vendorAppIndustry,this.state.vendorAppProducts,this.state.vendorAppServices,this.state.vendorAppFounded,this.state.vendorAppFounder,this.state.vendorAppHQLocation,this.state.vendorAppHQLocationCity,this.state.vendorAppHQLocationCountry,this.state.vendorAppAreaServed,this.state.vendorAppKeyPeople,this.state.vendorAppAuthor,this.state.vendorAppDeveloper,this.state.vendorAppFamily,this.state.vendorAppWorkingState,this.state.vendorAppSourceModel,this.state.vendorAppRTMDate,this.state.vendorAppGADate,this.state.vendorAppReleased,this.state.vendorAppLatestVersion,this.state.vendorAppLatestReleaseDate,this.state.vendorAppProgrammingLanguage,this.state.vendorAppOperatingSystem,this.state.vendorAppPlatform,this.state.vendorAppSize,this.state.vendorAppLanguage,this.state.vendorAppGenre,this.state.vendorAppPreviewVersion,this.state.vendorAppPreviewDate,this.state.vendorAppMarketingTarget,this.state.vendorAppUpdateModel,this.state.vendorAppSupportedPlatforms,this.state.vendorAppKernelType,this.state.vendorAppUI,this.state.vendorAppLicense,this.state.vendorAppPrecededBy,this.state.vendorAppSucceededBy,this.state.vendorAppSupportStatus)] });
+                await context.sendActivity({ attachments: [this.dialogHelper.createVendorAppProfile(this.state.vendorAppName,this.state.vendorAppDesc,this.state.vendorAppWebsite,this.state.vendorAppNumEmployees,this.state.vendorAppType,this.state.vendorAppTradedAs,this.state.vendorAppISIN,this.state.vendorAppIndustry,this.state.vendorAppProducts,this.state.vendorAppServices,this.state.vendorAppFounded,this.state.vendorAppFounder,this.state.vendorAppHQLocation,this.state.vendorAppHQLocationCity,this.state.vendorAppHQLocationCountry,this.state.vendorAppAreaServed,this.state.vendorAppKeyPeople,this.state.vendorAppAuthor,this.state.vendorAppDeveloper,this.state.vendorAppFamily,this.state.vendorAppWorkingState,this.state.vendorAppSourceModel,this.state.vendorAppRTMDate,this.state.vendorAppGADate,this.state.vendorAppReleased,this.state.vendorAppLatestVersion,this.state.vendorAppLatestReleaseDate,this.state.vendorAppProgrammingLanguage,this.state.vendorAppOperatingSystem,this.state.vendorAppPlatform,this.state.vendorAppSize,this.state.vendorAppLanguage,this.state.vendorAppGenre,this.state.vendorAppPreviewVersion,this.state.vendorAppPreviewDate,this.state.vendorAppMarketingTarget,this.state.vendorAppUpdateModel,this.state.vendorAppSupportedPlatforms,this.state.vendorAppKernelType,this.state.vendorAppUI,this.state.vendorAppLicense,this.state.vendorAppPrecededBy,this.state.vendorAppSucceededBy,this.state.vendorAppSupportStatus)] });
 
                 await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Will this application be used On-Premise, In the Cloud or Both?','')] });
                 await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApproval()] });
