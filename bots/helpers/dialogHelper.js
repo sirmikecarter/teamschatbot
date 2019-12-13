@@ -901,6 +901,86 @@ class DialogHelper {
       );
      }
 
+     createFormType() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "What is the Business Problem you are trying to solve?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "BusinessProblem",
+                                  "isMultiline": true,
+                                  "placeholder": "Business Problem"
+                              },
+                              {
+                                  "type": "TextBlock",
+                                  "text": "What are the high-level requirements you are trying to solve?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "BusinessRequirements",
+                                  "isMultiline": true,
+                                  "placeholder": "Business Requirements"
+                              },
+                              {
+                                  "type": "TextBlock",
+                                  "text": "What are the major business benefits that this solution will provide?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "BusinessBenefits",
+                                  "isMultiline": true,
+                                  "placeholder": "Business Benefits"
+                              },
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Additional Information?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "AdditionalInfo",
+                                  "isMultiline": true,
+                                  "placeholder": "Additional Information"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createFormType"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
      createFormBusinessRequirements() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

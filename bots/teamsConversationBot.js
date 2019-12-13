@@ -854,10 +854,21 @@ class TeamsConversationBot extends TeamsActivityHandler {
               }
 
               await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW6ArchNewSoftApprovalLicense  + ' and the software affects ' + this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB,'')] });
-              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about the business problem youre trying to solve','')] });
-              await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessProblem()] });
+              //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about the business problem youre trying to solve','')] });
+              //await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessProblem()] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about your request','')] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createFormType()] });
 
               break;
+
+              case 'createFormType':
+              this.state.createFormBusinessProblem = context.activity.value.BusinessProblem
+              this.state.createFormBusinessRequirements = context.activity.value.BusinessRequirements
+              this.state.createFormBusinessBenefits = context.activity.value.BusinessBenefits
+              this.state.createFormAdditionalInfo = context.activity.value.AdditionalInfo
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Do you have your division chief approval to submit this request?','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createFormDivisionChiefApproval()] });
+                  break;
 
               case 'createFormBusinessProblem':
               this.state.createFormBusinessProblem = context.activity.value.BusinessProblem
