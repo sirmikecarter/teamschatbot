@@ -237,6 +237,94 @@ class DialogHelper {
       );
      }
 
+     createRAW4ArchNewSoftApprovalLicenseVendor() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Enter the Vendor Name",
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "vendorName",
+                                  "placeholder": "Name of the Vendor"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Submit",
+                  "title": "Submit",
+                  "data":{
+                        "action": "createRAW4ArchNewSoftApprovalLicenseVendor"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+
+     createRAW4ArchNewSoftApprovalLicenseVendorDesc(vendorName,vendorDesc,vendorWiki) {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+              {
+               "type": "TextBlock",
+               "text": vendorName,
+               "weight": "bolder",
+               "isSubtle": false
+              },
+              {
+                "type": "TextBlock",
+                "text": vendorDesc,
+                "weight": "bolder",
+                "size": "medium",
+                "wrap": true,
+                "separator": true
+              },
+              {
+                "type": "TextBlock",
+                "text": vendorWiki,
+                "wrap": true
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": 'This One',
+                  "title": 'This One',
+                  "data":{
+                        "action": "createRAW4ArchNewSoftApprovalLicenseVendorDesc",
+                        "wiki": vendorWiki,
+                        "desc": vendorDesc
+
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+
+
      createRAW4ArchNewSoftApprovalLicenseName() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

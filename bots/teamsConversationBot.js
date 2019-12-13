@@ -34,6 +34,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
           createRAW3ArchitectureNew: '',
           createRAW5ArchNewSoftApproval: '',
           createRAW6ArchNewSoftApprovalLicense: '',
+          createRAW4ArchNewSoftApprovalLicenseVendor: '',
           createRAW4ArchNewSoftApprovalLicenseName: '',
           createRAW7ArchNewSoftApprovalLicenseNameLOB: '',
           createFormBusinessProblem: '',
@@ -42,7 +43,11 @@ class TeamsConversationBot extends TeamsActivityHandler {
           createFormAdditionalInfo: '',
           createFormDivisionChiefApproval: '',
           createFormSubmitRAW: '',
+          softwareVendorArray: '',
           softwareDescArray: [],
+          vendorName: 'N/A',
+          vendorDesc: 'N/A',
+          vendorWebsite: 'N/A',
           vendorAppName: 'N/A',
           vendorAppDesc: 'N/A',
           vendorAppWebsite: 'N/A',
@@ -179,6 +184,8 @@ class TeamsConversationBot extends TeamsActivityHandler {
               console.log(context.activity.value.selectedValues)
 
               await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is about ' + context.activity.value.selectedValues,'')] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about the business problem youre trying to solve','')] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessProblem()] });
 
               break;
 
@@ -189,8 +196,8 @@ class TeamsConversationBot extends TeamsActivityHandler {
                       case 'Software Approval':
                       this.state.createRAW3ArchitectureNew = context.activity.value.option
                       await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew,'')] });
-                      await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What the Name of the Software?','')] });
-                      await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseName()] });
+                      await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the Vendor Name?','')] });
+                      await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseVendor()] });
 
                       break;
 
@@ -209,6 +216,192 @@ class TeamsConversationBot extends TeamsActivityHandler {
                       }
 
                   break;
+
+                  case 'createRAW4ArchNewSoftApprovalLicenseVendor':
+
+                  this.state.createRAW4ArchNewSoftApprovalLicenseVendor = context.activity.value.vendorName
+
+                  // Wikipedia
+                  this.state.softwareVendorArray = []
+                  var self = this;
+                  var softwareVendorArray = self.state.softwareVendorArray.slice();
+
+
+                  await axios.get('https://en.wikipedia.org/w/api.php?action=opensearch&search='+this.state.createRAW4ArchNewSoftApprovalLicenseVendor+'&namespace=0&format=json',
+                          { params: {
+                            'api-version': '2019-05-06'
+                            },
+                          headers: {
+                            'ContentType': 'application/json'
+                    }
+
+                  }).then(response => {
+
+                    if (response){
+
+                      var itemCount = response.data[1].length;
+
+                       //console.log(response.data)
+                       // console.log(response.data.length)
+
+                      for (var i = 0; i < itemCount; i++)
+                      {
+
+                            const vendorName = response.data[1][i]
+                            const vendorDesc = response.data[2][i]
+                            const vendorWiki = response.data[3][i]
+
+                            softwareVendorArray.push({'vendorName': vendorName, 'vendorDesc': vendorDesc, 'vendorWiki': vendorWiki})
+                      }
+
+                      self.state.softwareVendorArray = softwareVendorArray
+
+                      //console.log(self.state.softwareVendorArray)
+                      // console.log(response.data[1][0])
+                      // console.log(response.data[2][0])
+                      // console.log(response.data[3][0])
+
+
+                   }
+
+                  }).catch((error)=>{
+                         console.log(error);
+                  });
+
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Please select the description best describing this vendor','')] });
+
+
+                  var attachments = [];
+
+                  self.state.softwareVendorArray.forEach(function(data){
+
+                  var card = this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseVendorDesc(data.vendorName, data.vendorDesc, data.vendorWiki)
+
+                  attachments.push(card);
+
+                  }, this)
+
+                  await context.sendActivity({ attachments: attachments,
+                  attachmentLayout: AttachmentLayoutTypes.Carousel });
+
+                  break;
+
+
+                  case 'createRAW4ArchNewSoftApprovalLicenseVendorDesc':
+
+
+                  //console.log(context.activity.value.option)
+                  this.state.vendorName = 'N/A'
+                  this.state.vendorDesc = 'N/A'
+                  this.state.vendorWebsite = 'N/A'
+                  this.state.vendorAppNumEmployees = 'N/A'
+                  this.state.vendorAppType = 'N/A'
+                  this.state.vendorAppTradedAs = 'N/A'
+                  this.state.vendorAppISIN = 'N/A'
+                  this.state.vendorAppIndustry = 'N/A'
+                  this.state.vendorAppProducts = 'N/A'
+                  this.state.vendorAppServices = 'N/A'
+                  this.state.vendorAppFounded = 'N/A'
+                  this.state.vendorAppFounder = 'N/A'
+                  this.state.vendorAppHQLocation = 'N/A'
+                  this.state.vendorAppHQLocationCity = 'N/A'
+                  this.state.vendorAppHQLocationCountry = 'N/A'
+                  this.state.vendorAppAreaServed = 'N/A'
+                  this.state.vendorAppKeyPeople = 'N/A'
+
+
+                  var wikiString = context.activity.value.wiki
+
+
+                  var wikiString2 = wikiString.replace("https://en.wikipedia.org/wiki/", "");
+                  this.state.vendorName = wikiString2
+                  this.state.vendorDesc = context.activity.value.desc
+
+                  wtf.fetch(wikiString2).then(doc => {
+
+                    //console.log(doc.infoboxes(0).json());
+
+                    console.log('--VENDOR INFORMATION--');
+
+                    console.log('Vendor Name: ' + this.state.vendorName);
+
+                    console.log('Vendor Description: ' + this.state.vendorDesc);
+
+                    if(doc.infoboxes(0).json().website){
+                      console.log('Website: ' + doc.infoboxes(0).json().website.text);
+                      this.state.vendorWebsite = doc.infoboxes(0).json().website.text
+                    }
+
+                    if(doc.infoboxes(0).json().num_employees){
+                      console.log('Number of Employees: ' + doc.infoboxes(0).json().num_employees.text);
+                      this.state.vendorAppNumEmployees = doc.infoboxes(0).json().num_employees.text
+                    }
+                    if(doc.infoboxes(0).json().type){
+                      console.log('Type: ' + doc.infoboxes(0).json().type.text);
+                      this.state.vendorAppType = doc.infoboxes(0).json().type.text
+                    }
+                    if(doc.infoboxes(0).json().traded_as){
+                      console.log('Traded As: ' + doc.infoboxes(0).json().traded_as.text);
+                      this.state.vendorAppTradedAs= doc.infoboxes(0).json().traded_as.text
+                    }
+                    if(doc.infoboxes(0).json().isin){
+                      console.log('ISIN: ' + doc.infoboxes(0).json().isin.text);
+                      this.state.vendorAppISIN = doc.infoboxes(0).json().isin.text
+                    }
+                    if(doc.infoboxes(0).json().industry){
+                      console.log('Industry: ' + doc.infoboxes(0).json().industry.text);
+                      this.state.vendorAppIndustry = doc.infoboxes(0).json().industry.text
+                    }
+                    if(doc.infoboxes(0).json().products){
+                      console.log('Products: ' + doc.infoboxes(0).json().products.text);
+                      this.state.vendorAppProducts = doc.infoboxes(0).json().products.text
+                    }
+                    if(doc.infoboxes(0).json().services){
+                      console.log('Services: ' + doc.infoboxes(0).json().services.text);
+                      this.state.vendorAppServices = doc.infoboxes(0).json().services.text
+                    }
+                    if(doc.infoboxes(0).json().founded){
+                      console.log('Founded: ' + doc.infoboxes(0).json().founded.text);
+                      this.state.vendorAppFounded = doc.infoboxes(0).json().founded.text
+                    }
+                    if(doc.infoboxes(0).json().founder){
+                      console.log('Founder: ' + doc.infoboxes(0).json().founder.text);
+                      this.state.vendorAppFounder = doc.infoboxes(0).json().founder.text
+                    }
+                    if(doc.infoboxes(0).json().hq_location){
+                      console.log('HQ Location: ' + doc.infoboxes(0).json().hq_location.text);
+                      this.state.vendorAppHQLocation = doc.infoboxes(0).json().hq_location.text
+                    }
+                    if(doc.infoboxes(0).json().hq_location_city){
+                      console.log('HQ Location City: ' + doc.infoboxes(0).json().hq_location_city.text);
+                      this.state.vendorAppHQLocationCity = doc.infoboxes(0).json().hq_location_city.text
+                    }
+                    if(doc.infoboxes(0).json().hq_location_country){
+                      console.log('HQ Location Country: ' + doc.infoboxes(0).json().hq_location_country.text);
+                      this.state.vendorAppHQLocationCountry = doc.infoboxes(0).json().hq_location_country.text
+                    }
+                    if(doc.infoboxes(0).json().area_served){
+                      console.log('Area Served: ' + doc.infoboxes(0).json().area_served.text);
+                      this.state.vendorAppAreaServed = doc.infoboxes(0).json().area_served.text
+                    }
+                    if(doc.infoboxes(0).json().key_people){
+                      console.log('Key People: ' + doc.infoboxes(0).json().key_people.text);
+                      this.state.vendorAppKeyPeople = doc.infoboxes(0).json().key_people.text
+                    }
+
+                  });
+
+
+                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the Software Name?','')] });
+                    await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseName()] });
+
+
+
+
+                  break;
+
+
+
 
                   case 'createRAW4ArchNewSoftApprovalLicenseName':
 
@@ -328,20 +521,6 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 this.state.vendorAppName = 'N/A'
                 this.state.vendorAppDesc = 'N/A'
                 this.state.vendorAppWebsite = 'N/A'
-                this.state.vendorAppNumEmployees = 'N/A'
-                this.state.vendorAppType = 'N/A'
-                this.state.vendorAppTradedAs = 'N/A'
-                this.state.vendorAppISIN = 'N/A'
-                this.state.vendorAppIndustry = 'N/A'
-                this.state.vendorAppProducts = 'N/A'
-                this.state.vendorAppServices = 'N/A'
-                this.state.vendorAppFounded = 'N/A'
-                this.state.vendorAppFounder = 'N/A'
-                this.state.vendorAppHQLocation = 'N/A'
-                this.state.vendorAppHQLocationCity = 'N/A'
-                this.state.vendorAppHQLocationCountry = 'N/A'
-                this.state.vendorAppAreaServed = 'N/A'
-                this.state.vendorAppKeyPeople = 'N/A'
                 this.state.vendorAppAuthor = 'N/A'
                 this.state.vendorAppDeveloper = 'N/A'
                 this.state.vendorAppFamily = 'N/A'
@@ -376,6 +555,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                 var wikiString2 = wikiString.replace("https://en.wikipedia.org/wiki/", "");
                 this.state.vendorAppName = wikiString2
+                this.state.vendorAppDesc = context.activity.value.desc
 
                 //console.log(wikiString2)
 
@@ -387,22 +567,14 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 //https://en.wikipedia.org/wiki/PeaZip?action=raw
                 //https://www.npmjs.com/package/wtf_wikipedia
 
-                wtf.fetch(wikiString2).then(doc => {
+                var runWiki = await wtf.fetch(wikiString2).then(doc => {
 
-                  console.log(doc.infoboxes(0).json());
+                  //console.log(doc.infoboxes(0).json());
 
                   console.log('--GENERAL INFORMATION--');
 
-                  if(doc.infoboxes(0).json().name){
-                    //console.log('Name: ' + doc.infoboxes(0).json().name.text);
-                    console.log('Name: ' + wikiString2);
-                    this.state.vendorAppName = wikiString2
-                  }
-
-                  if(context.activity.value.desc){
-                    console.log('Description: ' + context.activity.value.desc);
-                    this.state.vendorAppDesc = context.activity.value.desc
-                  }
+                  console.log('Name: ' + this.state.vendorAppName);
+                  console.log('Description: ' + this.state.vendorAppDesc);
 
                   if(doc.infoboxes(0).json().website){
                     console.log('Website: ' + doc.infoboxes(0).json().website.text);
@@ -588,14 +760,16 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                 });
 
+                // wait
+                await new Promise((resolve, reject) => setTimeout(resolve, 1000));
 
                 await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('I found all this information about the Vendor and Application','')] });
 
                 await context.sendActivity({ attachments: [this.dialogHelper.createVendorAppProfile(this.state.vendorAppName,this.state.vendorAppDesc,this.state.vendorAppWebsite,this.state.vendorAppNumEmployees,this.state.vendorAppType,this.state.vendorAppTradedAs,this.state.vendorAppISIN,this.state.vendorAppIndustry,this.state.vendorAppProducts,this.state.vendorAppServices,this.state.vendorAppFounded,this.state.vendorAppFounder,this.state.vendorAppHQLocation,this.state.vendorAppHQLocationCity,this.state.vendorAppHQLocationCountry,this.state.vendorAppAreaServed,this.state.vendorAppKeyPeople,this.state.vendorAppAuthor,this.state.vendorAppDeveloper,this.state.vendorAppFamily,this.state.vendorAppWorkingState,this.state.vendorAppSourceModel,this.state.vendorAppRTMDate,this.state.vendorAppGADate,this.state.vendorAppReleased,this.state.vendorAppLatestVersion,this.state.vendorAppLatestReleaseDate,this.state.vendorAppProgrammingLanguage,this.state.vendorAppOperatingSystem,this.state.vendorAppPlatform,this.state.vendorAppSize,this.state.vendorAppLanguage,this.state.vendorAppGenre,this.state.vendorAppPreviewVersion,this.state.vendorAppPreviewDate,this.state.vendorAppMarketingTarget,this.state.vendorAppUpdateModel,this.state.vendorAppSupportedPlatforms,this.state.vendorAppKernelType,this.state.vendorAppUI,this.state.vendorAppLicense,this.state.vendorAppPrecededBy,this.state.vendorAppSucceededBy,this.state.vendorAppSupportStatus)] });
 
-                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Will this application be used On-Premise, In the Cloud or Both?','')] });
-                await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApproval()] });
 
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Will this application be used On-Premise, In the Cloud or Both?','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApproval()] });
 
 
                 break;
@@ -1264,6 +1438,10 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
         card.id = context.activity.replyToId;
         await context.updateActivity({ attachments: [card], id: context.activity.replyToId, type: 'message' });
+    }
+
+    callVendorAppInfo() {
+        console.log('hello im here')
     }
 
     async deleteCardActivityAsync(context) {
