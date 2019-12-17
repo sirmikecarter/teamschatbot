@@ -40,7 +40,7 @@ class DialogHelper {
                               {
                                   "type": "Image",
                                   "style": "Person",
-                                  "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                                  "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
                                   "size": "Small"
                               }
                           ],
@@ -77,7 +77,7 @@ class DialogHelper {
                                       "items": [
                                           {
                                               "type": "TextBlock",
-                                              "text": "What Type of Request Is This?",
+                                              "text": "Select an Option",
                                               "isSubtle": true,
                                               "wrap": true
                                           }
@@ -173,6 +173,35 @@ class DialogHelper {
           "type": "AdaptiveCard",
           "version": "1.0",
           "body": [
+                  {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "Image",
+                                "style": "Person",
+                                "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                "size": "Small"
+                            }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "What Category Does this Request Fall Into?",
+                                "wrap": true
+                            }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              },
               {
                   "type": "ColumnSet",
                   "columns": [
@@ -233,6 +262,35 @@ class DialogHelper {
           "type": "AdaptiveCard",
           "version": "1.0",
           "body": [
+                  {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "Image",
+                                "style": "Person",
+                                "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                "size": "Small"
+                            }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "Whats the Vendor Name?",
+                                "wrap": true
+                            }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              },
               {
                   "type": "ColumnSet",
                   "columns": [
@@ -321,6 +379,35 @@ class DialogHelper {
           "type": "AdaptiveCard",
           "version": "1.0",
           "body": [
+                  {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "Image",
+                                "style": "Person",
+                                "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                "size": "Small"
+                            }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "Whats the Software Name?",
+                                "wrap": true
+                            }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              },
               {
                   "type": "ColumnSet",
                   "columns": [
@@ -700,6 +787,35 @@ class DialogHelper {
           "type": "AdaptiveCard",
           "version": "1.0",
           "body": [
+                  {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "Image",
+                                "style": "Person",
+                                "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                "size": "Small"
+                            }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "Will this application be used On-Premise, In the Cloud or Both?",
+                                "wrap": true
+                            }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              },
               {
                   "type": "ColumnSet",
                   "columns": [
@@ -760,6 +876,35 @@ class DialogHelper {
           "type": "AdaptiveCard",
           "version": "1.0",
           "body": [
+                  {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "Image",
+                                "style": "Person",
+                                "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                "size": "Small"
+                            }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "What Best Describes the license type for this Software?",
+                                "wrap": true
+                            }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              },
               {
                   "type": "ColumnSet",
                   "columns": [
@@ -823,6 +968,35 @@ class DialogHelper {
             "type": "AdaptiveCard",
             "version": "1.0",
             "body": [
+                    {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "items": [
+                              {
+                                  "type": "Image",
+                                  "style": "Person",
+                                  "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                  "size": "Small"
+                              }
+                            ],
+                            "width": "auto"
+                        },
+                        {
+                            "type": "Column",
+                            "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "weight": "Bolder",
+                                  "text": "What Line of Business does this request affect?",
+                                  "wrap": true
+                              }
+                            ],
+                            "width": "stretch"
+                        }
+                    ]
+                },
                 {
                     "type": "TextBlock",
                     "size": "Medium",
@@ -886,7 +1060,7 @@ class DialogHelper {
                               {
                                   "type": "Image",
                                   "style": "Person",
-                                  "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                                  "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
                                   "size": "Small"
                               }
                           ],
@@ -903,6 +1077,23 @@ class DialogHelper {
                               }
                           ],
                           "width": "stretch"
+                      }
+                  ]
+              },
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
                       }
                   ]
               }
@@ -1026,7 +1217,7 @@ class DialogHelper {
                               {
                                   "type": "Image",
                                   "style": "Person",
-                                  "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                                  "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
                                   "size": "Small"
                               }
                           ],
@@ -1086,7 +1277,7 @@ class DialogHelper {
                               {
                                   "type": "Image",
                                   "style": "Person",
-                                  "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                                  "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
                                   "size": "Small"
                               }
                           ],
@@ -2580,7 +2771,7 @@ class DialogHelper {
                  "items": [
                    {
                      "type": "Image",
-                     "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                     "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
                      "size": "small",
                      "style": "person"
                    }

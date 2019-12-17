@@ -127,8 +127,6 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
               //console.log(context.activity.value.action)
 
-
-
               switch (context.activity.value.action) {
 
               case 'createRAW2TypeArch':
@@ -138,7 +136,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     case 'New':
                     this.state.createRAW2Type = context.activity.value.option
                     //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request','')] });
-                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Category Does this Request Fall Into?','')] });
+                    //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Category Does this Request Fall Into?','')] });
                     await context.sendActivity({ attachments: [this.dialogHelper.createRAW3ArchitectureNew()] });
 
 
@@ -147,7 +145,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     case 'Change':
                     this.state.createRAW2Type = context.activity.value.option
                     //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' to ' + this.state.createRAW1Purpose + ' request','')] });
-                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Category Does this Request Fall Into?','')] });
+                    //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Category Does this Request Fall Into?','')] });
                     await context.sendActivity({ attachments: [this.dialogHelper.createRAW3ArchitectureNew()] });
 
                     break;
@@ -163,7 +161,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
               //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is about ' + context.activity.value.selectedValues,'')] });
               //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about the business problem youre trying to solve','')] });
               //await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessProblem()] });
-              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this request affect?','')] });
+              //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this request affect?','')] });
               await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
 
               break;
@@ -199,7 +197,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                   this.state.createRAWProjectPhase = context.activity.value.option
 
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the Vendor Name?','')] });
+                  //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the Vendor Name?','')] });
                   await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseVendor()] });
 
                   break;
@@ -380,11 +378,8 @@ class TeamsConversationBot extends TeamsActivityHandler {
                   });
 
 
-                    await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the Software Name?','')] });
+                    //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the Software Name?','')] });
                     await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseName()] });
-
-
-
 
                   break;
 
@@ -756,7 +751,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 await context.sendActivity({ attachments: [this.dialogHelper.createVendorAppProfile(this.state.vendorName,this.state.vendorDesc,this.state.vendorAppName,this.state.vendorAppDesc,this.state.vendorAppWebsite,this.state.vendorAppNumEmployees,this.state.vendorAppType,this.state.vendorAppTradedAs,this.state.vendorAppISIN,this.state.vendorAppIndustry,this.state.vendorAppProducts,this.state.vendorAppServices,this.state.vendorAppFounded,this.state.vendorAppFounder,this.state.vendorAppHQLocation,this.state.vendorAppHQLocationCity,this.state.vendorAppHQLocationCountry,this.state.vendorAppAreaServed,this.state.vendorAppKeyPeople,this.state.vendorAppAuthor,this.state.vendorAppDeveloper,this.state.vendorAppFamily,this.state.vendorAppWorkingState,this.state.vendorAppSourceModel,this.state.vendorAppRTMDate,this.state.vendorAppGADate,this.state.vendorAppReleased,this.state.vendorAppLatestVersion,this.state.vendorAppLatestReleaseDate,this.state.vendorAppProgrammingLanguage,this.state.vendorAppOperatingSystem,this.state.vendorAppPlatform,this.state.vendorAppSize,this.state.vendorAppLanguage,this.state.vendorAppGenre,this.state.vendorAppPreviewVersion,this.state.vendorAppPreviewDate,this.state.vendorAppMarketingTarget,this.state.vendorAppUpdateModel,this.state.vendorAppSupportedPlatforms,this.state.vendorAppKernelType,this.state.vendorAppUI,this.state.vendorAppLicense,this.state.vendorAppPrecededBy,this.state.vendorAppSucceededBy,this.state.vendorAppSupportStatus)] });
 
 
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Will this application be used On-Premise, In the Cloud or Both?','')] });
+                  //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Will this application be used On-Premise, In the Cloud or Both?','')] });
                   await context.sendActivity({ attachments: [this.dialogHelper.createRAW5ArchNewSoftApproval()] });
 
 
@@ -769,7 +764,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                       case 'On Premise Solution':
                           this.state.createRAW5ArchNewSoftApproval = context.activity.value.option
                           //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval,'')] });
-                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
+                          //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
                           await context.sendActivity({ attachments: [this.dialogHelper.createRAW6ArchNewSoftApprovalLicense()] });
 
                           break;
@@ -777,14 +772,14 @@ class TeamsConversationBot extends TeamsActivityHandler {
                       case 'Cloud Solution':
                           this.state.createRAW5ArchNewSoftApproval = context.activity.value.option
                           //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval,'')] });
-                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
+                          //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
                           await context.sendActivity({ attachments: [this.dialogHelper.createRAW6ArchNewSoftApprovalLicense()] });
                           break;
 
                       case 'Both':
                           this.state.createRAW5ArchNewSoftApproval = context.activity.value.option
                           //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is for ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and Both, a On Premise Solution and Cloud Solution','')] });
-                          await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
+                          //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Best Describes the license type for this Software?','')] });
                           await context.sendActivity({ attachments: [this.dialogHelper.createRAW6ArchNewSoftApprovalLicense()] });
                           break;
 
@@ -799,21 +794,21 @@ class TeamsConversationBot extends TeamsActivityHandler {
                             case 'Free':
                                 this.state.createRAW6ArchNewSoftApprovalLicense = context.activity.value.option
                                 //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval + ' and the license type is ' + this.state.createRAW6ArchNewSoftApprovalLicense,'')] });
-                                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this software affect?','')] });
+                                //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this software affect?','')] });
                                 await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
                                 break;
 
                             case 'Trial':
                                 this.state.createRAW6ArchNewSoftApprovalLicense = context.activity.value.option
                                 //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW6ArchNewSoftApprovalLicense,'')] });
-                                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this software affect?','')] });
+                                //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this software affect?','')] });
                                 await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
                                 break;
 
                             case 'Purchase':
                                 this.state.createRAW6ArchNewSoftApprovalLicense = context.activity.value.option
                                 //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW6ArchNewSoftApprovalLicense,'')] });
-                                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this software affect?','')] });
+                                //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this software affect?','')] });
                                 await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
                                 break;
 
@@ -862,8 +857,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 if(context.activity.value.option === 'Yes')
                 {
                   this.state.createFormDivisionChiefApproval = context.activity.value.option
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Heres your info','')] });
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW6ArchNewSoftApprovalLicense + ' and the software affects ' + this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB + ' and this approval is for ' + this.state.createRAWProjectPhase,'')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, Heres your info... a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW6ArchNewSoftApprovalLicense + ' and the software affects ' + this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB + ' and this approval is for ' + this.state.createRAWProjectPhase,'')] });
                   await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Business Problem: ' + this.state.createFormBusinessProblem,'')] });
                   await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Requirements: ' + this.state.createFormBusinessRequirements,'')] });
                   await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Benefits: ' + this.state.createFormBusinessBenefits,'')] });
