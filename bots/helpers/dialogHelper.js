@@ -27,7 +27,7 @@ class DialogHelper {
        });
      }
 
-     createTest() {
+     createRAW1Purpose() {
        return CardFactory.adaptiveCard({
           "type": "AdaptiveCard",
           "body": [
@@ -77,7 +77,7 @@ class DialogHelper {
                                       "items": [
                                           {
                                               "type": "TextBlock",
-                                              "text": "Select an Option",
+                                              "text": "What Type of Request Is This?",
                                               "isSubtle": true,
                                               "wrap": true
                                           }
@@ -120,7 +120,7 @@ class DialogHelper {
                       "body": [
                         {
                          "type": "TextBlock",
-                         "text": 'Select an Option',
+                         "text": 'What Type of Request Is This?',
                          "weight": "bolder",
                          "isSubtle": false
                         },
@@ -166,156 +166,6 @@ class DialogHelper {
           "version": "1.0"
       });
      }
-
-     createRAW1Purpose() {
-       return CardFactory.adaptiveCard({
-          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-              {
-                  "type": "ColumnSet",
-                  "columns": [
-                      {
-                          "type": "Column",
-                          "width": 2,
-                          "items": [
-                              {
-                                  "type": "TextBlock",
-                                  "text": "Select an Option",
-                                  "isSubtle": true,
-                                  "wrap": true
-                              }
-                          ]
-                      }
-                  ]
-              }
-          ],
-          "actions": [
-              {
-                  "type": "Action.Submit",
-                  "id": "Architecture",
-                  "title": "Architecture",
-                  "data":{
-                        "action": "createRAW1Purpose",
-                        "option": "Architecture"
-                  }
-              },
-              {
-                  "type": "Action.Submit",
-                  "id": "Market Analysis",
-                  "title": "Market Analysis",
-                  "data":{
-                        "action": "createRAW1Purpose",
-                        "option": "Market Analysis"
-                  }
-              }
-          ]
-      }
-      );
-     }
-
-     createRAW2TypeArch() {
-       return CardFactory.adaptiveCard({
-          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-              {
-                  "type": "ColumnSet",
-                  "columns": [
-                      {
-                          "type": "Column",
-                          "width": 2,
-                          "items": [
-                              {
-                                  "type": "TextBlock",
-                                  "text": "Select an Option",
-                                  "isSubtle": true,
-                                  "wrap": true
-                              }
-                          ]
-                      }
-                  ]
-              }
-          ],
-          "actions": [
-              {
-                  "type": "Action.Submit",
-                  "id": "New",
-                  "title": "New",
-                  "value": {
-                      "option": "New"
-                  },
-                  "data":{
-                        "action": "createRAW2TypeArch",
-                        "option": "New"
-                  }
-              },
-              {
-                  "type": "Action.Submit",
-                  "id": "Change",
-                  "title": "Change",
-                  "data":{
-                        "action": "createRAW2TypeArch",
-                        "option": "Change"
-                  }
-              }
-          ]
-      }
-      );
-     }
-
-     createRAW2TypeMarket() {
-
-           return CardFactory.adaptiveCard({
-             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-             "type": "AdaptiveCard",
-             "version": "1.0",
-             "body": [
-               {
-                "type": "TextBlock",
-                "text": 'Select an Option',
-                "weight": "bolder",
-                "isSubtle": false
-               },
-               {
-                    "type": "Input.ChoiceSet",
-                    "id": "selectedValues",
-                    "isMultiSelect": true,
-                    "value": "1",
-                    "choices": [
-                        {
-                            "title": "Market Research (i.e. Web Research, White Papers)",
-                            "value": "Market Research"
-                        },
-                        {
-                            "title": "Vendor Analysis (i.e. Top Vendors, Magic Quadrant)",
-                            "value": "Vendor Analysis"
-                        },
-                        {
-                            "title": "Schedule Vendor Demos",
-                            "value": "Schedule Vendor Demos"
-                        },
-                        {
-                            "title": "Build Prototype (i.e. RnD environment)",
-                            "value": "Build Prototype"
-                        }
-                    ]
-                }
-             ],
-             "actions": [
-               {
-                   "type": "Action.Submit",
-                   "title": "Submit",
-                   "data": {
-                     "action": "createRAW2TypeMarket"
-                   }
-               }
-             ]
-           });
-
-      }
 
      createRAW3ArchitectureNew() {
        return CardFactory.adaptiveCard({
@@ -550,7 +400,7 @@ class DialogHelper {
       );
      }
 
-     createVendorAppProfile(vendorAppName,vendorAppDesc,vendorAppWebsite,vendorAppNumEmployees,vendorAppType,vendorAppTradedAs,vendorAppISIN,vendorAppIndustry,vendorAppProducts,vendorAppServices,vendorAppFounded,vendorAppFounder,vendorAppHQLocation,vendorAppHQLocationCity,vendorAppHQLocationCountry,vendorAppAreaServed,vendorAppKeyPeople,vendorAppAuthor,vendorAppDeveloper,vendorAppFamily,vendorAppWorkingState,vendorAppSourceModel,vendorAppRTMDate,vendorAppGADate,vendorAppReleased,vendorAppLatestVersion,vendorAppLatestReleaseDate,vendorAppProgrammingLanguage,vendorAppOperatingSystem,vendorAppPlatform,vendorAppSize,vendorAppLanguage,vendorAppGenre,vendorAppPreviewVersion,vendorAppPreviewDate,vendorAppMarketingTarget,vendorAppUpdateModel,vendorAppSupportedPlatforms,vendorAppKernelType,vendorAppUI,vendorAppLicense,vendorAppPrecededBy,vendorAppSucceededBy,vendorAppSupportStatus) {
+     createVendorAppProfile(vendorName,vendorDesc, vendorAppName,vendorAppDesc,vendorAppWebsite,vendorAppNumEmployees,vendorAppType,vendorAppTradedAs,vendorAppISIN,vendorAppIndustry,vendorAppProducts,vendorAppServices,vendorAppFounded,vendorAppFounder,vendorAppHQLocation,vendorAppHQLocationCity,vendorAppHQLocationCountry,vendorAppAreaServed,vendorAppKeyPeople,vendorAppAuthor,vendorAppDeveloper,vendorAppFamily,vendorAppWorkingState,vendorAppSourceModel,vendorAppRTMDate,vendorAppGADate,vendorAppReleased,vendorAppLatestVersion,vendorAppLatestReleaseDate,vendorAppProgrammingLanguage,vendorAppOperatingSystem,vendorAppPlatform,vendorAppSize,vendorAppLanguage,vendorAppGenre,vendorAppPreviewVersion,vendorAppPreviewDate,vendorAppMarketingTarget,vendorAppUpdateModel,vendorAppSupportedPlatforms,vendorAppKernelType,vendorAppUI,vendorAppLicense,vendorAppPrecededBy,vendorAppSucceededBy,vendorAppSupportStatus) {
        return CardFactory.adaptiveCard({
           "type": "AdaptiveCard",
           "body": [
@@ -564,14 +414,14 @@ class DialogHelper {
                 "type": "FactSet",
                 "facts": [
                   {
-                    "title": "GENERAL INFO:",
-                    "value": "--GENERAL INFO--",
+                    "title": "VENDOR INFO:",
+                    "value": "--VENDOR INFO--",
                     "wrap": true,
                     "separator": true
                   },
                   {
-                    "title": "Application Name:",
-                    "value": vendorAppName,
+                    "title": "Vendor Name:",
+                    "value": vendorName,
                     "wrap": true
                   },
                   {
@@ -580,7 +430,7 @@ class DialogHelper {
                     "wrap": true,
                   },
                   {
-                    "title": "Description:",
+                    "title": "Vendor Description:",
                     "value": "",
                     "wrap": true,
                   },
@@ -588,18 +438,12 @@ class DialogHelper {
               },
               {
                 "type": "TextBlock",
-                "text": vendorAppDesc,
+                "text": vendorDesc,
                 "wrap": true
               },
               {
                 "type": "FactSet",
                 "facts": [
-                  {
-                    "title": "VENDOR INFO:",
-                    "value": "--VENDOR INFO--",
-                    "wrap": true,
-                    "separator": true
-                  },
                   {
                     "title": "Number of Employees:",
                     "value": vendorAppNumEmployees,
@@ -670,149 +514,179 @@ class DialogHelper {
                     "value": vendorAppKeyPeople,
                     "wrap": true,
                   },
-                  {
-                    "title": "APPLICATION INFO:",
-                    "value": "--APPLICATION INFO--",
-                    "wrap": true,
-                    "separator": true
+                    ]
                   },
                   {
-                    "title": "Author:",
-                    "value": vendorAppAuthor,
-                    "wrap": true,
+                    "type": "FactSet",
+                    "facts": [
+                      {
+                        "title": "APPLICATION INFO:",
+                        "value": "--APPLICATION INFO--",
+                        "wrap": true,
+                        "separator": true
+                      },
+                      {
+                        "title": "Application Name:",
+                        "value": vendorAppName,
+                        "wrap": true
+                      },
+                      {
+                        "title": "Website:",
+                        "value": vendorAppWebsite,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Application Description:",
+                        "value": "",
+                        "wrap": true,
+                      },
+                    ]
                   },
                   {
-                    "title": "Developer:",
-                    "value": vendorAppDeveloper,
-                    "wrap": true,
+                    "type": "TextBlock",
+                    "text": vendorAppDesc,
+                    "wrap": true
                   },
                   {
-                    "title": "Application Family:",
-                    "value": vendorAppFamily,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Working State:",
-                    "value": vendorAppWorkingState,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Source Model:",
-                    "value": vendorAppSourceModel,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "RTM Date:",
-                    "value": vendorAppRTMDate,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "GA Date:",
-                    "value": vendorAppGADate,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Released:",
-                    "value": vendorAppReleased,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Latest Version:",
-                    "value": vendorAppLatestVersion,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Latest Release Date:",
-                    "value": vendorAppLatestReleaseDate,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Programming Language:",
-                    "value": vendorAppProgrammingLanguage,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Operating System:",
-                    "value": vendorAppOperatingSystem,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Platform:",
-                    "value": vendorAppPlatform,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Size:",
-                    "value": vendorAppSize,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Language:",
-                    "value": vendorAppLanguage,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Genre:",
-                    "value": vendorAppGenre,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Preview Version:",
-                    "value": vendorAppPreviewVersion,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Preview Date:",
-                    "value": vendorAppPreviewDate,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Marketing Target:",
-                    "value": vendorAppMarketingTarget,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Update Model:",
-                    "value": vendorAppUpdateModel,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Supported Platforms:",
-                    "value": vendorAppSupportedPlatforms,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Kernel Type:",
-                    "value": vendorAppKernelType,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "UI:",
-                    "value": vendorAppUI,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "License:",
-                    "value": vendorAppLicense,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Preceded By:",
-                    "value": vendorAppPrecededBy,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Succeeded By:",
-                    "value": vendorAppSucceededBy,
-                    "wrap": true,
-                  },
-                  {
-                    "title": "Support Status:",
-                    "value": vendorAppSupportStatus,
-                    "wrap": true,
+                    "type": "FactSet",
+                    "facts": [
+                      {
+                        "title": "Author:",
+                        "value": vendorAppAuthor,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Developer:",
+                        "value": vendorAppDeveloper,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Application Family:",
+                        "value": vendorAppFamily,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Working State:",
+                        "value": vendorAppWorkingState,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Source Model:",
+                        "value": vendorAppSourceModel,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "RTM Date:",
+                        "value": vendorAppRTMDate,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "GA Date:",
+                        "value": vendorAppGADate,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Released:",
+                        "value": vendorAppReleased,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Latest Version:",
+                        "value": vendorAppLatestVersion,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Latest Release Date:",
+                        "value": vendorAppLatestReleaseDate,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Programming Language:",
+                        "value": vendorAppProgrammingLanguage,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Operating System:",
+                        "value": vendorAppOperatingSystem,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Platform:",
+                        "value": vendorAppPlatform,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Size:",
+                        "value": vendorAppSize,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Language:",
+                        "value": vendorAppLanguage,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Genre:",
+                        "value": vendorAppGenre,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Preview Version:",
+                        "value": vendorAppPreviewVersion,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Preview Date:",
+                        "value": vendorAppPreviewDate,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Marketing Target:",
+                        "value": vendorAppMarketingTarget,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Update Model:",
+                        "value": vendorAppUpdateModel,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Supported Platforms:",
+                        "value": vendorAppSupportedPlatforms,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Kernel Type:",
+                        "value": vendorAppKernelType,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "UI:",
+                        "value": vendorAppUI,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "License:",
+                        "value": vendorAppLicense,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Preceded By:",
+                        "value": vendorAppPrecededBy,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Succeeded By:",
+                        "value": vendorAppSucceededBy,
+                        "wrap": true,
+                      },
+                      {
+                        "title": "Support Status:",
+                        "value": vendorAppSupportStatus,
+                        "wrap": true,
+                      }
+                    ]
                   }
-                ]
-              }
           ],
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "version": "1.0"
@@ -1121,143 +995,42 @@ class DialogHelper {
       );
      }
 
-     createFormBusinessRequirements() {
-       return CardFactory.adaptiveCard({
-          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-              {
-                  "type": "ColumnSet",
-                  "columns": [
-                      {
-                          "type": "Column",
-                          "width": 2,
-                          "items": [
-                              {
-                                  "type": "TextBlock",
-                                  "text": "What are the high-level requirements you are trying to solve?",
-                                  "isSubtle": true,
-                                  "wrap": true
-                              },
-                              {
-                                  "type": "Input.Text",
-                                  "id": "BusinessRequirements",
-                                  "isMultiline": true,
-                                  "placeholder": "Business Requirements"
-                              }
-                          ]
-                      }
-                  ]
-              }
-          ],
-          "actions": [
-              {
-                  "type": "Action.Submit",
-                  "id": "Submit",
-                  "title": "Submit",
-                  "data":{
-                        "action": "createFormBusinessRequirements"
-                  }
-              }
-          ]
-      }
-      );
-     }
-
-     createFormBusinessBenefits() {
-       return CardFactory.adaptiveCard({
-          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-              {
-                  "type": "ColumnSet",
-                  "columns": [
-                      {
-                          "type": "Column",
-                          "width": 2,
-                          "items": [
-                              {
-                                  "type": "TextBlock",
-                                  "text": "What are the major business benefits that this solution will provide?",
-                                  "isSubtle": true,
-                                  "wrap": true
-                              },
-                              {
-                                  "type": "Input.Text",
-                                  "id": "BusinessBenefits",
-                                  "isMultiline": true,
-                                  "placeholder": "Business Benefits"
-                              }
-                          ]
-                      }
-                  ]
-              }
-          ],
-          "actions": [
-              {
-                  "type": "Action.Submit",
-                  "id": "Submit",
-                  "title": "Submit",
-                  "data":{
-                        "action": "createFormBusinessBenefits"
-                  }
-              }
-          ]
-      }
-      );
-     }
-
-     createFormAdditionalInfo() {
-       return CardFactory.adaptiveCard({
-          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-          "type": "AdaptiveCard",
-          "version": "1.0",
-          "body": [
-              {
-                  "type": "ColumnSet",
-                  "columns": [
-                      {
-                          "type": "Column",
-                          "width": 2,
-                          "items": [
-                              {
-                                  "type": "TextBlock",
-                                  "text": "Additional Information?",
-                                  "isSubtle": true,
-                                  "wrap": true
-                              },
-                              {
-                                  "type": "Input.Text",
-                                  "id": "AdditionalInfo",
-                                  "isMultiline": true,
-                                  "placeholder": "Additional Information"
-                              }
-                          ]
-                      }
-                  ]
-              }
-          ],
-          "actions": [
-              {
-                  "type": "Action.Submit",
-                  "id": "Submit",
-                  "title": "Submit",
-                  "data":{
-                        "action": "createFormAdditionalInfo"
-                  }
-              }
-          ]
-      }
-      );
-     }
-
      createFormDivisionChiefApproval() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "type": "AdaptiveCard",
           "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                              {
+                                  "type": "Image",
+                                  "style": "Person",
+                                  "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                                  "size": "Small"
+                              }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "weight": "Bolder",
+                                  "text": "Do you have your division chief approval to submit this request?",
+                                  "wrap": true
+                              }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              }
+          ],
           "actions": [
               {
                   "type": "Action.Submit",
@@ -1287,6 +1060,37 @@ class DialogHelper {
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "type": "AdaptiveCard",
           "version": "1.0",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                              {
+                                  "type": "Image",
+                                  "style": "Person",
+                                  "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                                  "size": "Small"
+                              }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "weight": "Bolder",
+                                  "text": "Can I submit this RAW on your behalf?",
+                                  "wrap": true
+                              }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              }
+          ],
           "actions": [
               {
                   "type": "Action.Submit",
