@@ -871,7 +871,7 @@ class DialogHelper {
       );
      }
 
-     createFormBusinessProblem() {
+     createRAW4ProjectPhase() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "type": "AdaptiveCard",
@@ -882,21 +882,27 @@ class DialogHelper {
                   "columns": [
                       {
                           "type": "Column",
-                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "Image",
+                                  "style": "Person",
+                                  "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                                  "size": "Small"
+                              }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
                           "items": [
                               {
                                   "type": "TextBlock",
-                                  "text": "What is the Business Problem you are trying to solve?",
-                                  "isSubtle": true,
+                                  "weight": "Bolder",
+                                  "text": "Is this Request for Experimental Approval or Production Approval?",
                                   "wrap": true
-                              },
-                              {
-                                  "type": "Input.Text",
-                                  "id": "BusinessProblem",
-                                  "isMultiline": true,
-                                  "placeholder": "Business Problem"
                               }
-                          ]
+                          ],
+                          "width": "stretch"
                       }
                   ]
               }
@@ -904,12 +910,22 @@ class DialogHelper {
           "actions": [
               {
                   "type": "Action.Submit",
-                  "id": "Submit",
-                  "title": "Submit",
+                  "id": "Experimental Approval",
+                  "title": "Experimental Approval",
                   "data":{
-                        "action": "createFormBusinessProblem"
+                        "action": "createRAW4ProjectPhase",
+                        "option": "Experimental Approval"
                   }
-              }
+              },
+              {
+                  "type": "Action.Submit",
+                  "id": "Production Approval",
+                  "title": "Production Approval",
+                  "data":{
+                        "action": "createRAW4ProjectPhase",
+                        "option": "Production Approval"
+                  }
+              },
           ]
       }
       );
