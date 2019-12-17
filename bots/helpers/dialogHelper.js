@@ -2620,7 +2620,7 @@ class DialogHelper {
                  "items": [
                    {
                      "type": "Image",
-                     "url": "https://gateway.ipfs.io/ipfs/QmXKfQgKVckfbGSMmzHAGAZ3zr1h8yJNrmEuBaJdNsGECs",
+                     "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
                      "size": "small",
                      "style": "person"
                    }
