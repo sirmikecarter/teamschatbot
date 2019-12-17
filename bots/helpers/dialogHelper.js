@@ -27,6 +27,146 @@ class DialogHelper {
        });
      }
 
+     createTest() {
+       return CardFactory.adaptiveCard({
+          "type": "AdaptiveCard",
+          "body": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                              {
+                                  "type": "Image",
+                                  "style": "Person",
+                                  "url": "https://ipfs.globalupload.io/QmTNHWeJk4h4Z3y3Qzrgh2NuAtVtx899G9ygdPy7FeMtYW",
+                                  "size": "Small"
+                              }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "weight": "Bolder",
+                                  "text": "What's the Purpose of this Request?",
+                                  "wrap": true
+                              }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.ShowCard",
+                  "title": "Architecture",
+                  "card": {
+                      "type": "AdaptiveCard",
+                      "body": [
+                          {
+                              "type": "ColumnSet",
+                              "columns": [
+                                  {
+                                      "type": "Column",
+                                      "width": 2,
+                                      "items": [
+                                          {
+                                              "type": "TextBlock",
+                                              "text": "Select an Option",
+                                              "isSubtle": true,
+                                              "wrap": true
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
+                      ],
+                      "actions": [
+                          {
+                              "type": "Action.Submit",
+                              "id": "New",
+                              "title": "New",
+                              "value": {
+                                  "option": "New"
+                              },
+                              "data":{
+                                    "action": "createRAW2TypeArch",
+                                    "option": "New"
+                              }
+                          },
+                          {
+                              "type": "Action.Submit",
+                              "id": "Change",
+                              "title": "Change",
+                              "data":{
+                                    "action": "createRAW2TypeArch",
+                                    "option": "Change"
+                              }
+                          }
+                      ],
+                      "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
+                  }
+              },
+              {
+                  "type": "Action.ShowCard",
+                  "title": "Market Analysis",
+                  "card": {
+                      "type": "AdaptiveCard",
+                      "body": [
+                        {
+                         "type": "TextBlock",
+                         "text": 'Select an Option',
+                         "weight": "bolder",
+                         "isSubtle": false
+                        },
+                        {
+                             "type": "Input.ChoiceSet",
+                             "id": "selectedValues",
+                             "isMultiSelect": true,
+                             "value": "1",
+                             "choices": [
+                                 {
+                                     "title": "Market Research (i.e. Web Research, White Papers)",
+                                     "value": "Market Research"
+                                 },
+                                 {
+                                     "title": "Vendor Analysis (i.e. Top Vendors, Magic Quadrant)",
+                                     "value": "Vendor Analysis"
+                                 },
+                                 {
+                                     "title": "Schedule Vendor Demos",
+                                     "value": "Schedule Vendor Demos"
+                                 },
+                                 {
+                                     "title": "Build Prototype (i.e. RnD environment)",
+                                     "value": "Build Prototype"
+                                 }
+                             ]
+                         }
+                      ],
+                      "actions": [
+                        {
+                            "type": "Action.Submit",
+                            "title": "Submit",
+                            "data": {
+                              "action": "createRAW2TypeMarket"
+                            }
+                        }
+                      ],
+                      "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
+                  }
+              }
+          ],
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "version": "1.0"
+      });
+     }
+
      createRAW1Purpose() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

@@ -184,8 +184,10 @@ class TeamsConversationBot extends TeamsActivityHandler {
               console.log(context.activity.value.selectedValues)
 
               await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is about ' + context.activity.value.selectedValues,'')] });
-              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about the business problem youre trying to solve','')] });
-              await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessProblem()] });
+              //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Tell me more about the business problem youre trying to solve','')] });
+              //await context.sendActivity({ attachments: [this.dialogHelper.createFormBusinessProblem()] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('What Line of Business does this request affect?','')] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
 
               break;
 
@@ -991,8 +993,10 @@ class TeamsConversationBot extends TeamsActivityHandler {
               case 'Software_Create_RAW':
 
               console.log(dispatchResults.text)
-              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the purpose of this request?','')] });
-              await context.sendActivity({ attachments: [this.dialogHelper.createRAW1Purpose()] });
+              //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the purpose of this request?','')] });
+              //await context.sendActivity({ attachments: [this.dialogHelper.createRAW1Purpose()] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createTest()] });
+
 
 
 
