@@ -126,7 +126,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
             if (context.activity.value){
 
-              //console.log(context.activity.value.action)
+              console.log(context.activity)
 
               switch (context.activity.value.action) {
 

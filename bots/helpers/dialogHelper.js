@@ -64,7 +64,7 @@ class DialogHelper {
           "actions": [
               {
                   "type": "Action.ShowCard",
-                  "title": "Architecture",
+                  "title": "Architecture Approval",
                   "card": {
                       "type": "AdaptiveCard",
                       "body": [
@@ -91,9 +91,6 @@ class DialogHelper {
                               "type": "Action.Submit",
                               "id": "New",
                               "title": "New",
-                              "value": {
-                                  "option": "New"
-                              },
                               "data":{
                                     "action": "createRAW2TypeArch",
                                     "option": "New"
@@ -194,7 +191,7 @@ class DialogHelper {
                           {
                               "type": "TextBlock",
                               "weight": "Bolder",
-                              "text": "Are there any new or changes to the existing?",
+                              "text": "Are there any new or changes to the existing solution?",
                               "wrap": true
                           }
                       ],
@@ -226,36 +223,21 @@ class DialogHelper {
                               "items": [
                                   {
                                       "type": "Input.ChoiceSet",
-                                      "placeholder": "Placeholder text",
                                       "choices": [
                                           {
                                               "title": "Yes",
-                                              "value": "Yes1"
+                                              "value": "Yes"
+                                          },
+                                          {
+                                              "title": "No",
+                                              "value": "No"
                                           }
                                       ],
                                       "style": "expanded",
-                                      "id": "Yes1"
+                                      "id": "Question1"
                                   }
                               ],
                               "horizontalAlignment": "Center"
-                          },
-                          {
-                              "type": "Column",
-                              "width": "auto",
-                              "items": [
-                                  {
-                                      "type": "Input.ChoiceSet",
-                                      "placeholder": "Placeholder text",
-                                      "style": "expanded",
-                                      "choices": [
-                                          {
-                                              "title": "No",
-                                              "value": "No1"
-                                          }
-                                      ],
-                                      "id": "No1"
-                                  }
-                              ]
                           }
                       ]
                   }
@@ -284,31 +266,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes2"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes2"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No2"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No2"
+                              "id": "Question2"
                           }
                       ]
                   }
@@ -337,31 +305,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes3"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes3"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No3"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No3"
+                              "id": "Question3"
                           }
                       ]
                   }
@@ -390,31 +344,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes4"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes4"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No4"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No4"
+                              "id": "Question4"
                           }
                       ]
                   }
@@ -443,31 +383,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes5"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes5"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No5"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No5"
+                              "id": "Question5"
                           }
                       ]
                   }
@@ -496,31 +422,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes6"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes6"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No6"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No6"
+                              "id": "Question6"
                           }
                       ]
                   }
@@ -549,31 +461,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes7"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes7"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No7"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No7"
+                              "id": "Question7"
                           }
                       ]
                   }
@@ -602,31 +500,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes8"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes8"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No8"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No8"
+                              "id": "Question8"
                           }
                       ]
                   }
@@ -655,31 +539,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes9"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes9"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No9"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No9"
+                              "id": "Question9"
                           }
                       ]
                   }
@@ -708,31 +578,17 @@ class DialogHelper {
                               "type": "Input.ChoiceSet",
                               "placeholder": "Placeholder text",
                               "choices": [
-                                  {
-                                      "title": "Yes",
-                                      "value": "Yes10"
-                                  }
+                                {
+                                    "title": "Yes",
+                                    "value": "Yes"
+                                },
+                                {
+                                    "title": "No",
+                                    "value": "No"
+                                }
                               ],
                               "style": "expanded",
-                              "id": "Yes10"
-                          }
-                      ]
-                  },
-                  {
-                      "type": "Column",
-                      "width": "auto",
-                      "items": [
-                          {
-                              "type": "Input.ChoiceSet",
-                              "placeholder": "Placeholder text",
-                              "choices": [
-                                  {
-                                      "title": "No",
-                                      "value": "No10"
-                                  }
-                              ],
-                              "style": "expanded",
-                              "id": "No10"
+                              "id": "Question10"
                           }
                       ]
                   }
@@ -744,7 +600,7 @@ class DialogHelper {
                 "type": "Action.Submit",
                 "title": "Submit",
                 "data": {
-                    "id": "1234567890"
+                    "action": "createRAWVersionUpgrade"
                 }
             }
         ]
