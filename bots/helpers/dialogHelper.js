@@ -663,14 +663,11 @@ class DialogHelper {
           "actions": [
               {
                   "type": "Action.Submit",
-                  "id": "Solution Approval",
-                  "title": "Solution Approval",
-                  "value": {
-                      "option": "Solution Approval"
-                  },
+                  "id": "Application Approval",
+                  "title": "Application Approval",
                   "data":{
                         "action": "createRAW3ArchitectureNew",
-                        "option": "Solution Approval"
+                        "option": "Application Approval"
                   }
               },
               {
@@ -908,7 +905,7 @@ class DialogHelper {
                             {
                                 "type": "TextBlock",
                                 "weight": "Bolder",
-                                "text": "Whats the Software Name?",
+                                "text": "Whats the Application's Name?",
                                 "wrap": true
                             }
                           ],
@@ -925,13 +922,13 @@ class DialogHelper {
                           "items": [
                               {
                                   "type": "TextBlock",
-                                  "text": "Enter the Software Name",
+                                  "text": "Enter the Application Name",
                                   "wrap": true
                               },
                               {
                                   "type": "Input.Text",
-                                  "id": "softwareName",
-                                  "placeholder": "Name of Software"
+                                  "id": "applicationName",
+                                  "placeholder": "Name of Application"
                               }
                           ]
                       }
@@ -952,7 +949,7 @@ class DialogHelper {
       );
      }
 
-     createRAW4ArchNewSoftApprovalLicenseNameDesc(softwareName,softwareDesc,softwareWiki) {
+     createRAW4ArchNewSoftApprovalLicenseNameDesc(appName,appDesc,appWiki) {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "type": "AdaptiveCard",
@@ -960,13 +957,13 @@ class DialogHelper {
           "body": [
               {
                "type": "TextBlock",
-               "text": softwareName,
+               "text": appName,
                "weight": "bolder",
                "isSubtle": false
               },
               {
                 "type": "TextBlock",
-                "text": softwareDesc,
+                "text": appDesc,
                 "weight": "bolder",
                 "size": "medium",
                 "wrap": true,
@@ -974,7 +971,7 @@ class DialogHelper {
               },
               {
                 "type": "TextBlock",
-                "text": softwareWiki,
+                "text": appWiki,
                 "wrap": true
               }
           ],
@@ -985,8 +982,8 @@ class DialogHelper {
                   "title": 'This One',
                   "data":{
                         "action": "createRAW4ArchNewSoftApprovalLicenseNameDesc",
-                        "wiki": softwareWiki,
-                        "desc": softwareDesc
+                        "wiki": appWiki,
+                        "desc": appDesc
 
                   }
               }
@@ -1405,7 +1402,7 @@ class DialogHelper {
                             {
                                 "type": "TextBlock",
                                 "weight": "Bolder",
-                                "text": "What Best Describes the license type for this Software?",
+                                "text": "What Best Describes the license type for this Application?",
                                 "wrap": true
                             }
                           ],

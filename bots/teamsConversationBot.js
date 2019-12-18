@@ -45,8 +45,8 @@ class TeamsConversationBot extends TeamsActivityHandler {
           createFormDivisionChiefApproval: '',
           createFormSubmitRAW: '',
           createRAWProjectPhase:'',
-          softwareVendorArray: '',
-          softwareDescArray: [],
+          appVendorArray: [],
+          appDescArray: [],
           vendorName: 'N/A',
           vendorDesc: 'N/A',
           vendorWebsite: 'N/A',
@@ -126,7 +126,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
             if (context.activity.value){
 
-              console.log(context.activity)
+              //console.log(context.activity)
 
               switch (context.activity.value.action) {
 
@@ -179,7 +179,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                       switch (context.activity.value.option) {
 
-                      case 'Solution Approval':
+                      case 'Application Approval':
                       this.state.createRAW3ArchitectureNew = context.activity.value.option
                       await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ProjectPhase()] });
 
@@ -205,7 +205,6 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                           case 'Version Upgrade':
                           this.state.createRAW3ArchitectureChange = context.activity.value.option
-                          //await context.sendActivity(`This is under Construction`);
                           await context.sendActivity({ attachments: [this.dialogHelper.createRAWVersionUpgrade()] });
 
                           break;
@@ -226,9 +225,9 @@ class TeamsConversationBot extends TeamsActivityHandler {
                   this.state.createRAW4ArchNewSoftApprovalLicenseVendor = context.activity.value.vendorName
 
                   // Wikipedia
-                  this.state.softwareVendorArray = []
+                  this.state.appVendorArray = []
                   var self = this;
-                  var softwareVendorArray = self.state.softwareVendorArray.slice();
+                  var appVendorArray = self.state.appVendorArray.slice();
 
 
                   await axios.get('https://en.wikipedia.org/w/api.php?action=opensearch&search='+this.state.createRAW4ArchNewSoftApprovalLicenseVendor+'&namespace=0&format=json',
@@ -252,11 +251,11 @@ class TeamsConversationBot extends TeamsActivityHandler {
                             const vendorDesc = response.data[2][i]
                             const vendorWiki = response.data[3][i]
 
-                            softwareVendorArray.push({'vendorName': vendorName, 'vendorDesc': vendorDesc, 'vendorWiki': vendorWiki})
+                            appVendorArray.push({'vendorName': vendorName, 'vendorDesc': vendorDesc, 'vendorWiki': vendorWiki})
                       }
 
-                      self.state.softwareVendorArray = softwareVendorArray
-                      //console.log(self.state.softwareVendorArray)
+                      self.state.appVendorArray = appVendorArray
+                      //console.log(self.state.appVendorArray)
                    }
 
                   }).catch((error)=>{
@@ -267,7 +266,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                   var attachments = [];
 
-                  self.state.softwareVendorArray.forEach(function(data){
+                  self.state.appVendorArray.forEach(function(data){
 
                   var card = this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseVendorDesc(data.vendorName, data.vendorDesc, data.vendorWiki)
 
@@ -379,14 +378,14 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     }
 
                   });
-                    //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Whats the Software Name?','')] });
+
                     await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseName()] });
 
                   break;
 
                   case 'createRAW4ArchNewSoftApprovalLicenseName':
 
-                  this.state.createRAW4ArchNewSoftApprovalLicenseName = context.activity.value.softwareName
+                  this.state.createRAW4ArchNewSoftApprovalLicenseName = context.activity.value.applicationName
 
                           await axios.get(process.env.SearchService +'/indexes/'+ process.env.SearchServiceIndexApproved + '/docs?',
                                   { params: {
@@ -413,16 +412,14 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                           if (this.state.itemCount > 0){
 
-                            await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('This software has already been approved, session cancelled','')] });
+                            await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('This product has already been approved, session cancelled','')] });
 
                           }else{
 
-                            //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName,'')] });
-
                             // Wikipedia
-                            this.state.softwareDescArray = []
+                            this.state.appDescArray = []
                             var self = this;
-                            var softwareDescArray = self.state.softwareDescArray.slice();
+                            var appDescArray = self.state.appDescArray.slice();
 
 
                             await axios.get('https://en.wikipedia.org/w/api.php?action=opensearch&search='+this.state.createRAW4ArchNewSoftApprovalLicenseName+'&namespace=0&format=json',
@@ -445,16 +442,16 @@ class TeamsConversationBot extends TeamsActivityHandler {
                                 for (var i = 0; i < itemCount; i++)
                                 {
 
-                                      const softwareName = response.data[1][i]
-                                      const softwareDesc = response.data[2][i]
-                                      const softwareWiki = response.data[3][i]
+                                      const appName = response.data[1][i]
+                                      const appDesc = response.data[2][i]
+                                      const appWiki = response.data[3][i]
 
-                                      softwareDescArray.push({'softwareName': softwareName, 'softwareDesc': softwareDesc, 'softwareWiki': softwareWiki})
+                                      appDescArray.push({'appName': appName, 'appDesc': appDesc, 'appWiki': appWiki})
                                 }
 
-                                self.state.softwareDescArray = softwareDescArray
+                                self.state.appDescArray = appDescArray
 
-                                // console.log(self.state.softwareDescArray)
+                                // console.log(self.state.appDescArray)
 
                              }
 
@@ -467,9 +464,9 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                             var attachments = [];
 
-                            self.state.softwareDescArray.forEach(function(data){
+                            self.state.appDescArray.forEach(function(data){
 
-                            var card = this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseNameDesc(data.softwareName, data.softwareDesc, data.softwareWiki)
+                            var card = this.dialogHelper.createRAW4ArchNewSoftApprovalLicenseNameDesc(data.appName, data.appDesc, data.appWiki)
 
                             attachments.push(card);
 
@@ -815,7 +812,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
               this.state.createFormBusinessBenefits = context.activity.value.BusinessBenefits
               this.state.createFormAdditionalInfo = context.activity.value.AdditionalInfo
 
-              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, Heres your info... a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the software is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW6ArchNewSoftApprovalLicense + ' and the software affects ' + this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB + ' and this approval is for ' + this.state.createRAWProjectPhase,'')] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Ok, Heres your info... a ' + this.state.createRAW2Type + ' ' + this.state.createRAW1Purpose + ' request' + ' that is a ' + this.state.createRAW3ArchitectureNew + ' and the name of the product is ' + this.state.createRAW4ArchNewSoftApprovalLicenseName + ' and is a ' + this.state.createRAW5ArchNewSoftApproval + ' and the license type is a ' + this.state.createRAW6ArchNewSoftApprovalLicense + ' and the application affects ' + this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB + ' and this approval is for ' + this.state.createRAWProjectPhase,'')] });
               await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Business Problem: ' + this.state.createFormBusinessProblem,'')] });
               await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Requirements: ' + this.state.createFormBusinessRequirements,'')] });
               await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Benefits: ' + this.state.createFormBusinessBenefits,'')] });
@@ -836,7 +833,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
               if(context.activity.value.option === 'Cancel')
               {
                 this.state.createFormSubmitRAW = context.activity.value.option
-                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('session cancelled','')] });
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Session Cancelled','')] });
               }
 
             break;
@@ -881,7 +878,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
               var self = this;
 
-              const searchSoftwareApprovedTerm = dispatchResults.entities.Software_Name[0].toLowerCase();
+              const searchAppApprovedTerm = dispatchResults.entities.Software_Name[0].toLowerCase();
 
               var self = this;
 
@@ -893,7 +890,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
               await axios.get(process.env.SearchService +'/indexes/'+ process.env.SearchServiceIndexApproved + '/docs?',
                       { params: {
                         'api-version': '2019-05-06',
-                        'search': searchSoftwareApprovedTerm
+                        'search': searchAppApprovedTerm
                         },
                       headers: {
                         'api-key': process.env.SearchServiceKey,
@@ -1024,45 +1021,45 @@ class TeamsConversationBot extends TeamsActivityHandler {
                 var answerExp1 = self.state.appArrayFinal[0].appName.toLowerCase().replace("[", "");
                 var answerExp2 = answerExp1.toLowerCase().replace("]", "");
 
-                var approveCheck = answerExp2.toLowerCase().includes(String(searchSoftwareApprovedTerm));
+                var approveCheck = answerExp2.toLowerCase().includes(String(searchAppApprovedTerm));
 
                 //console.log(approveCheck)
 
                 if (approveCheck === false && self.state.appArrayFinal[1]){
                   answerExp1 = self.state.appArrayFinal[1].appName.toLowerCase().replace("[", "");
                   answerExp2 = answerExp1.toLowerCase().replace("]", "");
-                  approveCheck = answerExp2.toLowerCase().includes(String(searchSoftwareApprovedTerm));
+                  approveCheck = answerExp2.toLowerCase().includes(String(searchAppApprovedTerm));
                 }
 
                 //console.log(approveCheck)
 
                 if (approveCheck === true && self.state.appArrayFinal[0].appStatus === 'Current')
                 {
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Yes, it appears ' + searchSoftwareApprovedTerm + ' is Approved to Use ','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Yes, it appears ' + searchAppApprovedTerm + ' is Approved to Use ','')] });
                 }
 
                 if (approveCheck === true && self.state.appArrayFinal[0].appStatus === 'Restricted')
                 {
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Yes, it appears ' + searchSoftwareApprovedTerm + ' is Approved to Use but is Restricted. Check the Notes tab for the Restriction Note ','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Yes, it appears ' + searchAppApprovedTerm + ' is Approved to Use but is Restricted. Check the Notes tab for the Restriction Note ','')] });
                 }
 
                 if (approveCheck === true && self.state.appArrayFinal[0].appStatus === 'Experimental')
                 {
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Yes, it appears ' + searchSoftwareApprovedTerm + ' is Approved to Use but for Experimental Purposes Only ','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Yes, it appears ' + searchAppApprovedTerm + ' is Approved to Use but for Experimental Purposes Only ','')] });
                 }
 
                 if (approveCheck === true && self.state.appArrayFinal[0].appStatus === 'Retired')
                 {
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...No, it appears ' + searchSoftwareApprovedTerm + ' is Retired and No longer approved to Use ','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...No, it appears ' + searchAppApprovedTerm + ' is Retired and No longer approved to Use ','')] });
                 }
 
                 if (approveCheck === true && self.state.appArrayFinal[0].appStatus === 'Sunset')
                 {
-                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Yes, it appears ' + searchSoftwareApprovedTerm + ' is Approved but will soon reach end of life ','')] });
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Yes, it appears ' + searchAppApprovedTerm + ' is Approved but will soon reach end of life ','')] });
                 }
 
 
-                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Here are the Top Results from our Application Portfolio related to ' + searchSoftwareApprovedTerm,'')] });
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Here are the Top Results from our Application Portfolio related to ' + searchAppApprovedTerm,'')] });
 
                 var attachments = [];
 
@@ -1079,7 +1076,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
               }else{
 
-                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...No Software Applications Related to Your Search Were Found','')] });
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...No Applications Related to Your Search Were Found','')] });
 
               }
 
@@ -1235,88 +1232,6 @@ class TeamsConversationBot extends TeamsActivityHandler {
           }
         });
 
-        this.onMembersAddedActivity(async (context, next) => {
-            context.activity.membersAdded.forEach(async (teamMember) => {
-                if (teamMember.id !== context.activity.recipient.id) {
-                    await context.sendActivity(`Welcome to the team ${ teamMember.givenName } ${ teamMember.surname }`);
-                }
-            });
-            await next();
-        });
-    }
-
-    async mentionActivityAsync(context) {
-        const mention = {
-            mentioned: context.activity.from,
-            text: `<at>${ new TextEncoder().encode(context.activity.from.name) }</at>`,
-            type: 'mention'
-        };
-
-        const replyActivity = MessageFactory.text(`Hi ${ mention.text }`);
-        replyActivity.entities = [mention];
-        await context.sendActivity(replyActivity);
-    }
-
-    async updateCardActivityAsync(context) {
-        const data = context.activity.value;
-        data.count += 1;
-
-        const card = CardFactory.heroCard(
-            'Welcome Card',
-            `Updated count - ${ data.count }`,
-            null,
-            [
-                {
-                    type: ActionTypes.MessageBack,
-                    title: 'Update Card',
-                    value: data,
-                    text: 'UpdateCardAction'
-                },
-                {
-                    type: ActionTypes.MessageBack,
-                    title: 'Message all members',
-                    value: null,
-                    text: 'MessageAllMembers'
-                },
-                {
-                    type: ActionTypes.MessageBack,
-                    title: 'Delete card',
-                    value: null,
-                    text: 'Delete'
-                }
-            ]);
-
-        card.id = context.activity.replyToId;
-        await context.updateActivity({ attachments: [card], id: context.activity.replyToId, type: 'message' });
-    }
-
-    callVendorAppInfo() {
-        console.log('hello im here')
-    }
-
-    async deleteCardActivityAsync(context) {
-        await context.deleteActivity(context.activity.replyToId);
-    }
-
-    async messageAllMembersAsync(context) {
-        const members = await TeamsInfo.getMembers(context);
-
-        members.forEach(async (teamMember) => {
-            const message = MessageFactory.text(`Hello ${ teamMember.givenName } ${ teamMember.surname }. I'm a Teams conversation bot.`);
-
-            var ref = TurnContext.getConversationReference(context.activity);
-            ref.user = teamMember;
-
-            await context.adapter.createConversation(ref,
-                async (t1) => {
-                    const ref2 = TurnContext.getConversationReference(t1.activity);
-                    await t1.adapter.continueConversation(ref2, async (t2) => {
-                        await t2.sendActivity(message);
-                    });
-                });
-        });
-
-        await context.sendActivity(MessageFactory.text('All messages have been sent.'));
     }
 
 }
