@@ -187,11 +187,15 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                       case 'Custom Solution Approval':
                       this.state.createRAW3ArchitectureNew = context.activity.value.option
+                      await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
+
 
                       break;
 
                       case 'Policy Approval':
                       this.state.createRAW3ArchitectureNew = context.activity.value.option
+                      await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
+
 
                       break;
 

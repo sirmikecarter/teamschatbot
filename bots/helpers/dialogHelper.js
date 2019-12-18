@@ -1,31 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { AttachmentLayoutTypes, CardFactory, MessageFactory } = require('botbuilder-core');
+const {CardFactory} = require('botbuilder');
+
 
 class DialogHelper {
-
-     createMenu(title,actionTitle) {
-       return CardFactory.adaptiveCard({
-         "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-         "type": "AdaptiveCard",
-         "version": "1.0",
-         "body": [
-           {
-             "type": "TextBlock",
-             "text": title,
-             "weight": "bolder",
-             "size": "medium"
-           }],
-         "actions": [
-           {
-             "type": "Action.Submit",
-             "title": actionTitle,
-             "data": 'luis: '+ title + ' ' + actionTitle
-           }
-         ]
-       });
-     }
 
      createRAW1Purpose() {
        return CardFactory.adaptiveCard({
@@ -191,11 +170,64 @@ class DialogHelper {
                           {
                               "type": "TextBlock",
                               "weight": "Bolder",
-                              "text": "Are there any new or changes to the existing solution?",
+                              "text": "Please fill out the following",
                               "wrap": true
                           }
                       ],
                       "width": "stretch"
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": 2,
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "What's the Application Name?",
+                              "isSubtle": false,
+                              "wrap": true
+                          },
+                          {
+                              "type": "Input.Text",
+                              "id": "applicationName",
+                              "isMultiline": true,
+                              "placeholder": "Application Name"
+                          },
+                          {
+                              "type": "TextBlock",
+                              "text": "What's the Current Version of the Application?",
+                              "isSubtle": false,
+                              "wrap": true
+                          },
+                          {
+                              "type": "Input.Text",
+                              "id": "currentVersion",
+                              "isMultiline": true,
+                              "placeholder": "Current Version"
+                          },
+                          {
+                              "type": "TextBlock",
+                              "text": "What's the Proposed Version of the Application?",
+                              "isSubtle": false,
+                              "wrap": true
+                          },
+                          {
+                              "type": "Input.Text",
+                              "id": "proposedVersion",
+                              "isMultiline": true,
+                              "placeholder": "Proposed Version"
+                          },
+                          {
+                              "type": "TextBlock",
+                              "text": "Are there any new or changes to the existing solution?",
+                              "isSubtle": false,
+                              "wrap": true
+                          }
+                      ]
                   }
               ]
           },
