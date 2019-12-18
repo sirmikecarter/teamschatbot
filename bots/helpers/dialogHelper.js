@@ -167,6 +167,590 @@ class DialogHelper {
       });
      }
 
+     createRAWVersionUpgrade() {
+       return CardFactory.adaptiveCard({
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.0",
+        "body": [
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "items": [
+                          {
+                              "type": "Image",
+                              "style": "Person",
+                              "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                              "size": "Small"
+                          }
+                      ],
+                      "width": "auto"
+                  },
+                  {
+                      "type": "Column",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "weight": "Bolder",
+                              "text": "Are there any new or changes to the existing?",
+                              "wrap": true
+                          }
+                      ],
+                      "width": "stretch"
+                  }
+              ]
+          },
+          {
+              "type": "Container",
+              "items": [
+                  {
+                      "type": "ColumnSet",
+                      "columns": [
+                          {
+                              "type": "Column",
+                              "width": "stretch",
+                              "items": [
+                                  {
+                                      "type": "TextBlock",
+                                      "text": "Business or IT processes",
+                                      "wrap": true,
+                                      "id": "Text1"
+                                  }
+                              ]
+                          },
+                          {
+                              "type": "Column",
+                              "width": "auto",
+                              "items": [
+                                  {
+                                      "type": "Input.ChoiceSet",
+                                      "placeholder": "Placeholder text",
+                                      "choices": [
+                                          {
+                                              "title": "Yes",
+                                              "value": "Yes1"
+                                          }
+                                      ],
+                                      "style": "expanded",
+                                      "id": "Yes1"
+                                  }
+                              ],
+                              "horizontalAlignment": "Center"
+                          },
+                          {
+                              "type": "Column",
+                              "width": "auto",
+                              "items": [
+                                  {
+                                      "type": "Input.ChoiceSet",
+                                      "placeholder": "Placeholder text",
+                                      "style": "expanded",
+                                      "choices": [
+                                          {
+                                              "title": "No",
+                                              "value": "No1"
+                                          }
+                                      ],
+                                      "id": "No1"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "External or Internal Users",
+                              "wrap": true,
+                              "id": "Text2"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes2"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes2"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No2"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No2"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Data ownership, type or source",
+                              "wrap": true,
+                              "id": "Text3"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes3"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes3"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No3"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No3"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Data storage, backup, restore, archival or disaster recovery",
+                              "wrap": true,
+                              "id": "Text4"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes4"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes4"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No4"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No4"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Data access, performance and sharing",
+                              "wrap": true,
+                              "id": "Text5"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes5"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes5"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No5"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No5"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Application functionality or capability you intend to use",
+                              "wrap": true,
+                              "id": "Text6"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes6"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes6"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No6"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No6"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Application interfaces or integration methods",
+                              "wrap": true,
+                              "id": "Text7"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes7"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes7"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No7"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No7"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Application, server, client or hardware platform",
+                              "wrap": true,
+                              "id": "Text8"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes8"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes8"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No8"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No8"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Database, network or storage architecture",
+                              "wrap": true,
+                              "id": "Text9"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes9"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes9"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No9"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No9"
+                          }
+                      ]
+                  }
+              ]
+          },
+          {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Development, test, operations management or software configurations",
+                              "wrap": true,
+                              "id": "Text10"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "Yes",
+                                      "value": "Yes10"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "Yes10"
+                          }
+                      ]
+                  },
+                  {
+                      "type": "Column",
+                      "width": "auto",
+                      "items": [
+                          {
+                              "type": "Input.ChoiceSet",
+                              "placeholder": "Placeholder text",
+                              "choices": [
+                                  {
+                                      "title": "No",
+                                      "value": "No10"
+                                  }
+                              ],
+                              "style": "expanded",
+                              "id": "No10"
+                          }
+                      ]
+                  }
+              ]
+          }
+        ],
+        "actions": [
+            {
+                "type": "Action.Submit",
+                "title": "Submit",
+                "data": {
+                    "id": "1234567890"
+                }
+            }
+        ]
+    });
+     }
+
      createRAW3ArchitectureNew() {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -249,6 +833,74 @@ class DialogHelper {
                   "data":{
                         "action": "createRAW3ArchitectureNew",
                         "option": "Policy"
+                  }
+              }
+          ]
+      }
+      );
+     }
+
+     createRAW3ArchitectureChange() {
+       return CardFactory.adaptiveCard({
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+                  {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "Image",
+                                "style": "Person",
+                                "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                "size": "Small"
+                            }
+                          ],
+                          "width": "auto"
+                      },
+                      {
+                          "type": "Column",
+                          "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "What Category Does this Request Fall Into?",
+                                "wrap": true
+                            }
+                          ],
+                          "width": "stretch"
+                      }
+                  ]
+              },
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": 2,
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "text": "Select an Option",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "actions": [
+              {
+                  "type": "Action.Submit",
+                  "id": "Version Upgrade",
+                  "title": "Version Upgrade",
+                  "data":{
+                        "action": "createRAW3ArchitectureChange",
+                        "option": "Version Upgrade"
                   }
               }
           ]
