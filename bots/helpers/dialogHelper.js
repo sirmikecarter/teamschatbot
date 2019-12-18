@@ -663,32 +663,32 @@ class DialogHelper {
           "actions": [
               {
                   "type": "Action.Submit",
-                  "id": "Software Approval",
-                  "title": "Software Approval",
+                  "id": "Solution Approval",
+                  "title": "Solution Approval",
                   "value": {
-                      "option": "Software Approval"
+                      "option": "Solution Approval"
                   },
                   "data":{
                         "action": "createRAW3ArchitectureNew",
-                        "option": "Software Approval"
+                        "option": "Solution Approval"
                   }
               },
               {
                   "type": "Action.Submit",
-                  "id": "Custom Solution",
-                  "title": "Custom Solution",
+                  "id": "Custom Solution Approval",
+                  "title": "Custom Solution Approval",
                   "data":{
                         "action": "createRAW3ArchitectureNew",
-                        "option": "Custom Solution"
+                        "option": "Custom Solution Approval"
                   }
               },
               {
                   "type": "Action.Submit",
-                  "id": "Policy",
-                  "title": "Policy",
+                  "id": "Policy Approval",
+                  "title": "Policy Approval",
                   "data":{
                         "action": "createRAW3ArchitectureNew",
-                        "option": "Policy"
+                        "option": "Policy Approval"
                   }
               }
           ]

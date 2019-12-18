@@ -179,18 +179,18 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                       switch (context.activity.value.option) {
 
-                      case 'Software Approval':
+                      case 'Solution Approval':
                       this.state.createRAW3ArchitectureNew = context.activity.value.option
                       await context.sendActivity({ attachments: [this.dialogHelper.createRAW4ProjectPhase()] });
 
                       break;
 
-                      case 'Custom Solution':
+                      case 'Custom Solution Approval':
                       this.state.createRAW3ArchitectureNew = context.activity.value.option
 
                       break;
 
-                      case 'Policy':
+                      case 'Policy Approval':
                       this.state.createRAW3ArchitectureNew = context.activity.value.option
 
                       break;
