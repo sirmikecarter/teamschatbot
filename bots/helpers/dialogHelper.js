@@ -193,8 +193,7 @@ class DialogHelper {
                           },
                           {
                               "type": "Input.Text",
-                              "id": "applicationName",
-                              "isMultiline": true,
+                              "id": "applicationName"
                               "placeholder": "Application Name"
                           },
                           {
@@ -205,8 +204,7 @@ class DialogHelper {
                           },
                           {
                               "type": "Input.Text",
-                              "id": "currentVersion",
-                              "isMultiline": true,
+                              "id": "currentVersion"
                               "placeholder": "Current Version"
                           },
                           {
@@ -217,8 +215,7 @@ class DialogHelper {
                           },
                           {
                               "type": "Input.Text",
-                              "id": "proposedVersion",
-                              "isMultiline": true,
+                              "id": "proposedVersion"
                               "placeholder": "Proposed Version"
                           },
                           {
