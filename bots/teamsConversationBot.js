@@ -324,6 +324,11 @@ class TeamsConversationBot extends TeamsActivityHandler {
                       this.state.vendorWebsite = doc.infoboxes(0).json().website.text
                     }
 
+                    if(doc.infoboxes(0).json().homepage){
+                      console.log('Website: ' + doc.infoboxes(0).json().homepage.text);
+                      this.state.vendorWebsite = doc.infoboxes(0).json().homepage.text
+                    }
+
                     if(doc.infoboxes(0).json().num_employees){
                       console.log('Number of Employees: ' + doc.infoboxes(0).json().num_employees.text);
                       this.state.vendorAppNumEmployees = doc.infoboxes(0).json().num_employees.text
@@ -534,7 +539,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                 var runWiki = await wtf.fetch(wikiString2).then(doc => {
 
-                  //console.log(doc.infoboxes(0).json());
+                  console.log(doc.infoboxes(0).json());
 
                   console.log('--GENERAL INFORMATION--');
 
@@ -730,7 +735,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                 await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('I found all this information about the Vendor and Application','')] });
 
-                await context.sendActivity({ attachments: [this.dialogHelper.createVendorAppProfile(this.state.vendorName,this.state.vendorDesc,this.state.vendorAppName,this.state.vendorAppDesc,this.state.vendorAppWebsite,this.state.vendorAppNumEmployees,this.state.vendorAppType,this.state.vendorAppTradedAs,this.state.vendorAppISIN,this.state.vendorAppIndustry,this.state.vendorAppProducts,this.state.vendorAppServices,this.state.vendorAppFounded,this.state.vendorAppFounder,this.state.vendorAppHQLocation,this.state.vendorAppHQLocationCity,this.state.vendorAppHQLocationCountry,this.state.vendorAppAreaServed,this.state.vendorAppKeyPeople,this.state.vendorAppAuthor,this.state.vendorAppDeveloper,this.state.vendorAppFamily,this.state.vendorAppWorkingState,this.state.vendorAppSourceModel,this.state.vendorAppRTMDate,this.state.vendorAppGADate,this.state.vendorAppReleased,this.state.vendorAppLatestVersion,this.state.vendorAppLatestReleaseDate,this.state.vendorAppProgrammingLanguage,this.state.vendorAppOperatingSystem,this.state.vendorAppPlatform,this.state.vendorAppSize,this.state.vendorAppLanguage,this.state.vendorAppGenre,this.state.vendorAppPreviewVersion,this.state.vendorAppPreviewDate,this.state.vendorAppMarketingTarget,this.state.vendorAppUpdateModel,this.state.vendorAppSupportedPlatforms,this.state.vendorAppKernelType,this.state.vendorAppUI,this.state.vendorAppLicense,this.state.vendorAppPrecededBy,this.state.vendorAppSucceededBy,this.state.vendorAppSupportStatus)] });
+                await context.sendActivity({ attachments: [this.dialogHelper.createVendorAppProfile(this.state.vendorName,this.state.vendorDesc,this.state.vendorWebsite,this.state.vendorAppName,this.state.vendorAppDesc,this.state.vendorAppWebsite,this.state.vendorAppNumEmployees,this.state.vendorAppType,this.state.vendorAppTradedAs,this.state.vendorAppISIN,this.state.vendorAppIndustry,this.state.vendorAppProducts,this.state.vendorAppServices,this.state.vendorAppFounded,this.state.vendorAppFounder,this.state.vendorAppHQLocation,this.state.vendorAppHQLocationCity,this.state.vendorAppHQLocationCountry,this.state.vendorAppAreaServed,this.state.vendorAppKeyPeople,this.state.vendorAppAuthor,this.state.vendorAppDeveloper,this.state.vendorAppFamily,this.state.vendorAppWorkingState,this.state.vendorAppSourceModel,this.state.vendorAppRTMDate,this.state.vendorAppGADate,this.state.vendorAppReleased,this.state.vendorAppLatestVersion,this.state.vendorAppLatestReleaseDate,this.state.vendorAppProgrammingLanguage,this.state.vendorAppOperatingSystem,this.state.vendorAppPlatform,this.state.vendorAppSize,this.state.vendorAppLanguage,this.state.vendorAppGenre,this.state.vendorAppPreviewVersion,this.state.vendorAppPreviewDate,this.state.vendorAppMarketingTarget,this.state.vendorAppUpdateModel,this.state.vendorAppSupportedPlatforms,this.state.vendorAppKernelType,this.state.vendorAppUI,this.state.vendorAppLicense,this.state.vendorAppPrecededBy,this.state.vendorAppSucceededBy,this.state.vendorAppSupportStatus)] });
 
 
                   //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Will this application be used On-Premise, In the Cloud or Both?','')] });

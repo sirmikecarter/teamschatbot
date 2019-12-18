@@ -1021,7 +1021,7 @@ class DialogHelper {
       );
      }
 
-     createVendorAppProfile(vendorName,vendorDesc, vendorAppName,vendorAppDesc,vendorAppWebsite,vendorAppNumEmployees,vendorAppType,vendorAppTradedAs,vendorAppISIN,vendorAppIndustry,vendorAppProducts,vendorAppServices,vendorAppFounded,vendorAppFounder,vendorAppHQLocation,vendorAppHQLocationCity,vendorAppHQLocationCountry,vendorAppAreaServed,vendorAppKeyPeople,vendorAppAuthor,vendorAppDeveloper,vendorAppFamily,vendorAppWorkingState,vendorAppSourceModel,vendorAppRTMDate,vendorAppGADate,vendorAppReleased,vendorAppLatestVersion,vendorAppLatestReleaseDate,vendorAppProgrammingLanguage,vendorAppOperatingSystem,vendorAppPlatform,vendorAppSize,vendorAppLanguage,vendorAppGenre,vendorAppPreviewVersion,vendorAppPreviewDate,vendorAppMarketingTarget,vendorAppUpdateModel,vendorAppSupportedPlatforms,vendorAppKernelType,vendorAppUI,vendorAppLicense,vendorAppPrecededBy,vendorAppSucceededBy,vendorAppSupportStatus) {
+     createVendorAppProfile(vendorName,vendorDesc,vendorWebsite, vendorAppName,vendorAppDesc,vendorAppWebsite,vendorAppNumEmployees,vendorAppType,vendorAppTradedAs,vendorAppISIN,vendorAppIndustry,vendorAppProducts,vendorAppServices,vendorAppFounded,vendorAppFounder,vendorAppHQLocation,vendorAppHQLocationCity,vendorAppHQLocationCountry,vendorAppAreaServed,vendorAppKeyPeople,vendorAppAuthor,vendorAppDeveloper,vendorAppFamily,vendorAppWorkingState,vendorAppSourceModel,vendorAppRTMDate,vendorAppGADate,vendorAppReleased,vendorAppLatestVersion,vendorAppLatestReleaseDate,vendorAppProgrammingLanguage,vendorAppOperatingSystem,vendorAppPlatform,vendorAppSize,vendorAppLanguage,vendorAppGenre,vendorAppPreviewVersion,vendorAppPreviewDate,vendorAppMarketingTarget,vendorAppUpdateModel,vendorAppSupportedPlatforms,vendorAppKernelType,vendorAppUI,vendorAppLicense,vendorAppPrecededBy,vendorAppSucceededBy,vendorAppSupportStatus) {
        return CardFactory.adaptiveCard({
           "type": "AdaptiveCard",
           "body": [
@@ -1047,7 +1047,7 @@ class DialogHelper {
                   },
                   {
                     "title": "Website:",
-                    "value": vendorAppWebsite,
+                    "value": vendorWebsite,
                     "wrap": true,
                   },
                   {
