@@ -69,7 +69,7 @@ class DialogHelper {
                           {
                               "type": "Action.Submit",
                               "id": "New",
-                              "title": "New",
+                              "title": "New (i.e. Application Approval, Custom Solution, Policy)",
                               "data":{
                                     "action": "createRAW2TypeArch",
                                     "option": "New"
@@ -78,7 +78,7 @@ class DialogHelper {
                           {
                               "type": "Action.Submit",
                               "id": "Change",
-                              "title": "Change",
+                              "title": "Change (i.e. Application Version Upgrade)",
                               "data":{
                                     "action": "createRAW2TypeArch",
                                     "option": "Change"
