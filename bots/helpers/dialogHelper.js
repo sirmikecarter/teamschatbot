@@ -1662,6 +1662,35 @@ class DialogHelper {
           "type": "AdaptiveCard",
           "version": "1.0",
           "body": [
+            {
+                "type": "ColumnSet",
+                "columns": [
+                    {
+                        "type": "Column",
+                        "items": [
+                            {
+                                "type": "Image",
+                                "style": "Person",
+                                "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                "size": "Small"
+                            }
+                        ],
+                        "width": "auto"
+                    },
+                    {
+                        "type": "Column",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "Tell me more about your request",
+                                "wrap": true
+                            }
+                        ],
+                        "width": "stretch"
+                    }
+                ]
+            },
               {
                   "type": "ColumnSet",
                   "columns": [
@@ -1796,12 +1825,303 @@ class DialogHelper {
       );
      }
 
-     createFormSubmitRAW() {
+     createFormSubmitRAW(rawPurpose, rawType, rawCategory, rawPhase, lineOfBusiness, businessProblem, businessRequirements, businessBenefits, additionalInfo  ) {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "type": "AdaptiveCard",
           "version": "1.0",
           "body": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Title:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "horizontalAlignment": "Left",
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "New TextBlockNew TextBlockNew TextBlockNew TextBlock",
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Request Purpose:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": rawPurpose,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Request Type:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": rawType,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Request Category:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": rawCategory,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Project Phase:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": rawPhase,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Line of Business:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": lineOfBusiness,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Business Problem:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": businessProblem,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Requirements:     ",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": businessRequirements,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Business Benefits:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": businessBenefits,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "columns": [
+                  {
+                      "type": "Column",
+                      "width": "150px",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": "Additional Information:",
+                              "weight": "Bolder",
+                              "horizontalAlignment": "Right"
+                          }
+                      ],
+                      "verticalContentAlignment": "Center"
+                  },
+                  {
+                      "type": "Column",
+                      "width": "stretch",
+                      "items": [
+                          {
+                              "type": "TextBlock",
+                              "text": additionalInfo,
+                              "wrap": true
+                          }
+                      ]
+                  }
+              ]
+            },
               {
                   "type": "ColumnSet",
                   "columns": [
@@ -1829,7 +2149,8 @@ class DialogHelper {
                           ],
                           "width": "stretch"
                       }
-                  ]
+                  ],
+                  "separator": true
               }
           ],
           "actions": [
