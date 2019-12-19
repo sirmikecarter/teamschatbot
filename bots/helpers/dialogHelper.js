@@ -1700,6 +1700,18 @@ class DialogHelper {
                           "items": [
                               {
                                   "type": "TextBlock",
+                                  "text": "What is the Title of this Request?",
+                                  "isSubtle": true,
+                                  "wrap": true
+                              },
+                              {
+                                  "type": "Input.Text",
+                                  "id": "RequestTitle",
+                                  "isMultiline": true,
+                                  "placeholder": "Title of Request"
+                              },
+                              {
+                                  "type": "TextBlock",
                                   "text": "What is the Business Problem you are trying to solve?",
                                   "isSubtle": true,
                                   "wrap": true
@@ -1825,12 +1837,42 @@ class DialogHelper {
       );
      }
 
-     createFormSubmitRAW(rawPurpose, rawType, rawCategory, rawPhase, lineOfBusiness, businessProblem, businessRequirements, businessBenefits, additionalInfo  ) {
+     createFormSubmitRAW(rawPurpose, rawType, rawCategory, rawPhase, lineOfBusiness, rawTitle, businessProblem, businessRequirements, businessBenefits, additionalInfo  ) {
        return CardFactory.adaptiveCard({
           "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
           "type": "AdaptiveCard",
           "version": "1.0",
           "body": [
+            {
+                "type": "ColumnSet",
+                "columns": [
+                    {
+                        "type": "Column",
+                        "items": [
+                            {
+                                "type": "Image",
+                                "style": "Person",
+                                "url": "https://ipfs.globalupload.io/QmVAx4JDi3NK4TbeKBWQmj8uHqn63hNuAG2rzttK7khMsS",
+                                "size": "Small"
+                            }
+                        ],
+                        "width": "auto"
+                    },
+                    {
+                        "type": "Column",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "weight": "Bolder",
+                                "text": "Here's the information I collected about your Request",
+                                "wrap": true
+                            }
+                        ],
+                        "width": "stretch",
+                        "verticalContentAlignment": "Center"
+                    }
+                ]
+            },
             {
               "type": "ColumnSet",
               "columns": [
@@ -1854,12 +1896,13 @@ class DialogHelper {
                       "items": [
                           {
                               "type": "TextBlock",
-                              "text": "New TextBlockNew TextBlockNew TextBlockNew TextBlock",
+                              "text": rawTitle,
                               "wrap": true
                           }
                       ]
                   }
-              ]
+              ],
+              "separator": true
             },
             {
               "type": "ColumnSet",
@@ -2147,7 +2190,8 @@ class DialogHelper {
                                   "wrap": true
                               }
                           ],
-                          "width": "stretch"
+                          "width": "stretch",
+                          "verticalContentAlignment": "Center"
                       }
                   ],
                   "separator": true

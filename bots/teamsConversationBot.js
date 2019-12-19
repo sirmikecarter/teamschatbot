@@ -40,6 +40,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
           createRAW4ArchNewSoftApprovalLicenseVendor: '',
           createRAW4ArchNewSoftApprovalLicenseName: '',
           createRAW7ArchNewSoftApprovalLicenseNameLOB: '',
+          createFormRequestTitle: '',
           createFormBusinessProblem: '',
           createFormBusinessRequirements: '',
           createFormBusinessBenefits: '',
@@ -839,6 +840,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
               break;
 
               case 'createFormType':
+              this.state.createFormRequestTitle = context.activity.value.RequestTitle
               this.state.createFormBusinessProblem = context.activity.value.BusinessProblem
               this.state.createFormBusinessRequirements = context.activity.value.BusinessRequirements
               this.state.createFormBusinessBenefits = context.activity.value.BusinessBenefits
@@ -851,7 +853,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
               // await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Additional Information: ' + this.state.createFormAdditionalInfo,'')] });
               //await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Can I submit this RAW on your behalf?','')] });
 
-              await context.sendActivity({ attachments: [this.dialogHelper.createFormSubmitRAW(this.state.createRAW1Purpose, this.state.createRAW2Type, this.state.createRAW3Category, this.state.createRAW4Phase, this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB, this.state.createFormBusinessProblem, this.state.createFormBusinessRequirements, this.state.createFormBusinessBenefits, this.state.createFormAdditionalInfo)] });
+              await context.sendActivity({ attachments: [this.dialogHelper.createFormSubmitRAW(this.state.createRAW1Purpose, this.state.createRAW2Type, this.state.createRAW3Category, this.state.createRAW4Phase, this.state.createRAW7ArchNewSoftApprovalLicenseNameLOB, this.state.createFormRequestTitle, this.state.createFormBusinessProblem, this.state.createFormBusinessRequirements, this.state.createFormBusinessBenefits, this.state.createFormAdditionalInfo)] });
 
               break;
 
