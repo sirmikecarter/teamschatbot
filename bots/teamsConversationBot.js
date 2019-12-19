@@ -799,16 +799,19 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                             case 'Free':
                                 this.state.createRAW6ArchNewSoftApprovalLicense = context.activity.value.option
+                                this.state.createRAW3Category = this.state.createRAW3Category + ", " + this.state.createRAW6ArchNewSoftApprovalLicense + " License Type"
                                 await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
                                 break;
 
                             case 'Trial':
                                 this.state.createRAW6ArchNewSoftApprovalLicense = context.activity.value.option
+                                this.state.createRAW3Category = this.state.createRAW3Category + ", " + this.state.createRAW6ArchNewSoftApprovalLicense + " License Type"
                                 await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
                                 break;
 
                             case 'Purchase':
                                 this.state.createRAW6ArchNewSoftApprovalLicense = context.activity.value.option
+                                this.state.createRAW3Category = this.state.createRAW3Category + ", " + this.state.createRAW6ArchNewSoftApprovalLicense + " License Type"
                                 await context.sendActivity({ attachments: [this.dialogHelper.createRAW7ArchNewSoftApprovalLicenseNameLOB()] });
                                 break;
 
