@@ -779,13 +779,13 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                       case 'Cloud Solution':
                           this.state.createRAW5ArchNewSoftApproval = context.activity.value.option
-                          this.state.createRAW3Category = this.state.createRAW3Category + ", Subscription"
+                          this.state.createRAW3Category = this.state.createRAW3Category + ", Cloud Subscription"
                           await context.sendActivity({ attachments: [this.dialogHelper.createRAW6ArchNewSoftApprovalLicense()] });
                           break;
 
                       case 'Both':
                           this.state.createRAW5ArchNewSoftApproval = context.activity.value.option
-                          this.state.createRAW3Category = this.state.createRAW3Category + ", Subscription"
+                          this.state.createRAW3Category = this.state.createRAW3Category + ", Cloud Subscription"
                           await context.sendActivity({ attachments: [this.dialogHelper.createRAW6ArchNewSoftApprovalLicense()] });
                           break;
 
