@@ -9,6 +9,7 @@ const querystring = require('querystring');
 const TextEncoder = require('util').TextEncoder;
 var wtf = require('wtf_wikipedia');
 
+
 const { DialogHelper } = require('./helpers/dialogHelper');
 
 const QNA_TOP_N = 1;
@@ -52,6 +53,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
           appDescArray: [],
           vendorName: 'N/A',
           vendorDesc: 'N/A',
+          vendorDesc1: 'N/A',
           vendorWebsite: 'N/A',
           vendorAppName: 'N/A',
           vendorAppDesc: 'N/A',
@@ -270,15 +272,21 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     if (response){
 
                       var itemCount = response.data[1].length;
-                       console.log(response.data)
+                       //console.log(response.data)
                        //console.log(response.data.length)
                       for (var i = 0; i < itemCount; i++)
                       {
-                            const vendorName = response.data[1][i]
-                            const vendorDesc = response.data[2][i]
-                            const vendorWiki = response.data[3][i]
+                            var vendorName = response.data[1][i]
+                            var vendorDesc = response.data[2][i]
+                            var vendorWiki = response.data[3][i]
+
+
+
 
                             appVendorArray.push({'vendorName': vendorName, 'vendorDesc': vendorDesc, 'vendorWiki': vendorWiki})
+
+
+
                       }
 
                       self.state.appVendorArray = appVendorArray
@@ -288,6 +296,30 @@ class TeamsConversationBot extends TeamsActivityHandler {
                   }).catch((error)=>{
                          console.log(error);
                   });
+
+                  // If No Description is Found
+
+                  for (var i = 0; i < self.state.appVendorArray.length; i++)
+                  {
+
+                    if (self.state.appVendorArray[i].vendorDesc === ''){
+                      //console.log('Yea nothing here')
+                      var wikiString = self.state.appVendorArray[i].vendorWiki.replace("https://en.wikipedia.org/wiki/", "");
+
+                      wtf.fetch(wikiString).then(doc => {
+
+                        var splitDescString = doc.sections('').text().split(/\r?\n/)
+                        self.state.vendorDesc1 = splitDescString[0]
+
+                      })
+
+                      await new Promise((resolve, reject) => setTimeout(resolve, 300));
+
+                      self.state.appVendorArray[i].vendorDesc = self.state.vendorDesc1
+
+                    }
+
+                  }
 
                   await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Please select the description best describing this vendor','')] });
 
@@ -335,7 +367,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                   //this.state.vendorWebsite = context.activity.value.wiki
 
                   wtf.fetch(wikiString2).then(doc => {
-                    //console.log(doc.infoboxes(0).json());
+                    console.log(doc.infoboxes(0).json());
                     console.log('--VENDOR INFORMATION--');
 
                     console.log('Vendor Name: ' + this.state.vendorName);
@@ -468,7 +500,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                                 var itemCount = response.data[1].length;
 
-                                 console.log(response.data)
+                                 //console.log(response.data)
                                  // console.log(response.data.length)
 
                                 for (var i = 0; i < itemCount; i++)
@@ -490,6 +522,30 @@ class TeamsConversationBot extends TeamsActivityHandler {
                             }).catch((error)=>{
                                    console.log(error);
                             });
+
+                            // If No Description is Found
+
+                            for (var i = 0; i < self.state.appDescArray.length; i++)
+                            {
+
+                              if (self.state.appDescArray[i].appDesc === ''){
+                                //console.log('Yea nothing here')
+                                var wikiString = self.state.appDescArray[i].appWiki.replace("https://en.wikipedia.org/wiki/", "");
+
+                                wtf.fetch(wikiString).then(doc => {
+
+                                  var splitDescString = doc.sections('').text().split(/\r?\n/)
+                                  self.state.vendorDesc1 = splitDescString[0]
+
+                                })
+
+                                await new Promise((resolve, reject) => setTimeout(resolve, 300));
+
+                                self.state.appDescArray[i].appDesc = self.state.vendorDesc1
+
+                              }
+
+                            }
 
                             await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('Please select the description best describing this application','')] });
 
@@ -1012,7 +1068,6 @@ class TeamsConversationBot extends TeamsActivityHandler {
               case 'Software_Create_RAW':
 
               //console.log(dispatchResults.text)
-
               await context.sendActivity({ attachments: [this.dialogHelper.createFormDivisionChiefApproval()] });
 
               break;
