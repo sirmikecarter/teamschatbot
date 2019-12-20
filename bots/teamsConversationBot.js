@@ -270,7 +270,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     if (response){
 
                       var itemCount = response.data[1].length;
-                       //console.log(response.data)
+                       console.log(response.data)
                        //console.log(response.data.length)
                       for (var i = 0; i < itemCount; i++)
                       {
@@ -345,11 +345,11 @@ class TeamsConversationBot extends TeamsActivityHandler {
                     if(doc.infoboxes(0).json().website){
                       console.log('Website: ' + doc.infoboxes(0).json().website.text);
                       this.state.vendorWebsite = doc.infoboxes(0).json().website.text
-                    }
-
-                    if(doc.infoboxes(0).json().homepage){
+                    }else if(doc.infoboxes(0).json().homepage){
                       console.log('Website: ' + doc.infoboxes(0).json().homepage.text);
                       this.state.vendorWebsite = doc.infoboxes(0).json().homepage.text
+                    }else{
+                      this.state.vendorWebsite = wikiString
                     }
 
                     if(doc.infoboxes(0).json().num_employees){
@@ -468,7 +468,7 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
                                 var itemCount = response.data[1].length;
 
-                                 // console.log(response.data)
+                                 console.log(response.data)
                                  // console.log(response.data.length)
 
                                 for (var i = 0; i < itemCount; i++)
@@ -572,6 +572,8 @@ class TeamsConversationBot extends TeamsActivityHandler {
                   if(doc.infoboxes(0).json().website){
                     console.log('Website: ' + doc.infoboxes(0).json().website.text);
                     this.state.vendorAppWebsite = doc.infoboxes(0).json().website.text
+                  }else{
+                    this.state.vendorAppWebsite = wikiString
                   }
 
                   console.log('--VENDOR INFORMATION--');
@@ -904,6 +906,109 @@ class TeamsConversationBot extends TeamsActivityHandler {
                   }
                   break;
 
+              case 'Software_Installed':
+
+              const searchInstalledTerm = dispatchResults.entities.Software_Name[0].toLowerCase();
+
+              var self = this;
+
+              self.state.appArray = []
+
+              await axios.get(process.env.SearchService +'/indexes/'+ process.env.SearchServiceIndexInstalled + '/docs?',
+                      { params: {
+                        'api-version': '2019-05-06',
+                        'search': searchInstalledTerm
+                        },
+                      headers: {
+                        'api-key': process.env.SearchServiceKey,
+                        'ContentType': 'application/json'
+                }
+
+              }).then(response => {
+
+                if (response){
+
+                  var itemCount
+
+                  if(response.data.value.length === 1){
+                    itemCount = 1
+                  }
+
+                  if(response.data.value.length === 2){
+                    itemCount = 2
+                  }
+
+                  if(response.data.value.length === 3){
+                    itemCount = 3
+                  }
+
+                  if(response.data.value.length > 3){
+                    itemCount = 3
+                  }
+
+                  var itemArray = self.state.appArray.slice();
+
+                  for (var i = 0; i < itemCount; i++)
+                  {
+                        const appScore = i
+                        const appName = response.data.value[i].questions[0]
+                        const appClass = response.data.value[i].metadata_classification
+                        const appPublisher = response.data.value[i].metadata_publisher
+                        const appVersion = response.data.value[i].metadata_version
+                        const appEdition = response.data.value[i].metadata_edition
+                        const appCategory = response.data.value[i].metadata_softwarecategory
+                        const appSubCategory = response.data.value[i].metadata_softwaresubcategory
+                        const appInstalled = response.data.value[i].metadata_installed
+                        const appReleaseDate = response.data.value[i].metadata_releasedate
+                        const appEndOfSales = response.data.value[i].metadata_endofsales
+                        const appEndofLife = response.data.value[i].metadata_endoflife
+                        const appEndOfSupport = response.data.value[i].metadata_endofsupport
+                        const appEndofExtendedSupport = response.data.value[i].metadata_endofextendedsupport
+                        const appId = response.data.value[i].metadata_flexeraid
+
+                        itemArray.push({'appScore': appScore, 'appName': appName, 'appClass': appClass, 'appPublisher': appPublisher, 'appVersion': appVersion, 'appEdition': appEdition, 'appCategory': appCategory, 'appSubCategory': appSubCategory, 'appInstalled': appInstalled, 'appReleaseDate': appReleaseDate, 'appEndOfSales': appEndOfSales, 'appEndofLife': appEndofLife, 'appEndOfSupport': appEndOfSupport, 'appEndofExtendedSupport': appEndofExtendedSupport, 'appId': appId})
+                  }
+
+                  self.state.appArray = arraySort(itemArray, 'appScore')
+
+
+               }
+
+              }).catch((error)=>{
+                     console.log(error);
+              });
+
+              //console.log(self.state.appArray)
+
+
+              if (self.state.appArray.length > 0){
+
+
+
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Here are the Top Results from Flexera related to ' + searchInstalledTerm,'')] });
+
+                var attachments = [];
+
+                this.state.appArray.forEach(function(data){
+
+                var card = this.dialogHelper.createAppInstalledCard(data.appName, data.appClass, data.appId, data.appInstalled, data.appCategory, data.appSubCategory, data.appStatusDate, data.appPublisher, data.appVersion, data.appEdition, data.appReleaseDate, data.appEndOfSales, data.appEndofLife, data.appEndOfSupport, data.appEndofExtendedSupport)
+
+                attachments.push(card);
+
+                }, this)
+
+                await context.sendActivity({ attachments: attachments,
+                attachmentLayout: AttachmentLayoutTypes.Carousel });
+
+              }else{
+
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...No Installed Applications Related to Your Search Were Found','')] });
+
+              }
+
+
+              break;
+
               case 'Software_Create_RAW':
 
               //console.log(dispatchResults.text)
@@ -912,13 +1017,215 @@ class TeamsConversationBot extends TeamsActivityHandler {
 
               break;
 
+              case 'Software_Financials':
+
+                const searchFinancialTerm = dispatchResults.entities.Software_Name[0].toLowerCase();
+
+                var self = this;
+
+                self.state.appArray = []
+
+
+                await axios.get(process.env.SearchService +'/indexes/'+ process.env.SearchServiceIndexFinancials + '/docs?',
+                        { params: {
+                          'api-version': '2019-05-06',
+                          'search': searchFinancialTerm
+                          },
+                        headers: {
+                          'api-key': process.env.SearchServiceKey,
+                          'ContentType': 'application/json'
+                  }
+
+                }).then(response => {
+
+                  if (response){
+
+                    var itemCount
+
+                    if(response.data.value.length === 1){
+                      itemCount = 1
+                    }
+
+                    if(response.data.value.length === 2){
+                      itemCount = 2
+                    }
+
+                    if(response.data.value.length === 3){
+                      itemCount = 3
+                    }
+
+                    if(response.data.value.length > 3){
+                      itemCount = 3
+                    }
+
+                    var itemArray = self.state.appArray.slice();
+
+                    for (var i = 0; i < itemCount; i++)
+                    {
+                          const financialScore = i
+                          const financialId = response.data.value[i].metadata_itemid
+                          const financialTitle = response.data.value[i].questions[0]
+                          const financialDesc = response.data.value[i].answer
+                          const financialYear = response.data.value[i].metadata_year
+                          const financialContact = response.data.value[i].metadata_contact
+                          const financialDivision = response.data.value[i].metadata_division
+                          const financialCost = response.data.value[i].metadata_cost
+                          const financialApptioCode = response.data.value[i].metadata_apptiocode
+                          const financialPriorPO = response.data.value[i].metadata_priorpo
+                          const financialQuantity = response.data.value[i].metadata_quantity
+
+                          itemArray.push({'financialScore': financialScore, 'financialId': financialId, 'financialTitle': financialTitle, 'financialDesc': financialDesc, 'financialYear': financialYear, 'financialContact': financialContact, 'financialDivision': financialDivision, 'financialCost': financialCost, 'financialApptioCode': financialApptioCode, 'financialPriorPO': financialPriorPO, 'financialQuantity': financialQuantity})
+                    }
+
+                    self.state.appArray = arraySort(itemArray, 'financialScore')
+
+
+                 }
+
+                }).catch((error)=>{
+                       console.log(error);
+                });
+
+                //console.log(self.state.appArray)
+
+                if (self.state.appArray.length > 0){
+
+
+
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Here are the Top Results from the Spending Plan related to ' + searchFinancialTerm,'')] });
+
+                  var attachments = [];
+
+                  this.state.appArray.forEach(function(data){
+
+                  var card = this.dialogHelper.createFinancialCard(data.financialId, data.financialTitle, data.financialDesc, data.financialYear, data.financialContact, data.financialDivision, data.financialCost, data.financialApptioCode, data.financialPriorPO, data.financialQuantity)
+
+                  attachments.push(card);
+
+                  }, this)
+
+                  await context.sendActivity({ attachments: attachments,
+                  attachmentLayout: AttachmentLayoutTypes.Carousel });
+
+                }else{
+
+                  await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...No Items in the Spending Plans Are Related to Your Search','')] });
+
+                }
+
+
+                break;
+
+              case 'Software_RAW':
+
+              var self = this;
+
+              var searchRAWTerm = dispatchResults.entities.Software_Name[0].toLowerCase();
+
+              self.state.appArray = []
+
+              await axios.get(process.env.SearchService +'/indexes/'+ process.env.SearchServiceIndexRAW + '/docs?',
+                      { params: {
+                        'api-version': '2019-05-06',
+                        'search': searchRAWTerm
+                        },
+                      headers: {
+                        'api-key': process.env.SearchServiceKey,
+                        'ContentType': 'application/json'
+                }
+
+              }).then(response => {
+
+                if (response){
+
+                  var itemCount
+
+                  if(response.data.value.length === 1){
+                    itemCount = 1
+                  }
+
+                  if(response.data.value.length === 2){
+                    itemCount = 2
+                  }
+
+                  if(response.data.value.length === 3){
+                    itemCount = 3
+                  }
+
+                  if(response.data.value.length > 3){
+                    itemCount = 3
+                  }
+
+                  var itemArray = self.state.appArray.slice();
+
+                  for (var i = 0; i < itemCount; i++)
+                  {
+                        const rawScore = i
+                        const rawIdTitle = response.data.value[i].questions[0]
+                        const rawName = response.data.value[i].questions[1]
+                        const rawDesc = response.data.value[i].answer
+                        const rawCategory = response.data.value[i].metadata_requestcategory
+                        const rawCategoryOther = response.data.value[i].metadata_requestcategoryother
+                        const rawPhase = response.data.value[i].metadata_requestphase
+                        const rawType = response.data.value[i].metadata_requesttype
+                        const rawBizLine = response.data.value[i].metadata_businessline
+                        const rawSubmitter = response.data.value[i].metadata_submittername
+                        const rawSubmitterDiv = response.data.value[i].metadata_submitterdivision
+                        const rawSubmitterUnit = response.data.value[i].metadata_submitterunit
+                        const rawOwner = response.data.value[i].metadata_owner
+                        const rawOwnerDiv = response.data.value[i].metadata_ownerdivision
+                        const rawOwnerUnit = response.data.value[i].metadata_ownerunit
+                        const rawDateSubmit = response.data.value[i].metadata_datesubmitted
+                        const rawDateComplete = response.data.value[i].metadata_datecompleted
+                        const rawId = response.data.value[i].metadata_rawid
+
+                        itemArray.push({'rawScore': rawScore, 'rawIdTitle': rawIdTitle, 'rawName': rawName, 'rawDesc': rawDesc, 'rawCategory': rawCategory, 'rawCategoryOther': rawCategoryOther, 'rawPhase': rawPhase, 'rawType': rawType, 'rawBizLine': rawBizLine, 'rawSubmitter': rawSubmitter, 'rawSubmitterDiv': rawSubmitterDiv, 'rawSubmitterUnit': rawSubmitterUnit, 'rawOwner': rawOwner, 'rawOwnerDiv': rawOwnerDiv, 'rawOwnerUnit': rawOwnerUnit, 'rawDateSubmit': rawDateSubmit, 'rawDateComplete': rawDateComplete, 'rawId': rawId})
+                  }
+
+                  self.state.appArray = arraySort(itemArray, 'rawScore')
+
+
+               }
+
+              }).catch((error)=>{
+                     console.log(error);
+              });
+
+              //console.log(self.state.appArray)
+
+              if (self.state.appArray.length > 0){
+
+
+
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Here are the Top Results from the RAW system related to ' + searchRAWTerm,'')] });
+
+                var attachments = [];
+
+                this.state.appArray.forEach(function(data){
+
+                var card = this.dialogHelper.createRAWCard(data.rawIdTitle, data.rawName, data.rawDesc, data.rawCategory, data.rawCategoryOther, data.rawPhase, data.rawType, data.rawBizLine, data.rawSubmitter, data.rawSubmitterDiv, data.rawSubmitterUnit, data.rawOwner, data.rawOwnerDiv, data.rawOwnerUnit, data.rawDateSubmit, data.rawDateComplete, data.rawId)
+
+                attachments.push(card);
+
+                }, this)
+
+                await context.sendActivity({ attachments: attachments,
+                attachmentLayout: AttachmentLayoutTypes.Carousel });
+
+              }else{
+
+                await context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...No RAWs Related to Your Search Were Found','')] });
+
+              }
+
+
+              break;
+
               case 'Software_Approved':
 
               var self = this;
 
               const searchAppApprovedTerm = dispatchResults.entities.Software_Name[0].toLowerCase();
-
-              var self = this;
 
               self.state.appArray = []
               self.state.appNotes = []
