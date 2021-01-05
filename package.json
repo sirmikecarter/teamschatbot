@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "array-sort": "^1.0.0",
-        "axios": "^0.19.0",
+        "axios": "^0.21.1",
         "botbuilder": "~4.6.0",
         "botbuilder-ai": "^4.6.2",
         "botbuilder-core": "^4.6.2",
